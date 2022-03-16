@@ -21,8 +21,64 @@
             <% }) %>
         </select>
         <input type="text" name = "subcatname" placeholder = "enter subcategory Name">
-        <input type="text" name="desc" id="">
+        <input type="text" name="desc" id="" placeholder = "Enter Description">
+        <input class = "nooftickets" type="text" placeholder = "Enter no. of Steps">
+        <a href="#" id="names" onclick="addFields();">Enter Steps</a>
+        <div id='container' />
+        </div>
+        <br/>
+        <input type="text" name = "requirements" placeholder = "Any Requirements or anything else?">
+        <input class = "noofRequirements" type="text" placeholder = "Enter no. of Requirements">
+        <a href="#" id="requirements" onclick="addRequirementsFields();">Enter Requirements</a>
+        <div id='requirementscontainer' />
+        </div>
+        <br/>
         <button type="submit">Submit Sub Category</button>
+    </form><br><br>
+
+    <form action="/new/document" method = "post">
+      <select name="subtype" id="">
+        <% types.forEach((type) => { %>
+          <option value="<%= type._id %>"><%= type.name %></option>
+        <% }) %>
+      </select>
+      
     </form>
+
+      <script>
+          function addFields() {
+        debugger;
+        var number = document.getElementsByClassName("nooftickets")[0].value;
+        var container = document.getElementById("container");
+        container.innerHTML = '';
+        for (i = 0; i < number; i++) {
+          container.appendChild(document.createTextNode("Step " + (i + 1) + " "));
+          var input = document.createElement("input");
+          input.type = "text";
+          input.name = "name";
+          //input.required= true;
+          container.appendChild(input);
+          container.appendChild(document.createElement("br"));
+        }
+      }
+
+      function addRequirementsFields() {
+        debugger;
+        var number = document.getElementsByClassName("noofRequirements")[0].value;
+        var container = document.getElementById("requirementscontainer");
+        container.innerHTML = '';
+        for (i = 0; i < number; i++) {
+          container.appendChild(document.createTextNode("Requirement " + (i + 1) + " "));
+          var input = document.createElement("input");
+          input.type = "text";
+          input.name = "requirement";
+          //input.required= true;
+          container.appendChild(input);
+          container.appendChild(document.createElement("br"));
+        }
+      }
+
+      </script>
+
 </body>
 </html>
