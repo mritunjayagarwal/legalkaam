@@ -5,8 +5,7 @@ const categorySchema = new Schema({
     name: { type: String, lowercase: true},
     subcat: [
         {
-            name: String,
-            type:{type: Schema.Types.ObjectId, ref: 'Type'}
+            type: Schema.Types.ObjectId, ref: 'Type'
         }
     ]
 });

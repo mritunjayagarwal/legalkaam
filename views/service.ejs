@@ -1,0 +1,501 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>LegalKaam</title>
+
+	<!-- mobile responsive meta -->
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+
+	<link rel="stylesheet" href="/css/style.css">
+	<link rel="stylesheet" href="/css/responsive.css">
+
+</head>
+<body>
+
+
+<header class="header header-fixed header-1">
+    <div class="header-top">
+        <div class="container">
+            <div class="left-info pull-left">
+                <ul class="list-inline">
+                    <li>
+                        <span>
+                            <i class="fa fa-phone"></i> +91 999-090-5006
+                        </span>
+                    </li>
+                </ul>
+            </div><!-- /.left-info -->
+            <div class="right-info pull-right">
+                <ul class="list-inline">
+                    <li>
+                        <span>
+                            <i class="fa fa-envelope"></i> legalkaam@gmail.com							
+                        </span>
+                    </li>
+                    <li>
+                        <ul class="list-inline social">
+                            <li><a href="#"><i class="fa fa-facebook"></i></a></li>
+                            <li><a href="#"><i class="fa fa-twitter"></i></a></li>
+                            <li><a href="#"><i class="fa fa-youtube-play"></i></a></li>
+                            <li><a href="#"><i class="fa fa-linkedin"></i></a></li>
+                        </ul><!-- /.social -->
+                    </li>				
+                </ul>
+            </div><!-- /.right-info -->
+        </div>		
+    </div><!-- /.header-top -->
+
+    <nav class="navbar navbar-default header-navigation stricky">
+        <div class="container">
+            <!-- Brand and toggle get grouped for better mobile display -->
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#main-nav-bar" aria-expanded="false">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="/">
+                    <img src="/img/logo.png" alt="Awesome Image"/>
+                </a>
+            </div>
+
+            <!-- Collect the nav links, forms, and other content for toggling -->
+            <div class="collapse navbar-collapse" id="main-nav-bar">
+                
+
+                <ul class="nav navbar-nav navigation-box">
+                    <li><a href="/">Home</a></li>
+                    <li><a href="about.html">About Us</a></li>
+                    <% categories.forEach((category) => { %>
+                        <li>
+                            <a href="services.html"><%= category.name %></a>
+                                <ul class="sub-menu">	
+                                <div style="display: flex;">
+                                    <ul class="make">				
+                                        <% category.subcat.forEach((type) => { %>
+                                            <li><a href="/find/type/<%= type.slug %>"><%= type.name %></a></li>
+                                        <% }) %>
+                                    </ul>
+                                </div>
+                                </ul>
+                            </li>
+                    <% }) %>
+                    <li>
+                        <a href="services.html">Legal</a>
+                        <ul class="sub-menu">	
+                            <div style="display: flex;">
+                                <ul class="make">				
+                                    <li><a href="services.html">Corporates Lawyers</a></li>
+                                    <li><a href="services.html">Merger & Acquisition</a></li>
+                                    <li><a href="services.html">Contract Drafting</a></li>
+                                    <li><a href="services.html">Winding Up</a></li>
+                                    <li><a href="services.html">Recovery Matters</a></li>
+                                    <li><a href="services.html">contractual disputes</a></li>
+                                    <li><a href="services.html">Arbitrations matters</a></li>
+                                    <li><a href="services.html">All type Of Due Deligence</a></li>
+                                </ul>						
+                            </div>
+                        </ul><!-- /.sub-menu -->
+                    </li>
+                    <li>
+                        <a href="services.html">Returns</a>
+                        <ul class="sub-menu">	
+                            <div style="display: flex;">
+                                <ul class="make">				
+                                    <li><a href="services.html">GST Returns</a></li>
+                                    <li><a href="services.html">Income Tax Return</a></li>
+                                    <li><a href="services.html">TDS Returns</a></li>
+                                    <li><a href="services.html">ROC Annual Return</a></li>
+                                    <li><a href="services.html">Annual Complaince</a></li>
+                                    <li><a href="services.html">Propreitorship</a></li>
+                                    <li><a href="services.html">Partnership</a></li>
+                                </ul>						
+                            </div>
+                        </ul><!-- /.sub-menu -->
+                    </li>
+                    <li>
+                        <a href="contact.html">Contact</a>
+                    </li>
+                </ul>	
+                <ul class="nav navbar-nav navbar-right right-box">
+                    <li>
+                        <a href="#"><span class="phone-only">Search</span><i class="fa fa-search"></i></a>
+                        <div class="sub-menu search-box">
+                            <form action="#" class="clearfix">
+                                <input type="text" placeholder="Search Here" />
+                                <button type="submit"><i class="fa fa-search"></i></button>
+                            </form>
+                        </div><!-- /.sub-menu -->
+                    </li>
+                </ul>		
+            </div><!-- /.navbar-collapse -->
+        </div><!-- /.container -->
+    </nav>
+
+</header><!-- /.header -->
+
+<section class="inner-banner has-dot-pattern">
+	<div class="container">
+		<h2><%= type.name %></h2>
+		<p>Our Mission Is To Associate With Professionals<br/> And Support All Services Under One Roof !! </p>
+		<span class="decor-line"></span>
+		<ul class="list-inline bread-cumb">
+			<li><a href="index.html">Home</a></li>
+			<li><span><%= type.name %></span></li>
+		</ul><!-- /.list-inline -->
+	</div><!-- /.container -->
+</section><!-- /.inner-banner -->
+
+<section class="sec-pad service-row-section">
+    <div class="container">
+        <div class="sec-title text-center">
+            <h2>Service Name</h2>
+            <span class="decor-line">
+                <span class="decor-line-inner"></span>
+            </span>
+        </div>
+        <div class="row" style=" margin-top: 60px; ">
+            <div class="col-md-1 col-sm-6" style="display: none;"></div> 
+            <% steps.forEach((step, index) => { %>
+                <div class="col-md-2 col-sm-6">
+                    <div class="service-count-page-box" style=" height: 150px !important; ">
+                        <div class="icon-box">
+                            <div class="icon-box">
+                                <div class="inner-box">
+                                    <div class="top-box">
+                                        <span class="fa-stack" style="font-size: 50px; margin-top: -10px;">
+                                            <span class="fa fa-circle-o fa-stack-2x"></span>
+                                            <strong class="fa-stack-1x">
+                                                <%= index + 1 %>
+                                            </strong>
+                                        </span>
+                                    </div><!-- /.top-box -->
+                                    <div class="bottom-box">
+                                        <span class="fa-stack" style="font-size: 50px; margin-top: -10px;">
+                                            <span class="fa fa-circle-o fa-stack-2x"></span>
+                                            <strong class="fa-stack-1x">
+                                               <%= index + 1 %>  
+                                            </strong>
+                                        </span>
+                                    </div><!-- /.bottom-box -->                            
+                                </div><!-- /.inner-box -->                        
+                            </div>                     
+                        </div>
+                        <div class="title">
+                            <h3><%- step %></h3>
+                        </div><!-- /.title -->
+                    </div><!-- /.service-count-page-box -->
+                </div><!-- /.col-md-4 -->
+            <% }) %>
+            <div class="col-md-1 col-sm-6" style="display: none;"></div> 
+   		</div><!-- /.row -->
+    </div><!-- /.container -->
+</section><!-- /.sec-pad -->
+
+
+<section class="sec-pad requirement-document-box">
+    <div class="container">
+        <div class="row" style="margin-top: -40px;">
+            <div class="col-md-4 col-sm-12">
+                <div class="sec-title text-center">
+                    <h2>Requirements</h2>
+                    <span class="decor-line">
+                        <span class="decor-line-inner"></span>
+                    </span>
+                </div><!-- /.sec-title -->
+                <%- type.desc %>
+            </div><!-- /.col-md-6 -->
+            <div class="col-md-8 pull-right col-sm-12">
+                <div class="sec-title text-center">
+                    <h2>Documents</h2>
+                    <span class="decor-line">
+                        <span class="decor-line-inner"></span>
+                    </span>
+                </div><!-- /.sec-title -->
+                <div class="row">
+                    <% documents.forEach((document) => { %>
+                        <div class="col-md-6 col-xs-12">
+                            <div class="sub-sec-title text-center">
+                                <h2><%= document.title %></h2>
+                            </div><!-- /.sec-title -->
+                            <p class="MsoNormal" style="margin-bottom:0cm;margin-bottom:.0001pt"><%- document.desc %></p>
+                    </div>
+                    <% }) %>
+                </div>
+            </div><!-- /.col-md-6 -->
+            
+        </div><!-- /.row -->
+    </div><!-- /.container -->
+</section><!-- /.sec-pad two-color-overlay -->
+
+
+<section class="sec-pad price-query-box" style="animation: scale 0.65s ease;">
+    <div class="container">
+        <div class="row" style="margin-top: -40px;">
+            <div class="col-md-12 col-sm-12">
+                
+                <div class="row">
+                    <div class="col-md-6 col-sm-6 col-xs-12 price_block">
+                        <div class="sec-title">
+                            <h2>Pricing</h2>
+                            <span class="decor-line">
+                                <span class="decor-line-inner"></span>
+                            </span>
+                        </div><!-- /.sec-title -->
+                        <div class="price-section">
+                            <div class="price-table">
+                                <div class="price"><small>₹</small><%= type.amount %></div>
+                                <h2 class="title">ADVANCED</h2>
+                                <p class="description">All Inclusive (Fees & Taxes)</p>
+                                <div class="price-features">
+                                    <% benefits.forEach((benefit) => { %>
+                                        <div class="price-feature">
+                                            <i class="fa fa-check"></i>
+                                            <span><%= benefit.name %></span>
+                                        </div>
+                                    <% }) %>
+                                    <a href="https://api.whatsapp.com/send?phone=+919990905006" type="submit" class="price-btn">BOOK NOW</a>
+                                </div>
+                            </div>
+                        </div>       
+                    </div>
+                    <div class="col-md-6 col-sm-6 col-xs-12">
+                        <div class="rqa-box">
+                            <div class="sec-title">
+                                <h2>Have Query...</h2>
+                                <span class="decor-line">
+                                    <span class="decor-line-inner"></span>
+                                </span>
+                            </div><!-- /.sec-title -->
+                            <form class="contact-form">
+                                <div class="row">
+                                    <div class="col-md-6 col-sm-6">
+                                        <div class="form-grp">
+                                            <label>Your Name*</label>
+                                            <input type="text" name="name" placeholder="Your Name *" />
+                                        </div><!-- /.form-grp -->
+                                    </div><!-- /.col-md-6 -->
+                                    <div class="col-md-6 col-sm-6">
+                                        <div class="form-grp">
+                                            <label>Contact Number*</label>
+                                            <input type="text" name="name" placeholder="Your Number *" />
+                                        </div><!-- /.form-grp -->
+                                    </div><!-- /.col-md-6 -->
+                                    <div class="col-md-12">
+                                        <div class="form-grp">
+                                            <label>Email Address*</label>
+                                            <input type="text" name="email" placeholder="Email Address *" />
+                                        </div><!-- /.form-grp -->
+                                    </div><!-- /.col-md-6 -->
+                                    <div class="col-md-12">
+                                        <div class="form-grp">
+                                            <textarea name="message" placeholder="Message*"></textarea>							
+                                        </div><!-- /.form-grp -->
+                                        <button type="submit" class="thm-btn">Submit</button>
+                                    </div><!-- /.col-md-6 -->
+                                </div><!-- /.row -->
+                            </form>
+                        </div><!-- /.rqa-box -->
+                    </div><!-- /.col-md-6 -->
+                 </div>
+                    
+            </div><!-- /.col-md-6 -->
+        </div><!-- /.row -->
+    </div><!-- /.container -->
+</section><!-- /.sec-pad two-color-overlay -->
+
+<section class="sec-pad service-page-feature">
+	<div class="container">
+        <div class="sec-title text-center">
+            <h2>Basic Features of <%= type.name %></h2>
+            <span class="decor-line">
+                <span class="decor-line-inner"></span>
+            </span>
+        </div>
+		<div class="row masonary-layout filter-layout">
+			<% features.forEach((feature) => { %>
+                <div class="col-md-4 col-sm-6 col-xs-12" style="border: 2px solid #3563a9;">
+                    <div class="single-project-item">
+                        <div class="single-service-page-box">
+                            <div class="sec-title text-center">
+                                <h2><%= feature.head %></h2>
+                                <span class="decor-line">
+                                    <span class="decor-line-inner"></span>
+                                </span>
+                            </div>
+                            <p><%= feature.desc %></p>
+                        </div><!-- /.single-service-page-box -->
+                    </div><!-- /.single-project-item -->
+                </div><!-- /.col-md-4 -->
+            <% }) %>
+		</div><!-- /.row -->
+    </div><!-- /.container -->
+</section><!-- /.sec-pad -->
+
+
+
+<section class="service-imp sec-pad">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-7">
+                <div class="sec-title">
+                    <h2>Important Notes</h2>
+                    <span class="decor-line">
+                        <span class="decor-line-inner"></span>
+                    </span>
+                </div>
+                <div class="service-imp-box">
+                    <%- type.important %>
+                </div><!-- /.about-tab-text-box -->
+            </div><!-- /.col-md-6 -->
+          
+        </div><!-- /.row -->
+    </div><!-- /.container -->
+</section><!-- /.about-video sec-pad -->
+
+<footer class="footer has-dot-pattern sec-pad" style="margin-top: 20px;">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-4 col-md-6">
+                <div class="single-footer-widget about-widget">
+                    <a href="index.html"><img src="img/logo.png" alt="Awesome Image"/></a>						
+                    <p style="text-align: justify;">LegalKaam is one stop solution for all your financial, legal and consulting needs. We are cost effective and efficient platform to help you in establishing or running your business without stressing about the day to day activities, compliances and taxation.</p>
+                    
+                </div><!-- /.single-footer-widget -->
+            </div><!-- /.col-md-3 -->
+            <div class="col-lg-4 col-md-6">
+                <div class="single-footer-widget link-widget">
+                    <div class="sec-title white medium">
+                        <h2>Usefull Links</h2>
+                        <span class="decor-line">
+                            <span class="decor-line-inner"></span>
+                        </span>
+                    </div><!-- /.sec-title -->
+                    <div class="clearfix">
+                        <div class="col-md-6">
+                            <ul class="links">
+                                <li><a href="index.html">Home</a></li>
+                                <li><a href="about.html">About Us</a></li>
+                                <li><a href="#">GST Regisration</a></li>
+                                <li><a href="#">LLP Regisstration</a></li>
+                                <li><a href="#">Property Matters</a></li>
+                                <li><a href="#">Meet Team</a></li>
+                            </ul><!-- /.links -->		
+                        </div><!-- /.col-md-6 -->
+                        <div class="col-md-6">
+                            <ul class="links">
+                                <li><a href="#">Loans</a></li>
+                                <li><a href="#">Import Export Code</a></li>
+                                <li><a href="#">GST Filing</a></li>
+                                <li><a href="#">Company Closing</a></li>
+                                <li><a href="#">Preparation Of Reports</a></li>
+                                <li><a href="#">ITR - 1 (Salaried)</a></li>
+                            </ul><!-- /.links -->		
+                        </div><!-- /.col-md-6 -->
+                    </div><!-- /.row -->
+                    
+                </div><!-- /.single-footer-widget -->
+            </div><!-- /.col-md-3 -->
+            <div class="col-lg-4 col-md-6">
+                <div class="single-footer-widget about-widget">
+                    <div class="sec-title white medium">
+                        <h2>Contact Us</h2>
+                        <span class="decor-line">
+                            <span class="decor-line-inner"></span>
+                        </span>
+                    </div><!-- /.sec-title -->
+                    <ul class="contact-info">
+                        <li>
+                            <div class="icon-box">
+                                <i class="fa fa-map-marker"></i>
+                            </div><!-- /.icon-box -->
+                            <div class="text-box">
+                                <p>ABCD, New Delhi, India</p>
+                            </div><!-- /.text-box -->
+                        </li>
+                        <li>
+                            <div class="icon-box">
+                                <i class="fa fa-phone"></i>
+                            </div><!-- /.icon-box -->
+                            <div class="text-box">
+                                <p>+91 999-090-5006</p>
+                            </div><!-- /.text-box -->
+                        </li>
+                        <li>
+                            <div class="icon-box">
+                                <i class="fa fa-envelope-o"></i>
+                            </div><!-- /.icon-box -->
+                            <div class="text-box">
+                                <p>legalkaam@gmail.com</p>
+                            </div><!-- /.text-box -->
+                        </li>							
+                    </ul>
+                    <div class="social pull-left">
+                        <ul class="list-inline">
+                            <li><a href="#"><i class="fa fa-facebook"></i></a></li>
+                            <li><a href="#"><i class="fa fa-twitter"></i></a></li>
+                            <li><a href="#"><i class="fa fa-youtube-play"></i></a></li>
+                            <li><a href="#"><i class="fa fa-linkedin"></i></a></li>
+                        </ul><!-- /.list-inline -->
+                    </div><!-- /.social pull-right -->
+                </div><!-- /.single-footer-widget -->
+            </div><!-- /.col-md-3 -->
+        </div><!-- /.row -->
+    </div><!-- /.container -->
+</footer><!-- /.footer -->
+
+<section class="footer-bottom">
+    <div class="container">
+        <div class="copyright">
+            <p>© 2022 LegalKaam. All rights reserved.</p>
+        </div><!-- /.copyright pull-left -->
+    </div><!-- /.container -->
+</section><!-- /.footer-bottom -->
+
+<!--Scroll to top-->
+<div class="scroll-to-top scroll-to-target" data-target="html"><span class="fa fa-angle-up"></span></div>
+<!--WhatsApp-->
+<div class="whatsapp">
+    <a class="bounce" target="_blank" href="https://api.whatsapp.com/send?phone=+919990905006"><i class="fa fa-whatsapp "></i></a>
+</div>
+
+	<script src="http://code.jquery.com/jquery-latest.min.js"></script>
+	<script src="assets/bootstrap/js/bootstrap.min.js"></script>
+	<script src="assets/bootstrap-select/dist/js/bootstrap-select.min.js"></script>
+	<!-- revolution slider js -->
+	<script src="assets/revolution/js/jquery.themepunch.tools.min.js"></script>
+	<script src="assets/revolution/js/jquery.themepunch.revolution.min.js"></script>
+	<script src="assets/revolution/js/extensions/revolution.extension.actions.min.js"></script>
+	<script src="assets/revolution/js/extensions/revolution.extension.carousel.min.js"></script>
+	<script src="assets/revolution/js/extensions/revolution.extension.kenburn.min.js"></script>
+	<script src="assets/revolution/js/extensions/revolution.extension.layeranimation.min.js"></script>
+	<script src="assets/revolution/js/extensions/revolution.extension.migration.min.js"></script>
+	<script src="assets/revolution/js/extensions/revolution.extension.navigation.min.js"></script>
+	<script src="assets/revolution/js/extensions/revolution.extension.parallax.min.js"></script>
+	<script src="assets/revolution/js/extensions/revolution.extension.slideanims.min.js"></script>
+	<script src="assets/revolution/js/extensions/revolution.extension.video.min.js"></script>
+	<script src="http://maps.google.com/maps/api/js?sensor=true"></script>
+	<script src="assets/gmaps.js"></script>
+	<!-- google map helper -->  
+	<script src="assets/map-helper.js"></script>
+	<script src="assets/jquery-validation/dist/jquery.validate.min.js"></script>
+	<script src="assets/owl.carousel-2/owl.carousel.min.js"></script>
+	<script src="assets/nouislider/nouislider.js"></script>
+	<script src="assets/bootstrap-touch-spin/jquery.bootstrap-touchspin.js"></script>
+	<script src="assets/isotope.js"></script>
+	<script src="assets/masterslider/masterslider.min.js"></script>
+	<script src="assets/bxslider/dist/jquery.bxslider.min.js"></script>
+	<script src="assets/chartjs/dist/Chart.min.js"></script>
+	<script src="assets/jquery-circle-progress-1.1.2/dist/circle-progress.js"></script>
+	<script src="assets/morris.js-master/morris.min.js"></script>
+	<script src="assets/raphael-master/raphael.min.js"></script>
+	<script src="assets/Magnific-Popup-master/dist/jquery.magnific-popup.min.js"></script>
+	<script src="assets/waypoints.min.js"></script>
+	<script src="assets/jquery.counterup.min.js"></script>
+	<script src="assets/wow.min.js"></script>
+	<script src="js/custom.js"></script>
+
+</body>
+</html>

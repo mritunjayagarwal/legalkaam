@@ -5,6 +5,9 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Admin Page</title>
+
+    <script src="https://cdn.ckeditor.com/ckeditor5/30.0.0/classic/ckeditor.js"></script>
+
 </head>
 <body>
     <h1>Enter category</h1>
@@ -20,42 +23,82 @@
                 <option value = "<%= subcat._id %>"><%= subcat.name %></option>
             <% }) %>
         </select>
-        <input type="text" name = "subcatname" placeholder = "enter subcategory Name">
-        <input type="text" name="desc" id="" placeholder = "Enter Description">
+        <input type="text" name = "subcatname" placeholder = "enter subcategory Name"><br><br>
+        <!-- <input type="text" name="desc" id="" placeholder = "Enter Description"> -->
+        <textarea name="desc" id="editor" cols="30" rows="10">Description</textarea><br><br>
+        <textarea name="important" id="editor1" cols="30" rows="10">Important</textarea><br><br>
         <input class = "nooftickets" type="text" placeholder = "Enter no. of Steps">
         <a href="#" id="names" onclick="addFields();">Enter Steps</a>
-        <div id='container' />
+        <div id='subcontainer' />
         </div>
         <br/>
-        <input type="text" name = "requirements" placeholder = "Any Requirements or anything else?">
-        <input class = "noofRequirements" type="text" placeholder = "Enter no. of Requirements">
-        <a href="#" id="requirements" onclick="addRequirementsFields();">Enter Requirements</a>
-        <div id='requirementscontainer' />
-        </div>
         <br/>
         <button type="submit">Submit Sub Category</button>
     </form><br><br>
 
-    <form action="/new/document" method = "post">
+    <form action="/add/benefits/" method = "post">
       <select name="subtype" id="">
         <% types.forEach((type) => { %>
           <option value="<%= type._id %>"><%= type.name %></option>
         <% }) %>
       </select>
-      
+      <input type="number" name = "plan" placeholder = "Enter payable amount">
+      <input class = "noofbenefits" type="text" placeholder = "Enter no. of benefits">
+      <a href="#" id="names" onclick="addBenefits();">Enter Benefits</a><br><br>
+      <div id='benefitContainer' />
+      </div>
+      <button type = "submit">Submit</button>
+    </form>
+
+    <form action="/add/features/" method = "post">
+      <select name="subtype" id="">
+        <% types.forEach((type) => { %>
+          <option value="<%= type._id %>"><%= type.name %></option>
+        <% }) %>
+      </select>
+      <input type="text" name = "head" placeholder = "Add Basic Feature Heading">
+      <input type="text" name="desc" placeholder = "Add Desc to the feature">
+      <button type = "submit">Submit Feature</button>
+    </form>
+
+    <form action="/add/documents/" method = "post">
+      <select name="subtype" id="">
+        <% types.forEach((type) => { %>
+          <option value="<%= type._id %>"><%= type.name %></option>
+        <% }) %>
+      </select>
+      <input type="text" name = "title" placeholder = "Add Basic document Heading">
+      <textarea name="desc" id="editor2" cols="30" rows="10"></textarea>
+      <button type = "submit">Submit document</button>
     </form>
 
       <script>
           function addFields() {
         debugger;
         var number = document.getElementsByClassName("nooftickets")[0].value;
-        var container = document.getElementById("container");
+        var container = document.getElementById("subcontainer");
         container.innerHTML = '';
         for (i = 0; i < number; i++) {
           container.appendChild(document.createTextNode("Step " + (i + 1) + " "));
           var input = document.createElement("input");
           input.type = "text";
           input.name = "name";
+          //input.required= true;
+          container.appendChild(input);
+          container.appendChild(document.createElement("br"));
+        }
+      }
+
+      function addBenefits() {
+        debugger;
+        var number = document.getElementsByClassName("noofbenefits")[0].value;
+        var container = document.getElementById("benefitContainer");
+        container.innerHTML = '';
+        for (i = 0; i < number; i++) {
+          container.appendChild(document.createTextNode("Benefit " + (i + 1) + " "));
+          var input = document.createElement("input");
+          input.type = "text";
+          input.name = "benefit";
           //input.required= true;
           container.appendChild(input);
           container.appendChild(document.createElement("br"));
@@ -79,6 +122,22 @@
       }
 
       </script>
-
+<script>
+  ClassicEditor
+      .create( document.querySelector( '#editor' ) )
+      .catch( error => {
+          console.error( error );
+      } );
+  ClassicEditor
+  .create( document.querySelector( '#editor1' ) )
+  .catch( error => {
+      console.error( error );
+  } );
+  ClassicEditor
+  .create( document.querySelector( '#editor2' ) )
+  .catch( error => {
+      console.error( error );
+  } );
+</script>
 </body>
 </html>

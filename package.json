@@ -2,9 +2,15 @@
   "name": "lpaisa",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
+  "main": "server.js",
+  "engines": {
+    "node": "7.10.1",
+    "npm": "6.4.1"
+  },
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js",
+    "dev": "nodemon server.js"
   },
   "author": "",
   "license": "ISC",
@@ -14,6 +20,7 @@
     "connect-mongo": "^4.6.0",
     "cookie-parser": "^1.4.6",
     "dependable": "^1.1.0",
+    "dompurify": "^2.3.6",
     "dot-env": "^0.0.1",
     "dotenv": "^16.0.0",
     "ejs": "^3.1.6",
@@ -22,9 +29,14 @@
     "express-session": "^1.17.2",
     "express-validator": "^6.14.0",
     "http": "^0.0.1-security",
+    "jsdom": "^19.0.0",
     "lodash": "^4.17.21",
     "moment": "^2.29.1",
     "mongodb": "^4.4.1",
-    "mongoose": "^6.2.4"
+    "mongoose": "^6.2.4",
+    "mongoose-slug-generator": "^1.0.4",
+    "netlify-lambda": "^2.0.15",
+    "serverless-http": "^2.7.0",
+    "string-strip-html": "^8.3.0"
   }
 }
