@@ -33,7 +33,7 @@
     'Virginia', 'Washington', 'West Virginia', 'Wisconsin', 'Wyoming'
   ];
 
-  $('#the-basics .typeahead').typeahead({
+  $('.typeahead').typeahead({
     hint: true,
     highlight: true,
     minLength: 1

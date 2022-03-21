@@ -7,6 +7,10 @@ module.exports = function(User, Category, Type, Contact){
             router.get('/admin', this.admin);
             router.get('/find/type/:slug', this.typePage);
             router.get('/show/notifications', this.showNotifications);
+            router.get('/admin/add/service', this.addService);
+            router.get('/admin/edit/service' , this.editService);
+            router.get('/admin/service/add/documents', this.addDocumentPage);
+            router.get('/admin/service/add/features', this.addFeaturesPage);
 
             router.post('/new/category', this.newCategory);
             router.post('/new/subcat', this.newSubCat);
@@ -23,7 +27,7 @@ module.exports = function(User, Category, Type, Contact){
         admin: async function(req, res){
             var subcats = await Category.find({}).exec();
             var types = await Type.find({}).sort('-created').exec();
-            res.render('adminPanel.ejs', {subcats: subcats, types: types});
+            res.render('admin/admin.ejs', {subcats: subcats, types: types});
         },
         newCategory: function(req, res){
             const newCat = new Category({
@@ -168,6 +172,23 @@ module.exports = function(User, Category, Type, Contact){
                 console.log("Contact State Update Success");
             });
             res.redirect('back');
+        },
+        addService: async function(req, res){
+            var subcats = await Category.find({}).exec();
+            const services = await Type.find({}).sort('name').exec();
+            console.log(services);
+            res.render('admin/add-service', { subcats: subcats, services: services});
+        },
+        editService: function(req, res){
+
+        },
+        addDocumentPage: async function(req, res){
+            var subcats = await Category.find({}).exec();
+            const services = await Type.find({}).sort('name').exec();
+            return res.render('admin/add-documents', { subcats: subcats, services:services});
+        },
+        addFeaturesPage: function(req, res){
+
         }
     }
 }
