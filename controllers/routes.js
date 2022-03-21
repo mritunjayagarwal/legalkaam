@@ -1,9 +1,12 @@
-module.exports = function(User, Category, Type){
+const { query } = require("express");
+
+module.exports = function(User, Category, Type, Contact){
     return {
         SetRouting: function(router){
             router.get('/', this.indexPage);
             router.get('/admin', this.admin);
             router.get('/find/type/:slug', this.typePage);
+            router.get('/show/notifications', this.showNotifications);
 
             router.post('/new/category', this.newCategory);
             router.post('/new/subcat', this.newSubCat);
@@ -11,6 +14,8 @@ module.exports = function(User, Category, Type){
             router.post('/add/benefits/', this.addBenefits);
             router.post('/add/features/', this.addBasicFeature);
             router.post('/add/documents/', this.addDocument);
+            router.post('/add/query/', this.addQuery);
+            router.post('/mark/read/', this.markRead);
         },
         indexPage: function(req, res){
             return res.render('index');
@@ -18,7 +23,7 @@ module.exports = function(User, Category, Type){
         admin: async function(req, res){
             var subcats = await Category.find({}).exec();
             var types = await Type.find({}).sort('-created').exec();
-            res.render('admin.ejs', {subcats: subcats, types: types});
+            res.render('adminPanel.ejs', {subcats: subcats, types: types});
         },
         newCategory: function(req, res){
             const newCat = new Category({
@@ -107,20 +112,7 @@ module.exports = function(User, Category, Type){
         },
         addBasicFeature: function(req, res){
 
-            console.log(req.body);
-
-            Type.updateOne({
-                _id: req.body.subtype
-            }, {
-                $push: {
-                    features: {
-                        head: req.body.head,
-                        desc: req.body.desc
-                    }
-                }
-            }, (err) => {
-                console.log("Feature Update Success");
-            });
+            c
 
             res.redirect('/admin')
         },
@@ -141,6 +133,41 @@ module.exports = function(User, Category, Type){
             });
 
             res.redirect('/admin')
+        },
+        addQuery: function(req, res){
+            console.log(req.body);
+
+            const newQuery = new Contact();
+            if(req.body.id && req.body.message){
+                newQuery.subcat = req.body.id;
+                newQuery.message = req.body.message;
+                newQuery.qtype = 'query';
+            }else{
+                newQuery.qtype = 'callback';
+            }
+            newQuery.name = req.body.name;
+            newQuery.contact = req.body.contact;
+            newQuery.email = req.body.email;
+            newQuery.save((err) => {
+                console.log("Query Added Successfully");
+            })
+            res.redirect('back');
+        },
+        showNotifications: async function(req, res){
+            const notifications = await Contact.find({ status: 'unread'}).exec();
+            res.render('notifications', { notifications: notifications})
+        },
+        markRead: function(req, res){
+            Contact.updateOne({
+                _id: req.body.id
+            }, {
+                $set: {
+                    status: "read"
+                }
+            }, (err) => {
+                console.log("Contact State Update Success");
+            });
+            res.redirect('back');
         }
     }
 }

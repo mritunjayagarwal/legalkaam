@@ -5,7 +5,8 @@ const myModules = [
     ['_', 'lodash'],
     ['User', './models/users'],
     ['Category', './models/category'],
-    ['Type', './models/type']
+    ['Type', './models/type'],
+    ['Contact', './models/contact']
 ];
 
 myModules.forEach(function(val){

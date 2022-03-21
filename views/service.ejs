@@ -269,9 +269,10 @@
                                     <span class="decor-line-inner"></span>
                                 </span>
                             </div><!-- /.sec-title -->
-                            <form class="contact-form">
+                            <form class="contact-form" action = "/add/query/" method = "post">
                                 <div class="row">
                                     <div class="col-md-6 col-sm-6">
+                                        <input type="text" name="id" value = "<%= type._id %>" hidden/>
                                         <div class="form-grp">
                                             <label>Your Name*</label>
                                             <input type="text" name="name" placeholder="Your Name *" />
@@ -280,13 +281,13 @@
                                     <div class="col-md-6 col-sm-6">
                                         <div class="form-grp">
                                             <label>Contact Number*</label>
-                                            <input type="text" name="name" placeholder="Your Number *" />
+                                            <input type="tel" name="contact" placeholder="Your Number *" />
                                         </div><!-- /.form-grp -->
                                     </div><!-- /.col-md-6 -->
                                     <div class="col-md-12">
                                         <div class="form-grp">
                                             <label>Email Address*</label>
-                                            <input type="text" name="email" placeholder="Email Address *" />
+                                            <input type="email" name="email" placeholder="Email Address *" />
                                         </div><!-- /.form-grp -->
                                     </div><!-- /.col-md-6 -->
                                     <div class="col-md-12">
