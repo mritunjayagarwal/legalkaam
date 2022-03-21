@@ -275,10 +275,10 @@
             </div>
             <div class="row">
                 <div class="col-12 my-4">
-                    <form class="forms-sample">
+                    <form class="forms-sample" action = "/new/subcat/" method = "post">
                       <div class="form-group">
                         <label>Select Category</label>
-                        <select class="js-example-basic-single" style="width:100%">
+                        <select class="js-example-basic-single" name="subcat" style="width:100%">
                           <% subcats.forEach((subcat) => { %>
                             <option value = "<%= subcat._id %>"><%= subcat.name %></option>
                         <% }) %>
@@ -290,20 +290,45 @@
                         </div>
                         <div class="form-group">
                           <label for="exampleTextarea1">Requirements</label>
-                          <textarea class="form-control" id="editor1" rows="4"></textarea>
+                          <textarea class="form-control" name = "requirements" id="editor1" rows="4"></textarea>
                         </div>
                         <div class="form-group">
                           <label for="exampleTextarea1">Important</label>
-                          <textarea class="form-control" id="editor1" rows="4"></textarea>
+                          <textarea class="form-control" name = "important" id="editor1" rows="4"></textarea>
                         </div>
+
+                        <div class="form-group">
+                          <label for="exampleTextarea1">Enter Documents Required</label>
+                          <input type="text" class = "form-control" name="head1" id="" placeholder = "enter document 1 heading">
+                          <textarea name="desc1" class = "form-control my-2" id="" cols="30" rows="10" placeholder = "enter document 1 desc"></textarea>
+                          <input type="text" class = "form-control" name="head2" id="" placeholder = "enter document 2 heading">
+                          <textarea name="desc2" class = "form-control my-2" id="" cols="30" rows="10" placeholder = "enter document 2 desc"></textarea>
+                        </div>
+
+                        <div class="form-group">
+                          <label for="exampleTextarea1">Enter Documents Required</label>
+                          <input type="text" class = "form-control" name="bhead1" id="" placeholder = "enter document 1 heading">
+                          <textarea name="bdesc1" class = "form-control my-2" id="" cols="30" rows="10" placeholder = "enter document 1 desc"></textarea>
+                          <input type="text" class = "form-control" name="bhead2" id="" placeholder = "enter document 2 heading">
+                          <textarea name="bdesc2" class = "form-control my-2" id="" cols="30" rows="10" placeholder = "enter document 2 desc"></textarea>
+                          <input type="text" class = "form-control" name="bhead3" id="" placeholder = "enter document 3 heading">
+                          <textarea name="bdesc3" class = "form-control my-2" id="" cols="30" rows="10" placeholder = "enter document 3 desc"></textarea>
+                          <input type="text" class = "form-control" name="bhead4" id="" placeholder = "enter document 4 heading">
+                          <textarea name="bdesc4" class = "form-control my-2" id="" cols="30" rows="10" placeholder = "enter document 4 desc"></textarea>
+                          <input type="text" class = "form-control" name="bhead5" id="" placeholder = "enter document 5 heading">
+                          <textarea name="bdesc5" class = "form-control my-2" id="" cols="30" rows="10" placeholder = "enter document 5 desc"></textarea>
+                          <input type="text" class = "form-control" name="bhead6" id="" placeholder = "enter document 6 heading">
+                          <textarea name="bdesc6" class = "form-control my-2" id="" cols="30" rows="10" placeholder = "enter document 6 desc"></textarea>
+                        </div>
+                        
                         <div class="form-group">
                           <label for="exampleTextarea1">Enter Steps</label>
                           <input class = "nooftickets form-control" type="text" placeholder = "Enter no. of Steps">
-                          <div id='subcontainer' class = "my-3" />
+                          <div id='subcontainer' class = "my-3" >
                           </div>
                           <a href="#" class = "btn btn-primary" id="names" onclick="addFields();">Enter Steps</a>
                         </div>
-                        
+
                         <button type="submit" class="btn btn-primary py-3 btn-block ">Submit</button>
                       </form>
                 </div>
@@ -311,7 +336,9 @@
                     <div class="col-md-4 grid-margin stretch-card">
                         <div class="card">
                           <div class="card-body">
-                            <p><%= service.name %></p>
+                            <a href="/admin/edit/service/<%= service.slug %>">
+                              <p><%= service.name %></p>
+                            </a>
                           </div>
                         </div>
                       </div>
@@ -361,6 +388,7 @@
           container.appendChild(document.createElement("br"));
         }
       }
+
     </script>
   </body>
 </html>

@@ -8,18 +8,16 @@ module.exports = function(User, Category, Type, Contact){
             router.get('/find/type/:slug', this.typePage);
             router.get('/show/notifications', this.showNotifications);
             router.get('/admin/add/service', this.addService);
-            router.get('/admin/edit/service' , this.editService);
-            router.get('/admin/service/add/documents', this.addDocumentPage);
-            router.get('/admin/service/add/features', this.addFeaturesPage);
+            router.get('/admin/edit/service/:slug' , this.editService);
 
             router.post('/new/category', this.newCategory);
             router.post('/new/subcat', this.newSubCat);
             router.post('/create/array', this.newArray);
             router.post('/add/benefits/', this.addBenefits);
-            router.post('/add/features/', this.addBasicFeature);
             router.post('/add/documents/', this.addDocument);
             router.post('/add/query/', this.addQuery);
             router.post('/mark/read/', this.markRead);
+            router.post('/admin/edit/service/', this.editServiceExecute)
         },
         indexPage: function(req, res){
             return res.render('index');
@@ -41,7 +39,7 @@ module.exports = function(User, Category, Type, Contact){
         },
         newSubCat: async function(req, res){
 
-            console.log(req.body);
+            // console.log(req.body);
 
             Category.find({
                 _id: req.body.subcat
@@ -51,15 +49,51 @@ module.exports = function(User, Category, Type, Contact){
 
                     var obj = JSON.parse(json);
                     var values = Object.keys(obj).map(function (key) { return obj[key]; });
-                    values = values.splice(4)[0];
+                    values = values.splice(-1)[0];
                     console.log(values);
 
                     const newSub = new Type({
                         category: req.body.subcat,
                         name: req.body.subcatname,
-                        desc: req.body.desc,
+                        desc: req.body.requirements,
                         steps: values,
-                        important: req.body.important
+                        important: req.body.important,
+                        features: [
+                            {
+                                head: req.body.bhead1,
+                                desc: req.body.bdesc1
+                            },
+                            {
+                                head: req.body.bhead2,
+                                desc: req.body.bdesc2
+                            },
+                            {
+                                head: req.body.bhead3,
+                                desc: req.body.bdesc3
+                            },
+                            {
+                                head: req.body.bhead4,
+                                desc: req.body.bdesc4
+                            },
+                            {
+                                head: req.body.bhead5,
+                                desc: req.body.bdesc5
+                            },
+                            {
+                                head: req.body.bhead6,
+                                desc: req.body.bdesc6
+                            },
+                        ],
+                        documents: [
+                            {
+                                title: req.body.head1,
+                                desc: req.body.desc1
+                            },
+                            {
+                                title: req.body.head2,
+                                desc: req.body.desc2
+                            }
+                        ]
                     });
         
                     newSub.save(() => {
@@ -76,7 +110,7 @@ module.exports = function(User, Category, Type, Contact){
                         console.log("Success")
                     })
                 }else{
-                    res.redirect("/admin");
+                    res.redirect("back");
                 }
             })
 
@@ -113,12 +147,6 @@ module.exports = function(User, Category, Type, Contact){
             });
 
             res.redirect('back');
-        },
-        addBasicFeature: function(req, res){
-
-            c
-
-            res.redirect('/admin')
         },
         addDocument: function(req, res){
             console.log(req.body);
@@ -176,19 +204,47 @@ module.exports = function(User, Category, Type, Contact){
         addService: async function(req, res){
             var subcats = await Category.find({}).exec();
             const services = await Type.find({}).sort('name').exec();
-            console.log(services);
             res.render('admin/add-service', { subcats: subcats, services: services});
         },
-        editService: function(req, res){
-
-        },
-        addDocumentPage: async function(req, res){
+        editService: async function(req, res){
             var subcats = await Category.find({}).exec();
+            const service = await Type.findOne({ slug: req.params.slug}).exec();
             const services = await Type.find({}).sort('name').exec();
-            return res.render('admin/add-documents', { subcats: subcats, services:services});
+            const documents = service.documents;
+            const features = service.features;
+            const steps = service.steps;
+            console.log(service)
+            res.render('admin/edit-service', { subcats: subcats, service: service, services: services, steps:steps, features: features, documents: documents});
         },
-        addFeaturesPage: function(req, res){
+        editServiceExecute: async function(req, res){
+            var json = JSON.stringify(req.body);
 
+            var obj = JSON.parse(json);
+            var values = Object.keys(obj).map(function (key) { return obj[key]; });
+            values = values.splice(-1)[0];
+            console.log(values);
+
+            Type.updateOne({
+                _id: req.body.subcatid
+            }, {
+                $set: { 
+                    documents: [
+                        {
+                            title: req.body.head1,
+                            desc: req.body.desc1
+                        },
+                        {
+                            title: req.body.head2,
+                            desc: req.body.desc2
+                        },
+                        
+                    ],
+                }
+            }, (err) => {
+                console.log('update success');
+            });
+
+            res.redirect('back');
         }
     }
 }
