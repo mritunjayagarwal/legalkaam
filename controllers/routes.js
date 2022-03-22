@@ -7,6 +7,8 @@ module.exports = function(User, Category, Type, Contact, Sub, passport){
             router.get('/find/type/:slug', this.typePage);
             router.get('/login', this.loginPage);
             router.get('/logout', this.logout);
+            router.get('/contact-us', this.contact);
+            router.get('/about', this.about);
 
             router.post('/login', this.getInside);
         },
@@ -25,7 +27,11 @@ module.exports = function(User, Category, Type, Contact, Sub, passport){
             res.render('service', {type: type, steps: steps, documents: documents, features: features, benefits: benefits, categories: categories})
         },
         loginPage: function(req, res){
-            res.render('login');
+            if(req.user){
+                res.redirect('/admin')
+            }else{
+                res.render('login');
+            }
         },
         getInside: passport.authenticate('local.login', {
             successRedirect: '/admin',
@@ -34,7 +40,15 @@ module.exports = function(User, Category, Type, Contact, Sub, passport){
         }),
         logout: function(req, res){
             req.logout();
-            res.redirect('/admin');
+            res.redirect('/');
+        },
+        contact: async function(req,res){
+            const categories = await Category.find({}).populate({ path: 'subcat', populate: [{ path: 'subcat', model: 'Type'}], model: 'Sub'}).exec();
+            res.render('contact', { categories: categories});
+        },
+        about: async function(req, res){
+            const categories = await Category.find({}).populate({ path: 'subcat', populate: [{ path: 'subcat', model: 'Type'}], model: 'Sub'}).exec();
+            res.render('about', { categories: categories});
         }
     }
 }

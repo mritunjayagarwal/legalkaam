@@ -10,9 +10,8 @@ module.exports = function(User, Category, Type, Contact, Sub, moment){
             router.post('/add/query/', this.addQuery);
         },
         addQuery: function(req, res){
-            console.log(req.body);
-
-            const newQuery = new Contact();
+            if(req.user){
+                const newQuery = new Contact();
             if(req.body.id && req.body.message){
                 newQuery.subcat = req.body.id;
                 newQuery.message = req.body.message;
@@ -27,26 +26,50 @@ module.exports = function(User, Category, Type, Contact, Sub, moment){
                 console.log("Query Added Successfully");
             })
             res.redirect('back');
+            }else{
+                res.redirect('/');
+            }
         },
         showNotifications: async function(req, res){
-            const notifications = await Contact.find({ status: 'unread'}).sort('-created').populate({ path: 'subcat', model: 'Type'}).exec();
-            res.render('admin/notifications', { notifications: notifications, moment: moment})
+            if(req.user){
+                const notifications = await Contact.find({ status: 'unread'}).sort('-created').populate({ path: 'subcat', model: 'Type'}).exec();
+                res.render('admin/notifications', { notifications: notifications, moment: moment})
+            }else{
+                res.redirect('/');
+            }
         },
         viewNotifications: async function(req, res){
-            const notifications = await Contact.find({ status: 'unread'}).sort('-created').populate({ path: 'subcat', model: 'Type'}).exec();
-            res.render('admin/notifications', { notifications: notifications, moment: moment});
+            if(req.user){
+                const notifications = await Contact.find({ status: 'unread'}).sort('-created').populate({ path: 'subcat', model: 'Type'}).exec();
+               res.render('admin/notifications', { notifications: notifications, moment: moment});
+            }else{
+                res.redirect('/');
+            }
         },
         markRead: function(req, res){
-            Contact.updateOne({
-                _id: req.body.id
-            }, {
-                $set: {
-                    status: "read"
-                }
-            }, (err) => {
-                console.log("Contact State Update Success");
-            });
-            res.redirect('back');
+            if(req.user){
+                Contact.updateOne({
+                    _id: req.body.id
+                }, {
+                    $set: {
+                        status: "read"
+                    }
+                }, (err) => {
+                    console.log("Contact State Update Success");
+                });
+                res.redirect('back');
+            }else{
+                Contact.updateOne({
+                    _id: req.body.id
+                }, {
+                    $set: {
+                        status: "read"
+                    }
+                }, (err) => {
+                    console.log("Contact State Update Success");
+                });
+                res.redirect('back');
+            }
         },
     }
 }
