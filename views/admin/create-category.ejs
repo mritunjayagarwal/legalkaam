@@ -275,79 +275,14 @@
             </div>
             <div class="row">
                 <div class="col-12 my-4">
-                    <form class="forms-sample" action = "/admin/edit/service/" method = "post">
-                      <div class="form-group">
-                        <label>Select Category</label>
-                        <select class="js-example-basic-single" name="subcat" style="width:100%">
-                          <% subcats.forEach((subcat) => { %>
-                            <option value = "<%= subcat._id %>"><%= subcat.name %></option>
-                        <% }) %>
-                        </select>
-                      </div>
+                    <form class="forms-sample" action = "/new/category/" method = "post">
                         <div class="form-group">
-                          <label for="exampleInputUsername1">Add a new service</label>
-                          <input type="text" value = "<%= service._id %>" name = "subcatid" hidden>
-                          <input type="text" name = "subcatname" value = "<%= service.name %>" class="form-control" id="exampleInputUsername1" placeholder="Service Name Here..">
+                          <label for="exampleInputUsername1">Add a new Category</label>
+                          <input type="text" name = "name" class="form-control" id="exampleInputUsername1" placeholder="Category Name Here..">
                         </div>
-                        <div class="form-group">
-                          <label for="exampleTextarea1">Requirements</label>
-                          <textarea class="form-control" name = "requirements" id="editor1" rows="4"><%- service.desc %></textarea>
-                        </div>
-                        <div class="form-group">
-                          <label for="exampleTextarea1">Important</label>
-                          <textarea class="form-control" name = "important" id="editor1" rows="4"><%- service.important %></textarea>
-                        </div>
-
-                        <div class="form-group">
-                          <label for="exampleTextarea1">Enter Documents Required</label>
-                          <% for(var i = 0; i < 2; i++){ %>
-                            <% if(documents[i]){ %>
-                              <input type="text" class = "form-control" name="head<%= i+1 %>" id="" placeholder = "enter document 1 heading" value = "<%= documents[i].title %>">
-                              <textarea name="desc<%= i+1 %>" class = "form-control my-2" id="" cols="30" rows="10" placeholder = "enter document 1 desc"><%= documents[i].desc %></textarea>
-                            <% }else{ %>
-                              <input type="text" class = "form-control" name="head<%= i+1 %>" id="" placeholder = "enter document 2 heading">
-                              <textarea name="desc<%= i+1 %>" class = "form-control my-2" id="" cols="30" rows="10" placeholder = "enter document 2 desc"></textarea>
-                            <% } %>
-                          <% } %>
-                        </div>
-
-                        <div class="form-group">
-                          <label for="exampleTextarea1">Enter Basic Features Required</label>
-                          <% for(var i = 0; i < 6; i++){ %>
-                            <% if(features[i]){ %>
-                              <input type="text" class = "form-control" name="bhead<%= i+1 %>" id="" placeholder = "enter feature <%= i+1 %> heading" value = "<%= features[i].head %>">
-                              <textarea name="bdesc<%= i+1 %>" class = "form-control my-2" id="" cols="30" rows="10" placeholder = "enter feature <%= i+1 %> desc"><%= features[i].desc %></textarea>
-                            <% }else{ %>
-                              <input type="text" class = "form-control" name="bhead<%= i+1 %>" id="" placeholder = "enter feature <%= i+1 %> heading">
-                              <textarea name="bdesc<%= i+1 %>" class = "form-control my-2" id="" cols="30" rows="10" placeholder = "enter feature <%= i+1 %> desc"></textarea>
-                            <% } %>
-                          <% } %>
-                          
-                        </div>
-                        
-                        <div class="form-group">
-                          <label for="exampleTextarea1">Enter Steps</label>
-                          <% for(var i = 0; i < 5; i++){ %>
-                            <% if(steps[i]){ %>
-                              <input type="text" class = "form-control my-2" name="name" id="" placeholder = "enter feature <%= i+1 %> heading" value = "<%= steps[i] %>">
-                            <% }else{ %>
-                              <input type="text" class = "form-control my-2" name="name" id="" placeholder = "enter feature <%= i+1 %> heading">
-                            <% } %>
-                          <% } %>
-                        </div>
-
                         <button type="submit" class="btn btn-primary py-3 btn-block ">Submit</button>
                       </form>
                 </div>
-                <% services.forEach((service) => { %>
-                    <div class="col-md-4 grid-margin stretch-card">
-                        <div class="card">
-                          <div class="card-body">
-                            <p><%= service.name %></p>
-                          </div>
-                        </div>
-                      </div>
-                <% }) %>
             </div>
           </div>
       </div>

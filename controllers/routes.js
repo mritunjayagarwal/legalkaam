@@ -1,17 +1,21 @@
 const { query } = require("express");
 
-module.exports = function(User, Category, Type, Contact){
+module.exports = function(User, Category, Type, Contact, Sub){
     return {
         SetRouting: function(router){
             router.get('/', this.indexPage);
             router.get('/admin', this.admin);
             router.get('/find/type/:slug', this.typePage);
             router.get('/show/notifications', this.showNotifications);
+            router.get('/view/notifications', this.viewNotifications);
             router.get('/admin/add/service', this.addService);
             router.get('/admin/edit/service/:slug' , this.editService);
+            router.get('/create/new/category/', this.newCategoryPage);
+            router.get('/create/new/subcat/', this.newSubcatPage);
 
             router.post('/new/category', this.newCategory);
             router.post('/new/subcat', this.newSubCat);
+            router.post('/new/head/sub/', this.newHead);
             router.post('/create/array', this.newArray);
             router.post('/add/benefits/', this.addBenefits);
             router.post('/add/documents/', this.addDocument);
@@ -27,6 +31,9 @@ module.exports = function(User, Category, Type, Contact){
             var types = await Type.find({}).sort('-created').exec();
             res.render('admin/admin.ejs', {subcats: subcats, types: types});
         },
+        newCategoryPage: function(req, res){
+            res.render('admin/create-category');
+        },
         newCategory: function(req, res){
             const newCat = new Category({
                 name: req.body.name
@@ -37,14 +44,39 @@ module.exports = function(User, Category, Type, Contact){
 
             res.redirect('/admin');
         },
+        newSubcatPage: async function(req, res){
+            var subcats = await Category.find({}).exec();
+            res.render('admin/add-headcat', { subcats: subcats});
+        },
+        newHead: function(req, res){
+            
+            const newSub = new Sub();
+            newSub.category = req.body.subcat;
+            newSub.name = req.body.name;
+            newSub.save((err) => {
+                console.log("Sub category Created");
+            });
+
+            Category.updateOne({
+                _id: req.body.subcat
+            }, {
+                $push: {
+                    subcat: newSub._id
+                }
+            }, (err) => {
+                console.log("Success")
+            })
+
+            res.redirect('/admin/add/service');
+        },
         newSubCat: async function(req, res){
 
             // console.log(req.body);
 
-            Category.find({
+            Sub.find({
                 _id: req.body.subcat
-            }, (err, category) => {
-                if(category){
+            }, (err, sub) => {
+                if(sub){
                     var json = JSON.stringify(req.body);
 
                     var obj = JSON.parse(json);
@@ -53,7 +85,7 @@ module.exports = function(User, Category, Type, Contact){
                     console.log(values);
 
                     const newSub = new Type({
-                        category: req.body.subcat,
+                        sub: req.body.subcat,
                         name: req.body.subcatname,
                         desc: req.body.requirements,
                         steps: values,
@@ -100,7 +132,7 @@ module.exports = function(User, Category, Type, Contact){
                         console.log("Sub Category Created Successfully");
                     })
 
-                    Category.updateOne({
+                    Sub.updateOne({
                         _id: req.body.subcat
                     }, {
                         $push: {
@@ -125,12 +157,15 @@ module.exports = function(User, Category, Type, Contact){
         },
         typePage: async function(req, res){
           const type = await Type.findOne({ slug: req.params.slug}).exec();
-          const categories = await Category.find({}).populate({ path: 'subcat', model: 'Type'}).exec();
+          const categories = await Category.find({}).populate({ path: 'subcat', populate: [{ path: 'subcat', model: 'Type'}], model: 'Sub'}).exec();
           const steps = type.steps;
           const documents = type.documents;
           const features = type.features;
           const benefits = type.benefits;
           const plan = type.ammount;
+          categories.forEach(element => {
+              console.log(element.subcat)
+          });
           res.render('service', {type: type, steps: steps, documents: documents, features: features, benefits: benefits, categories: categories})
         },
         addBenefits: function(req, res){
@@ -186,8 +221,12 @@ module.exports = function(User, Category, Type, Contact){
             res.redirect('back');
         },
         showNotifications: async function(req, res){
-            const notifications = await Contact.find({ status: 'unread'}).exec();
-            res.render('notifications', { notifications: notifications})
+            const notifications = await Contact.find({ status: 'unread'}).sort('-created').populate({ path: 'subcat', model: 'Type'}).exec();
+            res.render('admin/notifications', { notifications: notifications})
+        },
+        viewNotifications: async function(req, res){
+            const notifications = await Contact.find({ status: 'unread'}).sort('-created').populate({ path: 'subcat', model: 'Type'}).exec();
+            res.render('admin/notifications', { notifications: notifications});
         },
         markRead: function(req, res){
             Contact.updateOne({
@@ -202,7 +241,7 @@ module.exports = function(User, Category, Type, Contact){
             res.redirect('back');
         },
         addService: async function(req, res){
-            var subcats = await Category.find({}).exec();
+            var subcats = await Sub.find({}).exec();
             const services = await Type.find({}).sort('name').exec();
             res.render('admin/add-service', { subcats: subcats, services: services});
         },
@@ -228,6 +267,10 @@ module.exports = function(User, Category, Type, Contact){
                 _id: req.body.subcatid
             }, {
                 $set: { 
+                    name: req.body.subcatname,
+                    desc: req.body.requirements,
+                    important: req.body.important,
+                    steps: values,
                     documents: [
                         {
                             title: req.body.head1,
@@ -239,6 +282,66 @@ module.exports = function(User, Category, Type, Contact){
                         },
                         
                     ],
+                }
+            }, (err) => {
+                console.log('update success');
+            });
+
+            Type.updateOne({
+                _id: req.body.subcatid
+            }, {
+                $set: { 
+                    features: [
+                        {
+                            head: req.body.bhead1,
+                            desc: req.body.bdesc1
+                        },
+                        {
+                            head: req.body.bhead2,
+                            desc: req.body.bdesc2
+                        },
+                        {
+                            head: req.body.bhead3,
+                            desc: req.body.bdesc3
+                        },
+                        {
+                            head: req.body.bhead4,
+                            desc: req.body.bdesc4
+                        },
+                        {
+                            head: req.body.bhead5,
+                            desc: req.body.bdesc5
+                        },
+                        {
+                            head: req.body.bhead6,
+                            desc: req.body.bdesc6
+                        },
+                    ],features: [
+                            {
+                                head: req.body.bhead1,
+                                desc: req.body.bdesc1
+                            },
+                            {
+                                head: req.body.bhead2,
+                                desc: req.body.bdesc2
+                            },
+                            {
+                                head: req.body.bhead3,
+                                desc: req.body.bdesc3
+                            },
+                            {
+                                head: req.body.bhead4,
+                                desc: req.body.bdesc4
+                            },
+                            {
+                                head: req.body.bhead5,
+                                desc: req.body.bdesc5
+                            },
+                            {
+                                head: req.body.bhead6,
+                                desc: req.body.bdesc6
+                            },
+                        ],
                 }
             }, (err) => {
                 console.log('update success');

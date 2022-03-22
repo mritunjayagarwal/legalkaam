@@ -76,6 +76,9 @@
                                     <ul class="make">				
                                         <% category.subcat.forEach((type) => { %>
                                             <li><a href="/find/type/<%= type.slug %>"><%= type.name %></a></li>
+                                            <% type.subcat.forEach((tipe) => { %>
+                                                <li><a href="/find/type/<%= tipe.slug %>"><%= tipe.name %></a></li>
+                                            <% }) %>
                                         <% }) %>
                                     </ul>
                                 </div>

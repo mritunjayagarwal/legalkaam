@@ -6,6 +6,7 @@ const myModules = [
     ['User', './models/users'],
     ['Category', './models/category'],
     ['Type', './models/type'],
+    ['Sub', './models/sub'],
     ['Contact', './models/contact']
 ];
 

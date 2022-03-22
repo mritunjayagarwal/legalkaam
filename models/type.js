@@ -11,7 +11,7 @@ const stripHtml = require('string-strip-html');
 mongoose.plugin(slug);
 
 const typeSchema = new Schema({
-    category: { type: Schema.Types.ObjectId, ref: 'Category'},
+    sub: { type: Schema.Types.ObjectId, ref: 'Category'},
     name: { type: String, lowercase: true},
     desc: { type: String},
     benefits: [
