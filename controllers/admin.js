@@ -4,15 +4,14 @@ module.exports = function(User, Category, Type, Contact, Sub, moment){
     return {
         SetRouting: function(router){
             router.get('/admin', this.admin);
-            router.get('/admin/add/service', this.addService);
-            router.get('/admin/edit/service/:slug' , this.editService);
             router.get('/create/new/category/', this.newCategoryPage);
             router.get('/create/new/subcat/', this.newSubcatPage);
+            router.get('/admin/add/service', this.addService);
+            router.get('/admin/edit/service/:slug' , this.editService);
 
             router.post('/new/category', this.newCategory);
             router.post('/new/subcat', this.newSubCat);
             router.post('/new/head/sub/', this.newHead);
-            router.post('/create/array', this.newArray);
             router.post('/add/benefits/', this.addBenefits);
             router.post('/add/documents/', this.addDocument);
             router.post('/admin/edit/service/', this.editServiceExecute)
@@ -21,10 +20,13 @@ module.exports = function(User, Category, Type, Contact, Sub, moment){
             var subcats = await Category.find({}).exec();
             var types = await Type.find({}).sort('-created').exec();
             var notifications = await Contact.find({ status: 'unread'}).sort('-created').exec();
-            res.render('admin/admin.ejs', {subcats: subcats, types: types, notifications: notifications});
+            res.render('admin/admin.ejs', {subcats: subcats, types: types, notifications: notifications, moment: moment});
         },
-        newCategoryPage: function(req, res){
-            res.render('admin/create-category');
+        newCategoryPage: async function(req, res){
+            var subcats = await Category.find({}).exec();
+            var types = await Type.find({}).sort('-created').exec();
+            var notifications = await Contact.find({ status: 'unread'}).sort('-created').exec();
+            res.render('admin/create-category', { subcats: subcats, types: types, notifications: notifications, moment: moment});
         },
         newCategory: function(req, res){
             const newCat = new Category({
@@ -34,11 +36,13 @@ module.exports = function(User, Category, Type, Contact, Sub, moment){
                 console.log("Created Successfully");
             });
 
-            res.redirect('/admin');
+            res.redirect('/create/new/subcat/');
         },
         newSubcatPage: async function(req, res){
             var subcats = await Category.find({}).exec();
-            res.render('admin/add-headcat', { subcats: subcats});
+            var types = await Type.find({}).sort('-created').exec();
+            var notifications = await Contact.find({ status: 'unread'}).sort('-created').exec();
+            res.render('admin/add-headcat', { subcats: subcats, types: types, notifications: notifications, moment: moment});
         },
         newHead: function(req, res){
             
@@ -138,13 +142,6 @@ module.exports = function(User, Category, Type, Contact, Sub, moment){
                 }
             })
 
-            res.redirect('/admin')
-        },
-        newArray: function(req, res){
-            var json = JSON.stringify(req.body);;
-
-            var obj = JSON.parse(json);
-            var values = Object.keys(obj).map(function (key) { return obj[key]; });
             res.redirect('/admin')
         },
         addBenefits: function(req, res){
