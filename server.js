@@ -10,7 +10,7 @@ const http = require('http');
 const container = require('./container');
 require('dotenv').config();
 
-container.resolve(function(routes, _){
+container.resolve(function(routes, admin, notification, _){
 
     mongoose.Promise = global.Promise;
     mongoose.connect(process.env.MONGODB_URI, { useNewUrlParser: true, useUnifiedTopology: true}).then(() => {
@@ -41,6 +41,8 @@ container.resolve(function(routes, _){
 
         const router = require('express-promise-router')();
         routes.SetRouting(router);
+        admin.SetRouting(router);
+        notification.SetRouting(router);
 
         app.use(router);
 

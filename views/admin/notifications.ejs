@@ -275,12 +275,20 @@
             </div>
             <div class="row">
               <% notifications.forEach((notification) => { %>
-                <div class = "col-lg-6">
-                    <div class = "card my-3">
+                <div class = "col-lg-4 col-md-6 my-3">
+                    <div class = "card w-100 h-100">
                         <div class = "card-body">
-                          <p><%= notification.message %></p>
-                          <form class = "form-group" action="/mark/read/" method="post">
-                              <button type="submit" name="id" value="<%= notification._id %>" class="btn-link">Mark Read</button>
+                          
+                          <p>From: <%= notification.name %></p>
+                          <p>email: <%= notification.email %></p>
+                          <p>contact: <%= notification.contact %></p>
+                          <% if(notification.message){ %>
+                            <p>message: <%= notification.message %></p>
+                          <% } %>
+                          <p>Query type: <span class = "badge badge-primary"><%= notification.qtype %></p></p>
+                          <p class = "text-muted mb-5"><%= moment(notification.created).startOf('second').fromNow() %></p>
+                          <form class = "form-group" action="/mark/read/" method="post" style = "position: absolute; bottom: 0px;">
+                              <button type="submit" class = "btn btn-primary btn-block" name="id" value="<%= notification._id %>" class="btn-link">Mark Read</button>
                           </form>
                         </div>
                     </div>

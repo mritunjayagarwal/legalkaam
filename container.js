@@ -7,7 +7,8 @@ const myModules = [
     ['Category', './models/category'],
     ['Type', './models/type'],
     ['Sub', './models/sub'],
-    ['Contact', './models/contact']
+    ['Contact', './models/contact'],
+    ['moment', 'moment']
 ];
 
 myModules.forEach(function(val){

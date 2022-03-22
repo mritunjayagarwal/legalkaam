@@ -36,6 +36,8 @@
     "mongoose": "^6.2.4",
     "mongoose-slug-generator": "^1.0.4",
     "netlify-lambda": "^2.0.15",
+    "passport": "^0.5.2",
+    "passport-local": "^1.0.0",
     "serverless-http": "^2.7.0",
     "string-strip-html": "^8.3.0"
   }
