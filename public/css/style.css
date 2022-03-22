@@ -730,9 +730,6 @@ a:focus {
 }
 .make {
   list-style-type: none;
-  columns: 2;
-  -webkit-columns: 2;
-  -moz-columns: 2;
   width: 500px;
   margin-left: -40px;
 }

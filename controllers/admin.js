@@ -12,41 +12,55 @@ module.exports = function(User, Category, Type, Contact, Sub, moment){
             router.post('/new/category', this.newCategory);
             router.post('/new/subcat', this.newSubCat);
             router.post('/new/head/sub/', this.newHead);
-            router.post('/add/benefits/', this.addBenefits);
-            router.post('/add/documents/', this.addDocument);
             router.post('/admin/edit/service/', this.editServiceExecute)
         },
         admin: async function(req, res){
-            var subcats = await Category.find({}).exec();
-            var types = await Type.find({}).sort('-created').exec();
-            var notifications = await Contact.find({ status: 'unread'}).sort('-created').exec();
-            res.render('admin/admin.ejs', {subcats: subcats, types: types, notifications: notifications, moment: moment});
+            if(req.user){
+                var subcats = await Category.find({}).exec();
+                var types = await Type.find({}).sort('-created').exec();
+                var notifications = await Contact.find({ status: 'unread'}).sort('-created').exec();
+                res.render('admin/admin.ejs', {subcats: subcats, types: types, notifications: notifications, moment: moment});
+            }else{
+                res.render('404');
+            }
         },
         newCategoryPage: async function(req, res){
-            var subcats = await Category.find({}).exec();
-            var types = await Type.find({}).sort('-created').exec();
-            var notifications = await Contact.find({ status: 'unread'}).sort('-created').exec();
-            res.render('admin/create-category', { subcats: subcats, types: types, notifications: notifications, moment: moment});
+            if(req.user){
+                var subcats = await Category.find({}).exec();
+                var types = await Type.find({}).sort('-created').exec();
+                var notifications = await Contact.find({ status: 'unread'}).sort('-created').exec();
+                res.render('admin/create-category', { subcats: subcats, types: types, notifications: notifications, moment: moment});
+            }else{
+                res.render('404');
+            }
         },
         newCategory: function(req, res){
-            const newCat = new Category({
-                name: req.body.name
-            });
-            newCat.save(() => {
-                console.log("Created Successfully");
-            });
-
-            res.redirect('/create/new/subcat/');
+            if(req.user){
+                const newCat = new Category({
+                    name: req.body.name
+                });
+                newCat.save(() => {
+                    console.log("Created Successfully");
+                });
+    
+                res.redirect('/create/new/subcat/');
+            }else{
+                res.render('404');
+            }
         },
         newSubcatPage: async function(req, res){
-            var subcats = await Category.find({}).exec();
-            var types = await Type.find({}).sort('-created').exec();
-            var notifications = await Contact.find({ status: 'unread'}).sort('-created').exec();
-            res.render('admin/add-headcat', { subcats: subcats, types: types, notifications: notifications, moment: moment});
+            if(req.user){
+                var subcats = await Category.find({}).exec();
+                var types = await Type.find({}).sort('-created').exec();
+                var notifications = await Contact.find({ status: 'unread'}).sort('-created').exec();
+                res.render('admin/add-headcat', { subcats: subcats, types: types, notifications: notifications, moment: moment});
+            }else{
+                res.render('404');
+            }
         },
         newHead: function(req, res){
-            
-            const newSub = new Sub();
+            if(req.user){
+                const newSub = new Sub();
             newSub.category = req.body.subcat;
             newSub.name = req.body.name;
             newSub.save((err) => {
@@ -64,10 +78,13 @@ module.exports = function(User, Category, Type, Contact, Sub, moment){
             })
 
             res.redirect('/admin/add/service');
+            }else{
+                res.render('404');
+            }
         },
         newSubCat: async function(req, res){
-
-            // console.log(req.body);
+            if(req.user){
+                // console.log(req.body);
 
             Sub.find({
                 _id: req.body.subcat
@@ -143,60 +160,39 @@ module.exports = function(User, Category, Type, Contact, Sub, moment){
             })
 
             res.redirect('/admin')
-        },
-        addBenefits: function(req, res){
-            console.log(req.body);
-            Type.updateOne({
-                _id: req.body.subtype
-            }, {
-                $push: {
-                    ammount: req.body.plan,
-                    benefits: req.body.benefit
-                }
-            }, (err) => {
-                console.log("Document Update Success");
-            });
-
-            res.redirect('back');
-        },
-        addDocument: function(req, res){
-            console.log(req.body);
-
-            Type.updateOne({
-                _id: req.body.subtype
-            }, {
-                $push: {
-                    documents: {
-                        title: req.body.title,
-                        desc: req.body.desc
-                    }
-                }
-            }, (err) => {
-                console.log("Document Update Success");
-            });
-
-            res.redirect('/admin')
+            }else{
+                res.render('404');
+            }
         },
         addService: async function(req, res){
-            var subcats = await Sub.find({}).exec();
-            const services = await Type.find({}).sort('name').exec();
-            var types = await Type.find({}).sort('-created').exec();
-            var notifications = await Contact.find({ status: 'unread'}).sort('-created').exec();
-            res.render('admin/add-service', { subcats: subcats, services: services, types: types, notifications, moment: moment});
+            if(req.user){
+                var subcats = await Sub.find({}).exec();
+                const services = await Type.find({}).sort('name').exec();
+                var types = await Type.find({}).sort('-created').exec();
+                var notifications = await Contact.find({ status: 'unread'}).sort('-created').exec();
+                res.render('admin/add-service', { subcats: subcats, services: services, types: types, notifications, moment: moment});
+            }else{
+                res.render('404');
+            }
         },
         editService: async function(req, res){
-            var subcats = await Category.find({}).exec();
-            const service = await Type.findOne({ slug: req.params.slug}).exec();
-            const services = await Type.find({}).sort('name').exec();
-            var types = await Type.find({}).sort('-created').exec();
-            var notifications = await Contact.find({ status: 'unread'}).sort('-created').exec();
-            const documents = service.documents;
-            const features = service.features;
-            const steps = service.steps;
-            res.render('admin/edit-service', { subcats: subcats, service: service, services: services, steps:steps, features: features, documents: documents, types: types, notifications: notifications, moment: moment});
+            if(req.user){
+                var subcats = await Category.find({}).exec();
+                const service = await Type.findOne({ slug: req.params.slug}).exec();
+                const services = await Type.find({}).sort('name').exec();
+                var types = await Type.find({}).sort('-created').exec();
+                var notifications = await Contact.find({ status: 'unread'}).sort('-created').exec();
+                const documents = service.documents;
+                const features = service.features;
+                const steps = service.steps;
+                res.render('admin/edit-service', { subcats: subcats, service: service, services: services, steps:steps, features: features, documents: documents, types: types, notifications: notifications, moment: moment});
+            }else{
+                res.render('404');
+            }
         },
         editServiceExecute: async function(req, res){
-            var json = JSON.stringify(req.body);
+            if(req.user){
+                var json = JSON.stringify(req.body);
 
             var obj = JSON.parse(json);
             var values = Object.keys(obj).map(function (key) { return obj[key]; });
@@ -288,6 +284,9 @@ module.exports = function(User, Category, Type, Contact, Sub, moment){
             });
 
             res.redirect('back');
+            }else{
+                res.render('404');
+            }
         }
     }
 }

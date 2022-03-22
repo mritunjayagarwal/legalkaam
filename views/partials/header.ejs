@@ -1,0 +1,157 @@
+<header class="header header-fixed header-1">
+	<div class="header-top">
+		<div class="container">
+			<div class="left-info pull-left">
+				<ul class="list-inline">
+					<li>
+						<span>
+							<i class="fa fa-phone"></i> +91 999-090-5006
+						</span>
+					</li>
+				</ul>
+			</div><!-- /.left-info -->
+			<div class="right-info pull-right">
+				<ul class="list-inline">
+					<li>
+						<span>
+							<i class="fa fa-envelope"></i> legalkaam@gmail.com							
+						</span>
+					</li>
+					<li>
+						<ul class="list-inline social">
+							<li><a href="#"><i class="fa fa-facebook"></i></a></li>
+							<li><a href="#"><i class="fa fa-twitter"></i></a></li>
+							<li><a href="#"><i class="fa fa-youtube-play"></i></a></li>
+							<li><a href="#"><i class="fa fa-linkedin"></i></a></li>
+						</ul><!-- /.social -->
+					</li>				
+				</ul>
+			</div><!-- /.right-info -->
+		</div>		
+	</div><!-- /.header-top -->
+
+	<nav class="navbar navbar-default header-navigation stricky">
+		<div class="container">
+			<!-- Brand and toggle get grouped for better mobile display -->
+			<div class="navbar-header">
+				<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#main-nav-bar" aria-expanded="false">
+					<span class="sr-only">Toggle navigation</span>
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+				</button>
+				<a class="navbar-brand" href="/">
+					<img src="img/logo.png" alt="Awesome Image"/>
+				</a>
+			</div>
+
+			<!-- Collect the nav links, forms, and other content for toggling -->
+			<div class="collapse navbar-collapse" id="main-nav-bar">
+				
+
+				<ul class="nav navbar-nav navigation-box">
+					<li><a href="index.html">Home</a></li>
+                    <li><a href="about.html">About Us</a></li>
+                    <% categories.forEach((category) => { %>
+					<li>
+						<a href="#"><%= category.name %></a>
+                           <ul class="sub-menu">	
+                            <div style="display: flex;">
+                                <% category.subcat.forEach((type) => { %>
+                                <ul class="make">				
+                                    <p class = "text-center my-5 text-capitalize" style = "color: #fff;font-size: 18px; font-weight: 600;"><%= type.name %></p>
+                                    <% type.subcat.forEach((tipe) => { %>
+                                        <li><a href="/find/type/<%= tipe.slug %>"><%= tipe.name %></a></li>
+                                    <% }) %>
+                                </ul>
+                                <% }) %>
+                                <!-- <ul class="make">
+                                    <li><a href="services.html">Producer Company</a></li>
+                                    <li><a href="services.html">MICROFINANACE</a></li>
+                                    <li><a href="services.html">NBFC</a></li>
+                                    <li><a href="services.html">Digital SIgnature CLASS 3</a></li>
+                                    <li><a href="services.html">Section 8 Company</a></li>
+                                    <li><a href="services.html">Professional Tax Registration</a></li>
+                                    <li><a href="services.html">PAN Registration</a></li>
+                                    <li><a href="services.html">TAN Registration</a></li>
+                                    <li><a href="services.html">ESI Registration</a></li>
+                                    <li><a href="services.html">EPF registration</a></li>
+                                    <li><a href="services.html">Individual Business Registration</a></li>
+						        </ul> -->
+                            </div>
+                           </ul>
+					    </li>
+                        <% }) %>
+                    <li>
+						<a href="services.html">Legal</a>
+                        <ul class="sub-menu">	
+                            <div style="display: flex;">
+                                <ul class="make">				
+                                    <li><a href="services.html">Corporates Lawyers</a></li>
+                                    <li><a href="services.html">Merger & Acquisition</a></li>
+                                    <li><a href="services.html">Contract Drafting</a></li>
+                                    <li><a href="services.html">Winding Up</a></li>
+                                    <li><a href="services.html">Recovery Matters</a></li>
+                                    <li><a href="services.html">contractual disputes</a></li>
+                                    <li><a href="services.html">Arbitrations matters</a></li>
+                                    <li><a href="services.html">All type Of Due Deligence</a></li>
+                                </ul>						
+							    <ul class="make">
+                                    <li><a href="services.html">Property Matters</a></li>
+                                    <li><a href="services.html">Specific Relief matters</a></li>
+                                    <li><a href="services.html">Injunctions Matters</a></li>
+                                    <li><a href="services.html">Consumers Matters</a></li>
+                                    <li><a href="services.html">Real Estate Matters</a></li>
+                                    <li><a href="services.html">Franchise Matters</a></li>
+                                    <li><a href="services.html">Sale Purchase Of Companies</a></li>
+                                    
+                                </ul>
+                            </div>
+						</ul><!-- /.sub-menu -->
+                    </li>
+					<li>
+						<a href="services.html">Returns</a>
+						<ul class="sub-menu">	
+                            <div style="display: flex;">
+                                <ul class="make">				
+                                    <li><a href="services.html">GST Returns</a></li>
+                                    <li><a href="services.html">Income Tax Return</a></li>
+                                    <li><a href="services.html">TDS Returns</a></li>
+                                    <li><a href="services.html">ROC Annual Return</a></li>
+                                    <li><a href="services.html">Annual Complaince</a></li>
+                                    <li><a href="services.html">Propreitorship</a></li>
+                                    <li><a href="services.html">Partnership</a></li>
+                                </ul>						
+							    <ul class="make">
+                                    <li><a href="services.html">NBFC</a></li>
+                                    <li><a href="services.html">One person Company</a></li>
+                                    <li><a href="services.html">Private Limited Company</a></li>
+                                    <li><a href="services.html">Public Limited Company</a></li>
+                                    <li><a href="services.html">Forign Subsidary</a></li>
+                                    <li><a href="services.html">Microfinance</a></li>
+                                    <li><a href="services.html">Limited Liablity Partnership</a></li>
+                                    
+                                </ul>
+                            </div>
+						</ul><!-- /.sub-menu -->
+					</li>
+					<li>
+						<a href="contact.html">Contact</a>
+					</li>
+				</ul>			
+                <ul class="nav navbar-nav navbar-right right-box">
+                    <li>
+                        <a href="#"><span class="phone-only">Search</span><i class="fa fa-search"></i></a>
+                        <div class="sub-menu search-box">
+                            <form action="#" class="clearfix">
+                                <input type="text" placeholder="Search Here" />
+                                <button type="submit"><i class="fa fa-search"></i></button>
+                            </form>
+                        </div><!-- /.sub-menu -->
+                    </li>
+                </ul>
+			</div><!-- /.navbar-collapse -->
+		</div><!-- /.container -->
+	</nav>
+
+</header><!-- /.header -->

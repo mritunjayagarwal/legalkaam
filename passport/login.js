@@ -1,6 +1,6 @@
 const passport = require('passport');
 const LocalStrategy = require('passport-local').Strategy;
-const User = require('../models/user');
+const User = require('../models/users');
 
 passport.serializeUser((user, done) => {
     done(null, user.id);
@@ -13,32 +13,21 @@ passport.deserializeUser((id, done) => {
 });
 
 passport.use('local.login', new LocalStrategy({
-    usernameField: 'email',
+    usernameField: 'username',
     passwordField: 'password',
     passReqToCallback: true
-}, (req, email, password, done) => {
-    User.findOne({'email': email}, (err, user) => {
+}, (req, username, password, done) => {
+    User.findOne({'username': username}, (err, user) => {
         if(err){
             return done(err);
         }
 
         const messages = []
-        if(!user || !user.compare(password)){
-            messages.push('Email Does not exist or password does not match');
+        if(!user || !password){
+            messages.push('User Does not exist or password does not match');
             return done(null, false, req.flash('error', messages));
         }
 
-        User.updateOne({
-            _id: user._id
-        }, {
-            $set: {
-                "lastlogin": new Date()
-            }
-        }, (err) => {
-            if(err){
-                req.flash("error", "Something went wrong.Please Try again")
-            } 
-            return done(null, user);
-        })
+        return done(null, user);
     })
 }))

@@ -8,7 +8,8 @@ const myModules = [
     ['Type', './models/type'],
     ['Sub', './models/sub'],
     ['Contact', './models/contact'],
-    ['moment', 'moment']
+    ['moment', 'moment'],
+    ['passport', 'passport']
 ];
 
 myModules.forEach(function(val){

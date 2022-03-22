@@ -3,11 +3,15 @@ const bodyParser = require('body-parser');
 const ejs = require('ejs');
 const cookieParser = require('cookie-parser');
 const expressValidator = require('express-validator');
+const flash = require('connect-flash');
 const session = require('express-session');
 const MongoStore = require('connect-mongo');
+const passport = require('passport');
 const mongoose = require('mongoose');
 const http = require('http');
 const container = require('./container');
+const compression = require('compression');
+const helmet = require('helmet');
 require('dotenv').config();
 
 container.resolve(function(routes, admin, notification, _){
@@ -53,22 +57,30 @@ container.resolve(function(routes, admin, notification, _){
     }
 
     function configureExpress(app){
+
+        app.use(compression());
+        app.use(helmet());
+
+        require('./passport/login');
+
         app.use(express.static('public'));
         app.use(cookieParser());
         app.use(bodyParser.json());
         app.use(bodyParser.urlencoded({ extended: true}));
-        // app.use(expressValidator());
-        // app.use(session({
-        //     secret: process.env.SECRET_KEY,
-        //     resave: true,
-        //     saveUninitialized: true,
-        //     cookie : {
-        //         maxAge: 1000* 60 * 60 *24 * 365
-        //     },
-        //     store: MongoStore.create({mongoUrl: process.env.MONGODB_URI })
-        // }));
+        app.use(session({
+            secret: process.env.SECRET_KEY,
+            resave: true,
+            saveUninitialized: true,
+            // cookie : {
+            //     maxAge: 1000* 60 * 60 *24 * 365
+            // },
+            store: MongoStore.create({mongoUrl: process.env.MONGODB_URI })
+        }));
 
+        app.use(flash());
         app.set('view engine', 'ejs');
+        app.use(passport.initialize());
+        app.use(passport.session());
         app.locals._ = _;
     }
 })
