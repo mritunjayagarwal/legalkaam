@@ -26,11 +26,12 @@ module.exports = function(User, Category, Type, Contact, Sub, passport){
             const plan = type.ammount;
             res.render('service', {type: type, steps: steps, documents: documents, features: features, benefits: benefits, categories: categories})
         },
-        loginPage: function(req, res){
+        loginPage: async function(req, res){
             if(req.user){
                 res.redirect('/admin')
             }else{
-                res.render('login');
+                const categories = await Category.find({}).populate({ path: 'subcat', populate: [{ path: 'subcat', model: 'Type'}], model: 'Sub'}).exec();
+                res.render('login', { categories: categories});
             }
         },
         getInside: passport.authenticate('local.login', {

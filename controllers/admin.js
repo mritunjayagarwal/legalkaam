@@ -7,11 +7,14 @@ module.exports = function(User, Category, Type, Contact, Sub, About, Home, momen
             router.get('/admin', this.admin);
             router.get('/create/new/category/', this.newCategoryPage);
             router.get('/create/new/subcat/', this.newSubcatPage);
+            router.get('/admin/edit/contact', this.editContact);
             router.get('/admin/add/home', this.addHome)
             router.get('/admin/add/about', this.addAbout);
             router.get('/admin/edit/about', this.editAbout);
             router.get('/admin/add/service', this.addService);
+            router.get('/admin/edit/services', this.editServicesPage);
             router.get('/admin/edit/service/:slug' , this.editService);
+            router.get('/admin/edit/service', this.editAService);
 
             router.post('/new/category', this.newCategory);
             router.post('/new/subcat', this.newSubCat);
@@ -181,6 +184,13 @@ module.exports = function(User, Category, Type, Contact, Sub, About, Home, momen
                 res.render('404');
             }
         },
+        editServicesPage: async function(req, res){
+            var subcats = await Category.find({}).exec();
+            var types = await Type.find({}).sort('-created').exec();
+            var notifications = await Contact.find({ status: 'unread'}).sort('-created').exec();
+            const services = await Type.find({}).sort('name').exec();
+            res.render('admin/find-services', { services: services, subcats: subcats, types: types, notifications: notifications, moment: moment});
+        },
         editService: async function(req, res){
             if(req.user){
                 var subcats = await Category.find({}).exec();
@@ -195,6 +205,10 @@ module.exports = function(User, Category, Type, Contact, Sub, About, Home, momen
             }else{
                 res.render('404');
             }
+        },
+        editAService: async function(req, res){
+            console.log(req.body);
+            res.send("heyy");
         },
         editServiceExecute: async function(req, res){
             if(req.user){
@@ -351,7 +365,6 @@ module.exports = function(User, Category, Type, Contact, Sub, About, Home, momen
             var types = await Type.find({}).sort('-created').exec();
             var notifications = await Contact.find({ status: 'unread'}).sort('-created').exec();
             var home = await Home.findOne({ _id: '623e05377dd536218e3d6aaf'}).exec();
-            console.log(home);
             res.render('admin/add-home', { subcats: subcats, types: types, notifications: notifications, moment: moment, home: home});
         },
         editHome: function(req, res){
@@ -410,6 +423,16 @@ module.exports = function(User, Category, Type, Contact, Sub, About, Home, momen
             }, (err) => {
                 console.log('update success');
             });
+        },
+        editContact: async function(req, res){
+            if(req.user){
+                var subcats = await Category.find({}).exec();
+                var types = await Type.find({}).sort('-created').exec();
+                var notifications = await Contact.find({ status: 'unread'}).sort('-created').exec();
+                res.render('admin/edit-contact', { subcats: subcats, types: types, notifications: notifications, moment: moment});
+            }else{
+                res.render('404');
+            }
         }
     }
 }

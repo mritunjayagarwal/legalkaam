@@ -1,5 +1,3 @@
-"use strict"; // Start of use strict
-
 function revolutionSliderActiver() {
     if ($('.rev_slider_wrapper .slider1').length) {
         var Self = $('.rev_slider_wrapper .slider1');

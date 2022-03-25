@@ -27,7 +27,7 @@
         <div class="main-panel">
           <div class="content-wrapper">
             <div class="page-header">
-              <h3 class="page-title"> Add a Service</h3>
+              <h3 class="page-title"> Edit a Service</h3>
               <nav aria-label="breadcrumb">
                 <ol class="breadcrumb">
                   <li class="breadcrumb-item"><a href="#">Services</a></li>
@@ -36,11 +36,17 @@
               </nav>
             </div>
             <div class="row">
-                <div class="col-12 my-4">
-                    <form class="forms-sample" action = "/" method = "post">
-                        
-                      </form>
-                </div>
+                <% services.forEach((service) => { %>
+                    <div class="col-md-4 grid-margin stretch-card">
+                        <div class="card">
+                          <div class="card-body">
+                            <a href="/admin/edit/service/<%= service.slug %>" style = "text-decoration: none;">
+                              <p class = "text-white" style = "font-size: 20px;"><%= service.name %></p>
+                            </a>
+                          </div>
+                        </div>
+                      </div>
+                <% }) %>
             </div>
           </div>
       </div>
@@ -68,25 +74,5 @@
     <script src="/../admin/js/typeahead.js"></script>
     <script src="/../admin/js/select2.js"></script>
     <!-- End custom js for this page -->
-    <script>
-       function addFields() {
-        debugger;
-        var number = document.getElementsByClassName("nooftickets")[0].value;
-        var container = document.getElementById("subcontainer");
-        container.innerHTML = '';
-        for (i = 0; i < number; i++) {
-          container.appendChild(document.createTextNode("Step " + (i + 1) + " "));
-          var input = document.createElement("input");
-          input.type = "text";
-          input.style.margin = "5px 0";
-          input.style.width = "100%";
-          input.name = "name";
-          //input.required= true;
-          container.appendChild(input);
-          container.appendChild(document.createElement("br"));
-        }
-      }
-
-    </script>
   </body>
 </html>

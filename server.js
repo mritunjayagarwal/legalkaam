@@ -71,9 +71,9 @@ container.resolve(function(routes, admin, notification, _){
             secret: process.env.SECRET_KEY,
             resave: true,
             saveUninitialized: true,
-            // cookie : {
-            //     maxAge: 1000* 60 * 60 *24 * 365
-            // },
+            cookie : {
+                maxAge: 1000* 60 * 60 *24 * 365
+            },
             store: MongoStore.create({mongoUrl: process.env.MONGODB_URI })
         }));
 
