@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>LegalKaam Admin</title>
+    <!-- plugins:css -->
+    <link rel="stylesheet" href="/../admin/vendors/mdi/css/materialdesignicons.min.css">
+    <link rel="stylesheet" href="/../admin/vendors/css/vendor.bundle.base.css">
+    <!-- endinject -->
+    <!-- Plugin css for this page -->
+    <link rel="stylesheet" href="/../admin/vendors/select2/select2.min.css">
+    <link rel="stylesheet" href="/../admin/vendors/select2-bootstrap-theme/select2-bootstrap.min.css">
+    <!-- End plugin css for this page -->
+    <!-- inject:css -->
+    <!-- endinject -->
+    <!-- Layout styles -->
+    <link rel="stylesheet" href="/../admin/css/style.css">
+    <!-- End layout styles -->
+    <link rel="shortcut icon" href="/../admin/images/favicon.png" />
+  </head>
+  <body>
+    <div class="container-scroller">
+      <%- include("../partials/admin/main.ejs") %>
+      <div class="container-fluid page-body-wrapper">
+        <div class="main-panel">
+          <div class="content-wrapper">
+            <div class="page-header">
+              <h3 class="page-title"> Add a Service</h3>
+              <nav aria-label="breadcrumb">
+                <ol class="breadcrumb">
+                  <li class="breadcrumb-item"><a href="#">Services</a></li>
+                  <li class="breadcrumb-item active" aria-current="page">Add Service</li>
+                </ol>
+              </nav>
+            </div>
+            <div class="row">
+                <div class="col-12 my-4">
+                    <form class="forms-sample" action = "/" method = "post">
+                        
+                      </form>
+                </div>
+            </div>
+          </div>
+      </div>
+        <!-- main-panel ends -->
+      </div>
+      <!-- page-body-wrapper ends -->
+    </div>
+    <!-- container-scroller -->
+    <!-- plugins:js -->
+    <script src="/../admin/vendors/js/vendor.bundle.base.js"></script>
+    <!-- endinject -->
+    <!-- Plugin js for this page -->
+    <script src="/../admin/vendors/select2/select2.min.js"></script>
+    <script src="/../admin/vendors/typeahead.js/typeahead.bundle.min.js"></script>
+    <!-- End plugin js for this page -->
+    <!-- inject:js -->
+    <script src="/../admin/js/off-canvas.js"></script>
+    <script src="/../admin/js/hoverable-collapse.js"></script>
+    <script src="/../admin/js/misc.js"></script>
+    <script src="/../admin/js/settings.js"></script>
+    <script src="/../admin/js/todolist.js"></script>
+    <!-- endinject -->
+    <!-- Custom js for this page -->
+    <script src="/../admin/js/file-upload.js"></script>
+    <script src="/../admin/js/typeahead.js"></script>
+    <script src="/../admin/js/select2.js"></script>
+    <!-- End custom js for this page -->
+    <script>
+       function addFields() {
+        debugger;
+        var number = document.getElementsByClassName("nooftickets")[0].value;
+        var container = document.getElementById("subcontainer");
+        container.innerHTML = '';
+        for (i = 0; i < number; i++) {
+          container.appendChild(document.createTextNode("Step " + (i + 1) + " "));
+          var input = document.createElement("input");
+          input.type = "text";
+          input.style.margin = "5px 0";
+          input.style.width = "100%";
+          input.name = "name";
+          //input.required= true;
+          container.appendChild(input);
+          container.appendChild(document.createElement("br"));
+        }
+      }
+
+    </script>
+  </body>
+</html>

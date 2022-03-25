@@ -28,7 +28,7 @@
             <span class="menu-icon">
               <i class="mdi mdi-speedometer"></i>
             </span>
-            <span class="menu-title">Home</span>
+            <span class="menu-title">Admin Home</span>
           </a>
         </li>
         <li class="nav-item menu-items">
@@ -40,14 +40,43 @@
           </a>
         </li>
         <li class="nav-item menu-items">
-          <a class="nav-link" data-toggle="collapse" href="#auth" aria-expanded="false" aria-controls="auth">
+          <a class="nav-link" data-toggle="collapse" href="#auth1" aria-expanded="false" aria-controls="auth1">
+            <span class="menu-icon">
+              <i class="mdi mdi-security"></i>
+            </span>
+            <span class="menu-title">About</span>
+            <i class="menu-arrow"></i>
+          </a>
+          <div class="collapse" id="auth1">
+            <ul class="nav flex-column sub-menu">
+              <li class="nav-item"> <a class="nav-link" href="/admin/add/about">Add About</a></li>
+              <li class="nav-item"> <a class="nav-link" href="/admin/edit/about">Edit About</a></li>
+            </ul>
+          </div>
+        </li>
+        <li class="nav-item menu-items">
+          <a class="nav-link" data-toggle="collapse" href="#auth2" aria-expanded="false" aria-controls="auth2">
+            <span class="menu-icon">
+              <i class="mdi mdi-security"></i>
+            </span>
+            <span class="menu-title">Home</span>
+            <i class="menu-arrow"></i>
+          </a>
+          <div class="collapse" id="auth2">
+            <ul class="nav flex-column sub-menu">
+              <li class="nav-item"> <a class="nav-link" href="/admin/add/home">Add Home</a></li>
+            </ul>
+          </div>
+        </li>
+        <li class="nav-item menu-items">
+          <a class="nav-link" data-toggle="collapse" href="#auth3" aria-expanded="false" aria-controls="auth3">
             <span class="menu-icon">
               <i class="mdi mdi-security"></i>
             </span>
             <span class="menu-title">Services</span>
             <i class="menu-arrow"></i>
           </a>
-          <div class="collapse" id="auth">
+          <div class="collapse" id="auth3">
             <ul class="nav flex-column sub-menu">
               <li class="nav-item"> <a class="nav-link" href="/admin/add/service">Add Service</a></li>
             </ul>

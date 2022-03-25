@@ -729,8 +729,7 @@ a:focus {
   float: right;
 }
 .make {
-  list-style-type: none;
-  width: 500px;
+  width: 250px;
   margin-left: -40px;
 }
 @media (min-width: 1025px) {

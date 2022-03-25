@@ -8,11 +8,14 @@ const myModules = [
     ['Type', './models/type'],
     ['Sub', './models/sub'],
     ['Contact', './models/contact'],
+    ['Home', './models/home'],
+    ['About', './models/about'],
     ['moment', 'moment'],
-    ['passport', 'passport']
+    ['passport', 'passport'],
 ];
 
 myModules.forEach(function(val){
+    
     container.register(val[0], function(){
         return require(val[1]);
     });
