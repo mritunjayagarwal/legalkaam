@@ -38,35 +38,37 @@
         <div class="row" style=" margin-top: 60px; ">
             <div class="col-md-1 col-sm-6" style="display: none;"></div> 
             <% steps.forEach((step, index) => { %>
-                <div class="col-md-2 col-sm-6">
-                    <div class="service-count-page-box" style=" height: 150px !important; ">
-                        <div class="icon-box">
+                <% if(step != ''){ %>
+                    <div class="col-md-2 col-sm-6">
+                        <div class="service-count-page-box" style=" height: 150px !important; ">
                             <div class="icon-box">
-                                <div class="inner-box">
-                                    <div class="top-box">
-                                        <span class="fa-stack" style="font-size: 50px; margin-top: -10px;">
-                                            <span class="fa fa-circle-o fa-stack-2x"></span>
-                                            <strong class="fa-stack-1x">
-                                                <%= index + 1 %>
-                                            </strong>
-                                        </span>
-                                    </div><!-- /.top-box -->
-                                    <div class="bottom-box">
-                                        <span class="fa-stack" style="font-size: 50px; margin-top: -10px;">
-                                            <span class="fa fa-circle-o fa-stack-2x"></span>
-                                            <strong class="fa-stack-1x">
-                                               <%= index + 1 %>  
-                                            </strong>
-                                        </span>
-                                    </div><!-- /.bottom-box -->                            
-                                </div><!-- /.inner-box -->                        
-                            </div>                     
-                        </div>
-                        <div class="title">
-                            <h3><%- step %></h3>
-                        </div><!-- /.title -->
-                    </div><!-- /.service-count-page-box -->
-                </div><!-- /.col-md-4 -->
+                                <div class="icon-box">
+                                    <div class="inner-box">
+                                        <div class="top-box">
+                                            <span class="fa-stack" style="font-size: 50px; margin-top: -10px;">
+                                                <span class="fa fa-circle-o fa-stack-2x"></span>
+                                                <strong class="fa-stack-1x">
+                                                    <%= index + 1 %>
+                                                </strong>
+                                            </span>
+                                        </div><!-- /.top-box -->
+                                        <div class="bottom-box">
+                                            <span class="fa-stack" style="font-size: 50px; margin-top: -10px;">
+                                                <span class="fa fa-circle-o fa-stack-2x"></span>
+                                                <strong class="fa-stack-1x">
+                                                   <%= index + 1 %>  
+                                                </strong>
+                                            </span>
+                                        </div><!-- /.bottom-box -->                            
+                                    </div><!-- /.inner-box -->                        
+                                </div>                     
+                            </div>
+                            <div class="title">
+                                <h3><%- step %></h3>
+                            </div><!-- /.title -->
+                        </div><!-- /.service-count-page-box -->
+                    </div><!-- /.col-md-4 -->
+                <% } %>
             <% }) %>
             <div class="col-md-1 col-sm-6" style="display: none;"></div> 
    		</div><!-- /.row -->
@@ -125,14 +127,14 @@
                         </div><!-- /.sec-title -->
                         <div class="price-section">
                             <div class="price-table">
-                                <div class="price"><small>₹</small><%= type.ammount %></div>
+                                <div class="price"><small>₹</small><%= type.subs %></div>
                                 <h2 class="title">ADVANCED</h2>
                                 <p class="description">All Inclusive (Fees & Taxes)</p>
                                 <div class="price-features">
                                     <% benefits.forEach((benefit) => { %>
                                         <div class="price-feature">
                                             <i class="fa fa-check"></i>
-                                            <span><%= benefit.name %></span>
+                                            <span><%= benefit %></span>
                                         </div>
                                     <% }) %>
                                     <a href="https://api.whatsapp.com/send?phone=+919990905006" type="submit" class="price-btn">BOOK NOW</a>

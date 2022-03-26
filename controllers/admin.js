@@ -1,13 +1,13 @@
 const { query } = require("express");
 const home = require("../models/home");
 
-module.exports = function(User, Category, Type, Contact, Sub, About, Home, moment){
+module.exports = function(User, Category, Type, Contact, Sub, About, Home, Details, moment){
     return {
         SetRouting: function(router){
             router.get('/admin', this.admin);
             router.get('/create/new/category/', this.newCategoryPage);
             router.get('/create/new/subcat/', this.newSubcatPage);
-            router.get('/admin/edit/contact', this.editContact);
+            router.get('/admin/edit/contact', this.editContactPage);
             router.get('/admin/add/home', this.addHome)
             router.get('/admin/add/about', this.addAbout);
             router.get('/admin/edit/about', this.editAbout);
@@ -15,6 +15,8 @@ module.exports = function(User, Category, Type, Contact, Sub, About, Home, momen
             router.get('/admin/edit/services', this.editServicesPage);
             router.get('/admin/edit/service/:slug' , this.editService);
             router.get('/admin/edit/service', this.editAService);
+            router.get('/admin/delete/services', this.deleteServicePage);
+            router.get('/admin/delete/service/:id/:sub', this.deleteService);
 
             router.post('/new/category', this.newCategory);
             router.post('/new/subcat', this.newSubCat);
@@ -22,6 +24,7 @@ module.exports = function(User, Category, Type, Contact, Sub, About, Home, momen
             router.post('/admin/edit/service/', this.editServiceExecute)
             router.post('/admin/add/about', this.postEditAbout);
             router.post('/admin/edit/home', this.editHome);
+            router.post('/admin/edit/contact', this.editContact)
         },
         admin: async function(req, res){
             if(req.user){
@@ -99,19 +102,14 @@ module.exports = function(User, Category, Type, Contact, Sub, About, Home, momen
                 _id: req.body.subcat
             }, (err, sub) => {
                 if(sub){
-                    var json = JSON.stringify(req.body);
-
-                    var obj = JSON.parse(json);
-                    var values = Object.keys(obj).map(function (key) { return obj[key]; });
-                    values = values.splice(-1)[0];
-                    console.log(values);
-
                     const newSub = new Type({
                         sub: req.body.subcat,
                         name: req.body.subcatname,
                         desc: req.body.requirements,
-                        steps: values,
+                        steps: req.body.step,
                         important: req.body.important,
+                        subs: req.body.subs,
+                        benefits: req.body.benefit,
                         features: [
                             {
                                 head: req.body.bhead1,
@@ -199,9 +197,11 @@ module.exports = function(User, Category, Type, Contact, Sub, About, Home, momen
                 var types = await Type.find({}).sort('-created').exec();
                 var notifications = await Contact.find({ status: 'unread'}).sort('-created').exec();
                 const documents = service.documents;
+                const benefits = service.benefits;
                 const features = service.features;
                 const steps = service.steps;
-                res.render('admin/edit-service', { subcats: subcats, service: service, services: services, steps:steps, features: features, documents: documents, types: types, notifications: notifications, moment: moment});
+                console.log(service);
+                res.render('admin/edit-service', { subcats: subcats, service: service, services: services, steps:steps, features: features, documents: documents, benefits: benefits, types: types, notifications: notifications, moment: moment});
             }else{
                 res.render('404');
             }
@@ -226,6 +226,7 @@ module.exports = function(User, Category, Type, Contact, Sub, About, Home, momen
                     name: req.body.subcatname,
                     desc: req.body.requirements,
                     important: req.body.important,
+                    subs: req.body.subs,
                     steps: values,
                     documents: [
                         {
@@ -238,6 +239,7 @@ module.exports = function(User, Category, Type, Contact, Sub, About, Home, momen
                         },
                         
                     ],
+                    benefits: req.body.benefit
                 }
             }, (err) => {
                 console.log('update success');
@@ -365,6 +367,7 @@ module.exports = function(User, Category, Type, Contact, Sub, About, Home, momen
             var types = await Type.find({}).sort('-created').exec();
             var notifications = await Contact.find({ status: 'unread'}).sort('-created').exec();
             var home = await Home.findOne({ _id: '623e05377dd536218e3d6aaf'}).exec();
+            console.log(home)
             res.render('admin/add-home', { subcats: subcats, types: types, notifications: notifications, moment: moment, home: home});
         },
         editHome: function(req, res){
@@ -374,6 +377,24 @@ module.exports = function(User, Category, Type, Contact, Sub, About, Home, momen
             }, {
                 $set: { 
                     youtube: req.body.youtube,
+                    chooseus: [
+                        {
+                            icon: req.body.cicon1,
+                            title: req.body.ctitle1
+                        },
+                        {
+                            icon: req.body.cicon2,
+                            title: req.body.ctitle2
+                        },
+                        {
+                            icon: req.body.cicon3,
+                            title: req.body.ctitle3
+                        },
+                        {
+                            icon: req.body.cicon4,
+                            title: req.body.ctitle4
+                        },
+                    ],
                     features: [
                         {
                             head: req.body.fhead1,
@@ -423,16 +444,101 @@ module.exports = function(User, Category, Type, Contact, Sub, About, Home, momen
             }, (err) => {
                 console.log('update success');
             });
+
+            res.redirect('/admin/add/home');
         },
-        editContact: async function(req, res){
+        editContactPage: async function(req, res){
             if(req.user){
                 var subcats = await Category.find({}).exec();
                 var types = await Type.find({}).sort('-created').exec();
                 var notifications = await Contact.find({ status: 'unread'}).sort('-created').exec();
-                res.render('admin/edit-contact', { subcats: subcats, types: types, notifications: notifications, moment: moment});
+                const contact = await Details.findOne({ _id: '623f76d3b03d2fe0e5a41d94'}).exec();
+                res.render('admin/edit-contact', { subcats: subcats, contact: contact, types: types, notifications: notifications, moment: moment});
             }else{
                 res.render('404');
             }
-        }
+        },
+        editContact: async function(req, res){
+            // const newDetails = new Details({
+            //     email: req.body.email,
+            //     mainPh: req.body.phone,
+            //     phone: [
+            //         {
+            //             ph: req.body.phone2
+            //         },
+            //         {
+            //             ph: req.body.phone3
+            //         }
+            //     ],
+            //     address: req.body.address,
+            //     pin: req.body.pin,
+            //     facebook: req.body.facebook,
+            //     twitter: req.body.twitter,
+            //     youtube: req.body.youtube,
+            //     linkedin: req.body.linkedin
+            // });
+
+            // newDetails.save((err) => {
+            //     console.log("Details Added Successfully");
+            // });
+
+            Details.updateOne({
+                _id: '623f76d3b03d2fe0e5a41d94'
+            }, {
+                $set: { 
+                    email: req.body.email,
+                    mainPh: req.body.phone,
+                    phone: [
+                        {
+                            ph: req.body.phone2
+                        },
+                        {
+                            ph: req.body.phone3
+                        }
+                    ],
+                    address: req.body.address,
+                    pin: req.body.pin,
+                    facebook: req.body.facebook,
+                    twitter: req.body.twitter,
+                    youtube: req.body.youtube,
+                    linkedin: req.body.linkedin
+                }
+            }, (err) => {
+                console.log('update success');
+            });
+
+            res.redirect('/admin/edit/contact');
+        },
+        deleteServicePage: async function(req, res){
+            var subcats = await Category.find({}).exec();
+            const services = await Type.find({}).sort('name').exec();
+            var types = await Type.find({}).sort('-created').exec();
+            var notifications = await Contact.find({ status: 'unread'}).sort('-created').exec();
+            res.render('admin/delete-services', { subcats: subcats, services: services, types: types, notifications: notifications, moment: moment});
+        },
+        deleteService: function(req, res){
+            Type.remove({ _id: req.params.id }, function(err) {
+                if (!err) {
+                        console.log("Success");
+                }
+                else {
+                    console.log("Error");
+                }
+            });
+
+            Sub.updateOne({
+                _id: req.params.sub
+            }, {
+                $pull: {
+                    subcat: {
+                        _id: req.params.id
+                    }
+                }
+            }, (err) => {
+                console.log("Delete Successfull")
+            })
+
+            res.redirect("/admin/delete/services");
+        },
     }
 }

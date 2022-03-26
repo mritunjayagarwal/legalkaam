@@ -37,43 +37,48 @@
             </div>
             <div class="row">
                 <div class="col-12 my-4">
-                    <form class="forms-sample" action = "/" method = "post">
+                    <form class="forms-sample" action = "/admin/edit/contact" method = "post">
                         <div class="form-group">
                             <label for="exampleInputUsername1">Email</label>
-                            <input type="email" name = "email" class="form-control" id="exampleInputUsername1" placeholder="Enter Your Email Address">
+                            <input type="email" name = "email" class="form-control" id="exampleInputUsername1" placeholder="Enter Your Email Address" value = "<%= contact.email %>">
                         </div>
                         <div class="form-group">
                             <label for="exampleInputUsername1">Primary Phone Number</label>
-                            <input type="tel" name = "phone" class="form-control" id="exampleInputUsername1" placeholder="Enter Your Main Phone Number">
+                            <input type="tel" name = "phone" class="form-control" id="exampleInputUsername1" placeholder="Enter Your Main Phone Number" value = "<%= contact.mainPh %>">
                         </div>
                         <div class="form-group">
                             <label for="exampleInputUsername1">Other Phone Numbers</label>
-                            <input type="tel" name = "phone2" class="form-control" id="exampleInputUsername1" placeholder="Enter Your Other Phone Number">
-                            <input type="tel" name = "phone3" class="form-control mt-2" id="exampleInputUsername1" placeholder="Enter Your Other Phone Number">
+                            <% for(var i = 0; i < 2; i++){ %>
+                              <% if(contact.phone[i]){ %>
+                                <input type="tel" name = "phone<%= i+2 %>" class="form-control mt-2" id="exampleInputUsername1" placeholder="Enter Your Other Phone Number" value = "<%= contact.phone[i].ph %>">
+                              <% }else{ %>
+                                <input type="tel" name = "phone<%= i+2 %>" class="form-control mt-2" id="exampleInputUsername1" placeholder="Enter Your Other Phone Number">
+                              <% } %>
+                            <% } %>
                         </div>
                         <div class="form-group">
                             <label for="exampleInputUsername1">Address</label>
-                            <input type="text" name = "address" class="form-control" id="exampleInputUsername1" placeholder="Enter Your Address">
+                            <input type="text" name = "address" class="form-control" id="exampleInputUsername1" placeholder="Enter Your Address" value = "<%= contact.address %>">
                         </div>
                         <div class="form-group">
                             <label for="exampleInputUsername1">Pin Code</label>
-                            <input type="number" name = "pin" class="form-control" id="exampleInputUsername1" placeholder="Enter Your Pin Code">
+                            <input type="number" name = "pin" class="form-control" id="exampleInputUsername1" placeholder="Enter Your Pin Code" value = "<%= contact.pin %>">
                         </div>
                         <div class="form-group">
                             <label for="exampleInputUsername1">Facebook Handle Link</label>
-                            <input type="text" name = "facebook" class="form-control" id="exampleInputUsername1" placeholder="Enter Your Facebook Handle Link">
+                            <input type="text" name = "facebook" class="form-control" id="exampleInputUsername1" placeholder="Enter Your Facebook Handle Link" value = "<%= contact.facebook %>">
                         </div>
                         <div class="form-group">
                             <label for="exampleInputUsername1">Twitter Handle Link</label>
-                            <input type="text" name = "twitter" class="form-control" id="exampleInputUsername1" placeholder="Enter Your Twitter Handle Link">
+                            <input type="text" name = "twitter" class="form-control" id="exampleInputUsername1" placeholder="Enter Your Twitter Handle Link" value = "<%= contact.twitter %>">
                         </div>
                         <div class="form-group">
                             <label for="exampleInputUsername1">Youtube Handle Link</label>
-                            <input type="text" name = "youtube" class="form-control" id="exampleInputUsername1" placeholder="Enter Your Youtube Handle Link">
+                            <input type="text" name = "youtube" class="form-control" id="exampleInputUsername1" placeholder="Enter Your Youtube Handle Link" value = "<%= contact.youtube %>">
                         </div>
                         <div class="form-group">
                             <label for="exampleInputUsername1">LinkedIn Handle Link</label>
-                            <input type="text" name = "linkedin" class="form-control" id="exampleInputUsername1" placeholder="Enter Your LinkedIn Handle Link">
+                            <input type="text" name = "linkedin" class="form-control" id="exampleInputUsername1" placeholder="Enter Your LinkedIn Handle Link" value = "<%= contact.linkedin %>">
                         </div>
                         <button type="submit" class="btn btn-primary py-3 btn-block ">Submit</button>
                       </form>

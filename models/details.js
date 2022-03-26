@@ -8,7 +8,7 @@ const detailSchema = new Schema({
     mainPh: { type: Number},
     phone: [
         {
-            type: Number
+            ph: {type: Number}
         }
     ],
     facebook: { type: String},

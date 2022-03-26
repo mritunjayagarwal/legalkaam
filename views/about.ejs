@@ -35,14 +35,13 @@
                     <div class="qouted-text">                            
                         <p>
                             <span class="qoute-top">“</span>
-                            We provide full and specific solution for every client.
+                            <%= about.quote %>
                             <span class="qoute-bottom">”</span>
                         </p>                            
                     </div><!-- /.qouted-text -->
                     <br />
                     <br />
-                    <p style="text-align: justify;">LegalKaam Online is one stop solution for all your financial, legal and consulting needs. We are cost effective and efficient platform to help you in establishing or running your business without stressing about the day to day activities, compliances and taxation.</p>
-                    <p style="text-align: justify;">Brand “LegalKaam” is managed by TSS Support Services Private Limited, which is registered under the Companies Act, 2013 and recognized by the Govt. of India. Our Core Team consists of skilled and proficient qualified Chartered Accountants, Company Secretary, CMA, Advocates, Engineers and Architects along with a diligent team of other professionals, all under one roof. We provide solution to all types of entities (individual, Firm or Company) and any other person to get better help for the issues faced by them in their everyday life.</p>
+                    <p style="text-align: justify;"><%- about.desc %></p>
                     <img src="img/texture/sign.png" alt="Awesome Image"/>
                 </div><!-- /.about-tab-text-box -->
             </div><!-- /.col-md-6 -->
@@ -94,54 +93,32 @@
             </span>
         </div><!-- /.sec-title -->
         <div class="row">
-            <div class="col-md-2 col-sm-2"></div>
-            <div class="col-md-3 col-sm-4">
-                <div class="single-team-member wow fadeIn" data-wow-duration="2s" data-wow-delay="0.5s" data-wow-offset="0">
-                    <div class="img-box">
-                        <img src="img/team/team-2.png" alt="" />
-                        <div class="overlay">
-                            <div class="box">
-                                <div class="content">
-                                    <ul class="list-inline">
-                                        <li><a href="#"><i class="fa fa-facebook"></i></a></li>
-                                        <li><a href="#"><i class="fa fa-twitter"></i></a></li>
-                                        <li><a href="#"><i class="fa fa-linkedin"></i></a></li>
-                                    </ul><!-- /.list-inline -->
+            <% about.employees.forEach((employee) => { %>
+                <div class="col-md-2 col-sm-2"></div>
+                <div class="col-md-3 col-sm-4">
+                    <div class="single-team-member wow fadeIn" data-wow-duration="2s" data-wow-delay="0.5s" data-wow-offset="0">
+                        <div class="img-box">
+                            <img src="img/team/team-2.png" alt="" />
+                            <div class="overlay">
+                                <div class="box">
+                                    <div class="content">
+                                        <ul class="list-inline">
+                                            <li><a href="#"><i class="fa fa-facebook"></i></a></li>
+                                            <li><a href="#"><i class="fa fa-twitter"></i></a></li>
+                                            <li><a href="#"><i class="fa fa-linkedin"></i></a></li>
+                                        </ul><!-- /.list-inline -->
+                                    </div><!-- /.content -->
                                 </div><!-- /.content -->
-                            </div><!-- /.content -->
-                        </div><!-- /.overlay -->
-                    </div><!-- /.img-box -->
-                    <div class="text-box">
-                        <h3>William Rickmen</h3>
-                        <span>Team Leader</span>
-                        <p style="text-align: justify;">Foresee the pains and troublle that are bound to ensue; and equall blame seds belongs to those duty finance.</p>
-                    </div><!-- /.text-box -->
-                </div><!-- /.single-team-member -->
-            </div><!-- /.col-md-3 -->
-            <div class="col-md-2 col-sm-0"></div>
-            <div class="col-md-3 col-sm-4">
-                <div class="single-team-member wow fadeIn" data-wow-duration="2s" data-wow-delay="1s" data-wow-offset="0">
-                    <div class="img-box">
-                        <img src="img/team/team-3.png" alt="" />
-                        <div class="overlay">
-                            <div class="box">
-                                <div class="content">
-                                    <ul class="list-inline">
-                                        <li><a href="#"><i class="fa fa-facebook"></i></a></li>
-                                        <li><a href="#"><i class="fa fa-twitter"></i></a></li>
-                                        <li><a href="#"><i class="fa fa-linkedin"></i></a></li>
-                                    </ul><!-- /.list-inline -->
-                                </div><!-- /.content -->
-                            </div><!-- /.content -->
-                        </div><!-- /.overlay -->
-                    </div><!-- /.img-box -->
-                    <div class="text-box">
-                        <h3>David Fernando</h3>
-                        <span>Account Manager</span>
-                        <p style="text-align: justify;">When our power of choice is ut untram melled and when nothing prevents our being able to do what we like best.</p>
-                    </div><!-- /.text-box -->
-                </div><!-- /.single-team-member -->
-            </div><!-- /.col-md-3 -->
+                            </div><!-- /.overlay -->
+                        </div><!-- /.img-box -->
+                        <div class="text-box">
+                            <h3><%= employee.name %></h3>
+                            <span><%= employee.designation %></span>
+                            <p style="text-align: justify;"><%= employee.desc %></p>
+                        </div><!-- /.text-box -->
+                    </div><!-- /.single-team-member -->
+                </div><!-- /.col-md-3 -->
+            <% }) %>
             <div class="col-md-2 col-sm-2"></div>
         </div><!-- /.row -->
     </div><!-- /.container -->

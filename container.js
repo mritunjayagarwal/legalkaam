@@ -10,6 +10,7 @@ const myModules = [
     ['Contact', './models/contact'],
     ['Home', './models/home'],
     ['About', './models/about'],
+    ['Details', './models/details'],
     ['moment', 'moment'],
     ['passport', 'passport'],
 ];

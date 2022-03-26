@@ -1,6 +1,6 @@
 const { query } = require("express");
 
-module.exports = function(User, Category, Type, Contact, Sub, passport){
+module.exports = function(User, Category, Type, Contact, Sub, About, Home, passport){
     return {
         SetRouting: function(router){
             router.get('/', this.indexPage);
@@ -14,7 +14,8 @@ module.exports = function(User, Category, Type, Contact, Sub, passport){
         },
         indexPage: async function(req, res){
             const categories = await Category.find({}).populate({ path: 'subcat', populate: [{ path: 'subcat', model: 'Type'}], model: 'Sub'}).exec();
-            return res.render('index', { categories: categories});
+            const home = await Home.findOne({ _id: '623e05377dd536218e3d6aaf'}).exec();
+            return res.render('index', { categories: categories, home: home});
         },
         typePage: async function(req, res){
             const type = await Type.findOne({ slug: req.params.slug}).exec();
@@ -49,7 +50,8 @@ module.exports = function(User, Category, Type, Contact, Sub, passport){
         },
         about: async function(req, res){
             const categories = await Category.find({}).populate({ path: 'subcat', populate: [{ path: 'subcat', model: 'Type'}], model: 'Sub'}).exec();
-            res.render('about', { categories: categories});
+            const about = await About.findOne({ _id: '623dc45791f18f6891215ea3'}).exec();
+            res.render('about', { categories: categories, about: about});
         }
     }
 }

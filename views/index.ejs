@@ -272,38 +272,16 @@
                         </span>
                     </div><!-- /.sec-title -->
                     <div class="row fact-row">
-                        <div class="col-sm-6">
-                            <div class="single-fact-count">
-                                <div class="title clearfix">
-                                    <i class="fn-icon-profile"></i>                                  
-                                </div><!-- /.title -->
-                                <p>450,000 Client’s Interactions</p>
-                            </div><!-- /.single-fact-count -->
-                        </div><!-- /.col-md-6 -->
-                        <div class="col-sm-6">
-                            <div class="single-fact-count">
-                                <div class="title clearfix">
-                                    <i class="fn-icon-statistical-chart"></i>                                   
-                                </div><!-- /.title -->
-                                <p>Help Challenge Critical Activities</p>
-                            </div><!-- /.single-fact-count -->
-                        </div><!-- /.col-md-6 -->
-                        <div class="col-sm-6">
-                            <div class="single-fact-count">
-                                <div class="title clearfix">
-                                    <i class="fn-icon-technology"></i>
-                                </div><!-- /.title -->
-                                <p>Simplify & Automate Workflows</p>
-                            </div><!-- /.single-fact-count -->
-                        </div><!-- /.col-md-6 -->
-                        <div class="col-sm-6">
-                            <div class="single-fact-count">
-                                <div class="title clearfix">
-                                    <i class="fn-icon-tool"></i>                               
-                                </div><!-- /.title -->
-                                <p>Peer Perspectives & Advice</p>
-                            </div><!-- /.single-fact-count -->
-                        </div><!-- /.col-md-6 -->
+                        <% home.chooseus.forEach((choose) => { %>
+                            <div class="col-sm-6">
+                                <div class="single-fact-count">
+                                    <div class="title clearfix">
+                                        <i class="<%= choose.icon %>"></i>                                  
+                                    </div><!-- /.title -->
+                                    <p><%= choose.title %></p>
+                                </div><!-- /.single-fact-count -->
+                            </div><!-- /.col-md-6 -->
+                        <% }) %>
                     </div><!-- /.row -->
                 </div><!-- /.fact-box -->
             </div><!-- /.col-md-6 -->
@@ -314,7 +292,7 @@
                         <div class="overlay">
                             <div class="box">
                                 <div class="content text-center">
-                                    <a class="video-popup" href="https://www.youtube.com/watch?v=HIPNVm6lNfM"><img src="img/texture/play-btn.png" alt="Awesome Image"/></a>
+                                    <a class="video-popup" href="<%= home.youtube %>>"><img src="img/texture/play-btn.png" alt="Awesome Image"/></a>
                                 </div><!-- /.content -->
                             </div><!-- /.box -->
                         </div><!-- /.overlay -->
@@ -339,128 +317,39 @@
 <section class="sec-pad team-section">
     <div class="container">
         <div class="row">
-			<div class="col-md-3 col-sm-6">
-				<div class="step-service-page-box" style=" height: 350px !important; ">
-                    <div class="icon-box">
+			<% home.features.forEach((feature, index) => { %>
+                <div class="col-md-3 col-sm-6">
+                    <div class="step-service-page-box" style=" height: 350px !important; ">
                         <div class="icon-box">
-                            <div class="inner-box">
-                                <div class="top-box">
-                                    <span class="fa-stack" style="font-size: 50px; margin-top: -10px;">
-                                        <span class="fa fa-circle-o fa-stack-2x"></span>
-                                        <strong class="fa-stack-1x">
-                                            1   
-                                        </strong>
-                                    </span>
-                                </div><!-- /.top-box -->
-                                <div class="bottom-box">
-                                    <span class="fa-stack" style="color: white; font-size: 50px; margin-top: -10px;">
-                                        <span class="fa fa-circle-o fa-stack-2x"></span>
-                                        <strong class="fa-stack-1x">
-                                            1   
-                                        </strong>
-                                    </span>
-                                </div><!-- /.bottom-box -->                            
-                            </div><!-- /.inner-box -->                        
-                        </div>                    
-                    </div>
-					<div class="title">
-						<h3>SETUP YOUR BUSINESS</h3>
-						<span class="decor-line"></span>
-					</div><!-- /.title -->
-					<p>You just bring an idea and we'll help setup your business from scratch. From incorporating your business till handling all your financial requirements, We are a one stop solution.</p>
-				</div><!-- /.single-service-page-box -->
-			</div><!-- /.col-md-4 -->
-            <div class="col-md-3 col-sm-6">
-				<div class="step-service-page-box" style=" height: 350px !important; ">
-                    <div class="icon-box">
-                        <div class="icon-box">
-                            <div class="inner-box">
-                                <div class="top-box">
-                                    <span class="fa-stack" style="font-size: 50px; margin-top: -10px;">
-                                        <span class="fa fa-circle-o fa-stack-2x"></span>
-                                        <strong class="fa-stack-1x">
-                                            2   
-                                        </strong>
-                                    </span>
-                                </div><!-- /.top-box -->
-                                <div class="bottom-box">
-                                    <span class="fa-stack" style="color: white; font-size: 50px; margin-top: -10px;">
-                                        <span class="fa fa-circle-o fa-stack-2x"></span>
-                                        <strong class="fa-stack-1x">
-                                            2   
-                                        </strong>
-                                    </span>
-                                </div><!-- /.bottom-box -->                            
-                            </div><!-- /.inner-box -->                        
-                        </div>                     
-                    </div>
-					<div class="title">
-						<h3>DOCUMENT MANAGEMENT</h3>
-						<span class="decor-line"></span>
-					</div><!-- /.title -->
-					<p>Our priority is to maintain Confidentiality of the Document of client business. So the Document needs not to be shared between any other people.</p>
-			</div><!-- /.single-service-page-box -->
-			</div><!-- /.col-md-4 -->
-            <div class="col-md-3 col-sm-6">
-				<div class="step-service-page-box" style=" height: 350px !important; ">
-                    <div class="icon-box">
-                        <div class="icon-box">
-                            <div class="inner-box">
-                                <div class="top-box">
-                                    <span class="fa-stack" style="font-size: 50px; margin-top: -10px;">
-                                        <span class="fa fa-circle-o fa-stack-2x"></span>
-                                        <strong class="fa-stack-1x">
-                                            3   
-                                        </strong>
-                                    </span>
-                                </div><!-- /.top-box -->
-                                <div class="bottom-box">
-                                    <span class="fa-stack" style="color: white; font-size: 50px; margin-top: -10px;">
-                                        <span class="fa fa-circle-o fa-stack-2x"></span>
-                                        <strong class="fa-stack-1x">
-                                            3   
-                                        </strong>
-                                    </span>
-                                </div><!-- /.bottom-box -->                            
-                            </div><!-- /.inner-box -->                        
-                        </div>                    
-                    </div>
-					<div class="title">
-						<h3>TAX PLANNING</h3>
-						<span class="decor-line"></span>
-					</div><!-- /.title -->
-					<p>We not only file your returns but also assist you in tax planning and helping you in better ways to save taxes by following rules and bylaws.</p>
-			</div><!-- /.single-service-page-box -->
-			</div><!-- /.col-md-4 -->
-            <div class="col-md-3 col-sm-6">
-				<div class="step-service-page-box" style=" height: 350px !important; ">
-                    <div class="icon-box">
-                        <div class="inner-box">
-                            <div class="top-box">
-                                <span class="fa-stack" style="font-size: 50px; margin-top: -10px;">
-                                    <span class="fa fa-circle-o fa-stack-2x"></span>
-                                    <strong class="fa-stack-1x">
-                                        4   
-                                    </strong>
-                                </span>
-                            </div><!-- /.top-box -->
-                            <div class="bottom-box">
-                                <span class="fa-stack" style="color: white; font-size: 50px; margin-top: -10px;">
-                                    <span class="fa fa-circle-o fa-stack-2x"></span>
-                                    <strong class="fa-stack-1x">
-                                        4   
-                                    </strong>
-                                </span>
-                            </div><!-- /.bottom-box -->                            
-                        </div><!-- /.inner-box -->                        
-                    </div>
-					<div class="title">
-						<h3>FULL PROFESSIONAL SUPPORT</h3>
-						<span class="decor-line"></span>
-					</div><!-- /.title -->
-					<p>Our team will be at your support on working days (Mon to Fri from 10AM to 6PM on call and anytime on whatsapp or email). Never hesitate to reach out to us. We prefer our clients to be our customer and not stay just a client.</p>
-				</div><!-- /.single-service-page-box -->
-			</div><!-- /.col-md-4 -->
+                            <div class="icon-box">
+                                <div class="inner-box">
+                                    <div class="top-box">
+                                        <span class="fa-stack" style="font-size: 50px; margin-top: -10px;">
+                                            <span class="fa fa-circle-o fa-stack-2x"></span>
+                                            <strong class="fa-stack-1x">
+                                                <%= index+1 %>  
+                                            </strong>
+                                        </span>
+                                    </div><!-- /.top-box -->
+                                    <div class="bottom-box">
+                                        <span class="fa-stack" style="color: white; font-size: 50px; margin-top: -10px;">
+                                            <span class="fa fa-circle-o fa-stack-2x"></span>
+                                            <strong class="fa-stack-1x">
+                                                <%= index+1 %>   
+                                            </strong>
+                                        </span>
+                                    </div><!-- /.bottom-box -->                            
+                                </div><!-- /.inner-box -->                        
+                            </div>                    
+                        </div>
+                        <div class="title">
+                            <h3><%= feature.head %></h3>
+                            <span class="decor-line"></span>
+                        </div><!-- /.title -->
+                        <p><%= feature.desc %></p>
+                    </div><!-- /.single-service-page-box -->
+                </div><!-- /.col-md-4 -->
+            <% }) %>
    		</div><!-- /.row -->
     </div><!-- /.container -->
 </section><!-- /.sec-pad -->
@@ -635,81 +524,23 @@
                 </div><!-- /.sec-title -->
                 <div class="testimonial-home">
                     <div class="testimonila-home-carousel owl-carousel owl-theme">
-                        <div class="item">
-                            <div class="single-testimonial-home">
-                                <i class="fn-icon-quotation-mark"></i>
-                                <p>How to pursue pleasures rationally encounters consequences that are extremely painful nor against sed is there anyone who loves or pursues or desires to obtain pain of itself, because it great pleasure explores human happiness.</p>
-                                <div class="name-box">
-                                    <div class="icon-box">
-                                        <img src="img/resources/testi-1.png" alt="Awesome Image"/>
-                                    </div><!-- /.icon-box -->
-                                    <div class="text-box">
-                                        <h4>William Steves</h4>
-                                        <span>CEO & Founder</span>
-                                    </div><!-- /.text-box -->
-                                </div><!-- /.name-box -->
-                            </div><!-- /.single-testimonial-home -->
-                        </div><!-- /.item -->
-                        <div class="item">
-                            <div class="single-testimonial-home">
-                                <i class="fn-icon-quotation-mark"></i>
-                                <p>How to pursue pleasures rationally encounters consequences that are extremely painful nor against sed is there anyone who loves or pursues or desires to obtain pain of itself, because it great pleasure explores human happiness.</p>
-                                <div class="name-box">
-                                    <div class="icon-box">
-                                        <img src="img/resources/testi-1.png" alt="Awesome Image"/>
-                                    </div><!-- /.icon-box -->
-                                    <div class="text-box">
-                                        <h4>William Steves</h4>
-                                        <span>CEO & Founder</span>
-                                    </div><!-- /.text-box -->
-                                </div><!-- /.name-box -->
-                            </div><!-- /.single-testimonial-home -->
-                        </div><!-- /.item -->
-                        <div class="item">
-                            <div class="single-testimonial-home">
-                                <i class="fn-icon-quotation-mark"></i>
-                                <p>How to pursue pleasures rationally encounters consequences that are extremely painful nor against sed is there anyone who loves or pursues or desires to obtain pain of itself, because it great pleasure explores human happiness.</p>
-                                <div class="name-box">
-                                    <div class="icon-box">
-                                        <img src="img/resources/testi-1.png" alt="Awesome Image"/>
-                                    </div><!-- /.icon-box -->
-                                    <div class="text-box">
-                                        <h4>William Steves</h4>
-                                        <span>CEO & Founder</span>
-                                    </div><!-- /.text-box -->
-                                </div><!-- /.name-box -->
-                            </div><!-- /.single-testimonial-home -->
-                        </div><!-- /.item -->
-                        <div class="item">
-                            <div class="single-testimonial-home">
-                                <i class="fn-icon-quotation-mark"></i>
-                                <p>How to pursue pleasures rationally encounters consequences that are extremely painful nor against sed is there anyone who loves or pursues or desires to obtain pain of itself, because it great pleasure explores human happiness.</p>
-                                <div class="name-box">
-                                    <div class="icon-box">
-                                        <img src="img/resources/testi-1.png" alt="Awesome Image"/>
-                                    </div><!-- /.icon-box -->
-                                    <div class="text-box">
-                                        <h4>William Steves</h4>
-                                        <span>CEO & Founder</span>
-                                    </div><!-- /.text-box -->
-                                </div><!-- /.name-box -->
-                            </div><!-- /.single-testimonial-home -->
-                        </div><!-- /.item -->
-                        <div class="item">
-                            <div class="single-testimonial-home">
-                                <i class="fn-icon-quotation-mark"></i>
-                                <p>How to pursue pleasures rationally encounters consequences that are extremely painful nor against sed is there anyone who loves or pursues or desires to obtain pain of itself, because it great pleasure explores human happiness.</p>
-                                <div class="name-box">
-                                    <div class="icon-box">
-                                        <img src="img/resources/testi-1.png" alt="Awesome Image"/>
-                                    </div><!-- /.icon-box -->
-                                    <div class="text-box">
-                                        <h4>William Steves</h4>
-                                        <span>CEO & Founder</span>
-                                    </div><!-- /.text-box -->
-                                </div><!-- /.name-box -->
-                            </div><!-- /.single-testimonial-home -->
-                        </div><!-- /.item -->
+                        <% home.testimonials.forEach((testimonial) => { %>
+                            <div class="item">
+                                <div class="single-testimonial-home">
+                                    <i class="fn-icon-quotation-mark"></i>
+                                    <p><%= testimonial.quote %></p>
+                                    <div class="name-box">
+                                        <div class="icon-box">
+                                            <img src="img/resources/testi-1.png" alt="Awesome Image"/>
+                                        </div><!-- /.icon-box -->
+                                        <div class="text-box">
+                                            <h4><%= testimonial.name %></h4>
+                                            <span><%= testimonial.designation %></span>
+                                        </div><!-- /.text-box -->
+                                    </div><!-- /.name-box -->
+                                </div><!-- /.single-testimonial-home -->
+                            </div><!-- /.item -->
+                        <% }) %>
                     </div><!-- /.testimonila-home-carousel owl-carousel owl-theme -->
                 </div><!-- /.testimonial-home -->
             </div><!-- /.col-md-6 -->
