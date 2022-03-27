@@ -26,8 +26,8 @@ passport.use('local.login', new LocalStrategy({
         if(!user || !password){
             messages.push('User Does not exist or password does not match');
             return done(null, false, req.flash('error', messages));
+        }else{
+            return done(null, user);
         }
-
-        return done(null, user);
     })
 }))

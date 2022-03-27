@@ -46,12 +46,13 @@ module.exports = function(User, Category, Type, Contact, Sub, About, Home, Detai
                 res.redirect('/admin')
             }else{
                 const categories = await Category.find({}).populate({ path: 'subcat', populate: [{ path: 'subcat', model: 'Type'}], model: 'Sub'}).exec();
-                res.render('login', { categories: categories});
+                const details = await Details.findOne({ _id: '623f76d3b03d2fe0e5a41d94'}).exec();
+                res.render('login', { categories: categories, details: details});
             }
         },
         getInside: passport.authenticate('local.login', {
             successRedirect: '/admin',
-            failureRedirect: 'back',
+            failureRedirect: '/login',
             failureFlash: true
         }),
         logout: function(req, res){
