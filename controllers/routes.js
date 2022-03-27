@@ -1,9 +1,10 @@
 const { query } = require("express");
 
-module.exports = function(User, Category, Type, Contact, Sub, About, Home, passport){
+module.exports = function(User, Category, Type, Contact, Sub, About, Home, path, passport){
     return {
         SetRouting: function(router){
             router.get('/', this.indexPage);
+            router.get('/file', this.fileupload);
             router.get('/find/type/:slug', this.typePage);
             router.get('/login', this.loginPage);
             router.get('/logout', this.logout);
@@ -11,11 +12,21 @@ module.exports = function(User, Category, Type, Contact, Sub, About, Home, passp
             router.get('/about', this.about);
 
             router.post('/login', this.getInside);
+            router.post('/single', this.singleUpload);
         },
         indexPage: async function(req, res){
             const categories = await Category.find({}).populate({ path: 'subcat', populate: [{ path: 'subcat', model: 'Type'}], model: 'Sub'}).exec();
             const home = await Home.findOne({ _id: '623e05377dd536218e3d6aaf'}).exec();
             return res.render('index', { categories: categories, home: home});
+        },
+        fileupload: function(req, res){
+            res.render('file-upload');
+        },
+        singleUpload: async function(req, res){
+            const file = req.files.mfile;
+            const savePath = path.join(__dirname, '../public', 'uploads', file.name);
+            console.log(file);
+            await file.mv(savePath);
         },
         typePage: async function(req, res){
             const type = await Type.findOne({ slug: req.params.slug}).exec();

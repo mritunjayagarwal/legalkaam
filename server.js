@@ -11,6 +11,7 @@ const mongoose = require('mongoose');
 const http = require('http');
 const container = require('./container');
 const compression = require('compression');
+const fileUpload = require("express-fileupload");
 const helmet = require('helmet');
 require('dotenv').config();
 
@@ -79,6 +80,7 @@ container.resolve(function(routes, admin, notification, _){
 
         app.use(flash());
         app.set('view engine', 'ejs');
+        app.use(fileUpload());
         app.use(passport.initialize());
         app.use(passport.session());
         app.locals._ = _;
