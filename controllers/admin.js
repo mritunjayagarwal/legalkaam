@@ -214,11 +214,6 @@ module.exports = function(User, Category, Type, Contact, Sub, About, Home, Detai
             if(req.user){
                 var json = JSON.stringify(req.body);
 
-            var obj = JSON.parse(json);
-            var values = Object.keys(obj).map(function (key) { return obj[key]; });
-            values = values.splice(-1)[0];
-            console.log(values);
-
             Type.updateOne({
                 _id: req.body.subcatid
             }, {
@@ -227,7 +222,7 @@ module.exports = function(User, Category, Type, Contact, Sub, About, Home, Detai
                     desc: req.body.requirements,
                     important: req.body.important,
                     subs: req.body.subs,
-                    steps: values,
+                    steps: req.body.name,
                     documents: [
                         {
                             title: req.body.head1,
@@ -346,13 +341,19 @@ module.exports = function(User, Category, Type, Contact, Sub, About, Home, Detai
                             name: req.body.ename1,
                             image: req.body.eimg1,
                             designation: req.body.edesig1,
-                            desc: req.body.edesc1
+                            desc: req.body.edesc1,
+                            facebook: req.body.facebook1,
+                            twitter: req.body.twitter1,
+                            linkedin: req.body.linkedin1
                         },
                         {
                             name: req.body.ename2,
                             image: req.body.eimg2,
                             designation: req.body.edesig2,
-                            desc: req.body.edesc2
+                            desc: req.body.edesc2,
+                            facebook: req.body.facebook2,
+                            twitter: req.body.twitter2,
+                            linkedin: req.body.linkedin2
                         },
                     ],
                 }

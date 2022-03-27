@@ -40,7 +40,7 @@
             </div>
             <div class="row">
                 <div class="col-12 my-4">
-                    <form class="forms-sample" action = "/new/subcat/" method = "post">
+                    <form class="forms-sample" action = "/new/subcat/" method = "post" enctype = "multipart/form-data">
                       <div class="form-group">
                         <label>Select Category</label>
                         <select class="js-example-basic-single" name="subcat" style="width:100%">
@@ -52,6 +52,17 @@
                         <div class="form-group">
                           <label for="exampleInputUsername1">Add a new service</label>
                           <input type="text" name = "subcatname" class="form-control" id="exampleInputUsername1" placeholder="Service Name Here..">
+                        </div>
+
+                        <div class="form-group">
+                          <label>File upload</label>
+                          <input type="file" name="headbg" class="file-upload-default">
+                          <div class="input-group col-xs-12">
+                            <input type="text" class="form-control file-upload-info" disabled placeholder="Upload Image">
+                            <span class="input-group-append">
+                              <button class="file-upload-browse btn btn-primary" type="button">Upload</button>
+                            </span>
+                          </div>
                         </div>
 
                         <div class="form-group">

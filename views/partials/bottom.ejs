@@ -3,7 +3,7 @@
         <div class="row">
             <div class="col-lg-4 col-md-6">
                 <div class="single-footer-widget about-widget">
-                    <a href="index.html"><img src="img/logo.png" alt="Awesome Image"/></a>						
+                    <a href="/"><img src="/img/logo.png" alt="Awesome Image"/></a>						
                     <p style="text-align: justify;">LegalKaam is one stop solution for all your financial, legal and consulting needs. We are cost effective and efficient platform to help you in establishing or running your business without stressing about the day to day activities, compliances and taxation.</p>
                     
                 </div><!-- /.single-footer-widget -->
@@ -55,7 +55,7 @@
                                 <i class="fa fa-map-marker"></i>
                             </div><!-- /.icon-box -->
                             <div class="text-box">
-                                <p>ABCD, New Delhi, India</p>
+                                <p><%= details.address %></p>
                             </div><!-- /.text-box -->
                         </li>
                         <li>
@@ -63,7 +63,7 @@
                                 <i class="fa fa-phone"></i>
                             </div><!-- /.icon-box -->
                             <div class="text-box">
-                                <p>+91 999-090-5006</p>
+                                <p>+91 <%= details.mainPh %></p>
                             </div><!-- /.text-box -->
                         </li>
                         <li>
@@ -71,16 +71,16 @@
                                 <i class="fa fa-envelope-o"></i>
                             </div><!-- /.icon-box -->
                             <div class="text-box">
-                                <p>legalkaam@gmail.com</p>
+                                <p><%= details.email %></p>
                             </div><!-- /.text-box -->
                         </li>							
                     </ul>
                     <div class="social pull-left">
                         <ul class="list-inline">
-                            <li><a href="#"><i class="fa fa-facebook"></i></a></li>
-                            <li><a href="#"><i class="fa fa-twitter"></i></a></li>
-                            <li><a href="#"><i class="fa fa-youtube-play"></i></a></li>
-                            <li><a href="#"><i class="fa fa-linkedin"></i></a></li>
+                            <li><a href="<%= details.facebook %>"><i class="fa fa-facebook"></i></a></li>
+							<li><a href="<%= details.twitter %>"><i class="fa fa-twitter"></i></a></li>
+							<li><a href="<%= details.youtube %>"><i class="fa fa-youtube-play"></i></a></li>
+							<li><a href="<%= details.linkedin %>"><i class="fa fa-linkedin"></i></a></li>
                         </ul><!-- /.list-inline -->
                     </div><!-- /.social pull-right -->
                 </div><!-- /.single-footer-widget -->

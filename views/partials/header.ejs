@@ -5,7 +5,7 @@
 				<ul class="list-inline">
 					<li>
 						<span>
-							<i class="fa fa-phone"></i> +91 999-090-5006
+							<i class="fa fa-phone"></i> +91 <%= details.mainPh %>
 						</span>
 					</li>
 				</ul>
@@ -14,15 +14,15 @@
 				<ul class="list-inline">
 					<li>
 						<span>
-							<i class="fa fa-envelope"></i> legalkaam@gmail.com							
+							<i class="fa fa-envelope"></i> <%= details.email %>						
 						</span>
 					</li>
 					<li>
 						<ul class="list-inline social">
-							<li><a href="#"><i class="fa fa-facebook"></i></a></li>
-							<li><a href="#"><i class="fa fa-twitter"></i></a></li>
-							<li><a href="#"><i class="fa fa-youtube-play"></i></a></li>
-							<li><a href="#"><i class="fa fa-linkedin"></i></a></li>
+							<li><a href="<%= details.facebook %>"><i class="fa fa-facebook"></i></a></li>
+							<li><a href="<%= details.twitter %>"><i class="fa fa-twitter"></i></a></li>
+							<li><a href="<%= details.youtube %>"><i class="fa fa-youtube-play"></i></a></li>
+							<li><a href="<%= details.linkedin %>"><i class="fa fa-linkedin"></i></a></li>
 						</ul><!-- /.social -->
 					</li>				
 				</ul>

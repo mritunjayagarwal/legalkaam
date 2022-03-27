@@ -3,6 +3,7 @@ const Schema = mongoose.Schema
 
 const detailSchema = new Schema({
     email: { type: String, lowercase: true},
+    headbg: { type: String},
     pin: { type: Number},
     address: { type: String},
     mainPh: { type: Number},

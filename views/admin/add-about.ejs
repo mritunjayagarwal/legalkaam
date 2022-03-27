@@ -62,6 +62,9 @@
                               <input type="text" name = "eimg<%= i+1 %>" class="form-control mt-2" id="exampleInputUsername1" placeholder="Employee Image" value = "<%= about.employees[i].image %>">
                               <input type="text" name = "edesig<%= i+1 %>" class="form-control mt-2" id="exampleInputUsername1" placeholder="Employee Designation" value = "<%= about.employees[i].designation %>">
                               <input type="text" name = "edesc<%= i+1 %>" class="form-control mt-2" id="exampleInputUsername1" placeholder="Employee Description" value = "<%= about.employees[i].desc %>">
+                              <input type="text" name = "facebook<%= i+1 %>" class="form-control mt-2" id="exampleInputUsername1" placeholder="Employee Facebook Profile" value = "<%= about.employees[i].facebook %>">
+                              <input type="text" name = "twitter<%= i+1 %>" class="form-control mt-2" id="exampleInputUsername1" placeholder="Employee Twitter Profile" value = "<%= about.employees[i].twitter %>">
+                              <input type="text" name = "linkedin<%= i+1 %>" class="form-control mt-2" id="exampleInputUsername1" placeholder="Employee Linkedin Profile" value = "<%= about.employees[i].linkedin %>">
                             </div>
                           <% }else{ %>
                             <label for="exampleInputUsername1">Enter Employee <%= i +1 %> Details</label>
@@ -69,6 +72,9 @@
                             <input type="text" name = "eimg<%= i+1 %>" class="form-control mt-2" id="exampleInputUsername1" placeholder="Employee Image">
                             <input type="text" name = "edesig<%= i+1 %>" class="form-control mt-2" id="exampleInputUsername1" placeholder="Employee Designation">
                             <input type="text" name = "edesc<%= i+1 %>" class="form-control mt-2" id="exampleInputUsername1" placeholder="Employee Description">
+                            <input type="text" name = "facebook<%= i+1 %>" class="form-control mt-2" id="exampleInputUsername1" placeholder="Employee Facebook Profile">
+                              <input type="text" name = "twitter<%= i+1 %>" class="form-control mt-2" id="exampleInputUsername1" placeholder="Employee Twitter Profile">
+                              <input type="text" name = "linkedin<%= i+1 %>" class="form-control mt-2" id="exampleInputUsername1" placeholder="Employee Linkedin Profile">
                           <% } %>
                         <% } %>
                         <button type="submit" class="btn btn-primary py-3 btn-block ">Submit</button>

@@ -37,7 +37,7 @@
 					<span class="decor-line-inner"></span>
 				</span>
 			</div>
-			<form action="inc/sendemail.php" class="contact-form">
+			<form action = "/add/query/" method = "post" class="contact-form">
 				<div class="row">
 					<div class="col-md-6">
 						<div class="form-grp">
@@ -49,14 +49,9 @@
 							<input type="email" name="email" placeholder="Email Address *" />
 						</div><!-- /.form-grp -->
 					</div><!-- /.col-md-6 -->
-					<div class="col-md-6">
+					<div class="col-md-12">
 						<div class="form-grp">
-							<input type="number" name="phone" placeholder="Phone *" />
-						</div><!-- /.form-grp -->
-					</div><!-- /.col-md-6 -->
-					<div class="col-md-6">
-						<div class="form-grp">
-							<input type="text" name="subject" placeholder="Subject*" />
+							<input type="number" name="contact" placeholder="Phone *" />
 						</div><!-- /.form-grp -->
 					</div><!-- /.col-md-6 -->
 					<div class="col-md-12">
@@ -88,7 +83,7 @@
 						</div><!-- /.icon-box -->
 						<div class="text-box">
 							<h3>Address :</h3>
-							<p style="text-align:justify;">334, 3rd Floor, Plot No 12, Vardhman BigV Plaza, Near M2K Pitampura, Ranibagh, Delhi – 110034.</p>
+							<p style="text-align:justify;"><%= details.address %> – <%= details.pin %>.</p>
 						</div><!-- /.text-box -->
 					</li>
 					<li>
@@ -99,7 +94,7 @@
 						</div><!-- /.icon-box -->
 						<div class="text-box">
 							<h3>Ask Anything Here :</h3>
-							<p>legalkaam@gmail.com</p>
+							<p><%= details.email %></p>
 						</div><!-- /.text-box -->
 					</li>
 					<li>
@@ -110,8 +105,9 @@
 						</div><!-- /.icon-box -->
 						<div class="text-box">
 							<h3>Call Us:</h3>
-							<p> +91 999-090-5006 ,  +91 999-090-5006
-							</p>
+							<p>+91 <%= details.mainPh %><% details.phone.forEach((ph) => { %>
+								<span>, +91 <%= ph.ph %></span>
+							<% }) %></p>
 						</div><!-- /.text-box -->
 					</li>
 				</ul><!-- /.info-items -->
@@ -121,101 +117,12 @@
 </section><!-- /.sec-pad -->
 
 
-<div class="google-map">
+<!-- <div class="google-map">
 	<iframe src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d3500.049361117758!2d77.134004!3d28.68817!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x77307368a4a372c6!2sTASK%20AND%20COMPANY!5e0!3m2!1sen!2sin!4v1647030971082!5m2!1sen!2sin" width="100%" height="450" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
- </div>
+ </div> -->
 
 
- <footer class="footer has-dot-pattern sec-pad">
-	<div class="container">
-		<div class="row">
-			<div class="col-lg-4 col-md-6">
-				<div class="single-footer-widget about-widget">
-					<a href="index.html"><img src="img/logo.png" alt="Awesome Image"/></a>						
-					<p style="text-align: justify;">LegalKaam is one stop solution for all your financial, legal and consulting needs. We are cost effective and efficient platform to help you in establishing or running your business without stressing about the day to day activities, compliances and taxation.</p>
-					
-				</div><!-- /.single-footer-widget -->
-			</div><!-- /.col-md-3 -->
-			<div class="col-lg-4 col-md-6">
-				<div class="single-footer-widget link-widget">
-					<div class="sec-title white medium">
-						<h2>Usefull Links</h2>
-						<span class="decor-line">
-							<span class="decor-line-inner"></span>
-						</span>
-					</div><!-- /.sec-title -->
-					<div class="clearfix">
-						<div class="col-md-6">
-							<ul class="links">
-								<li><a href="index.html">Home</a></li>
-								<li><a href="about.html">About Us</a></li>
-								<li><a href="#">GST Regisration</a></li>
-								<li><a href="#">LLP Regisstration</a></li>
-								<li><a href="#">Property Matters</a></li>
-								<li><a href="#">Meet Team</a></li>
-							</ul><!-- /.links -->		
-						</div><!-- /.col-md-6 -->
-						<div class="col-md-6">
-							<ul class="links">
-								<li><a href="#">Loans</a></li>
-								<li><a href="#">Import Export Code</a></li>
-								<li><a href="#">GST Filing</a></li>
-								<li><a href="#">Company Closing</a></li>
-								<li><a href="#">Preparation Of Reports</a></li>
-								<li><a href="#">ITR - 1 (Salaried)</a></li>
-							</ul><!-- /.links -->		
-						</div><!-- /.col-md-6 -->
-					</div><!-- /.row -->
-					
-				</div><!-- /.single-footer-widget -->
-			</div><!-- /.col-md-3 -->
-			<div class="col-lg-4 col-md-6">
-				<div class="single-footer-widget about-widget">
-					<div class="sec-title white medium">
-						<h2>Contact Us</h2>
-						<span class="decor-line">
-							<span class="decor-line-inner"></span>
-						</span>
-					</div><!-- /.sec-title -->
-					<ul class="contact-info">
-						<li>
-							<div class="icon-box">
-								<i class="fa fa-map-marker"></i>
-							</div><!-- /.icon-box -->
-							<div class="text-box">
-								<p>ABCD, New Delhi, India</p>
-							</div><!-- /.text-box -->
-						</li>
-						<li>
-							<div class="icon-box">
-								<i class="fa fa-phone"></i>
-							</div><!-- /.icon-box -->
-							<div class="text-box">
-								<p>+91 999-090-5006</p>
-							</div><!-- /.text-box -->
-						</li>
-						<li>
-							<div class="icon-box">
-								<i class="fa fa-envelope-o"></i>
-							</div><!-- /.icon-box -->
-							<div class="text-box">
-								<p>legalkaam@gmail.com</p>
-							</div><!-- /.text-box -->
-						</li>							
-					</ul>
-					<div class="social pull-left">
-						<ul class="list-inline">
-							<li><a href="#"><i class="fa fa-facebook"></i></a></li>
-							<li><a href="#"><i class="fa fa-twitter"></i></a></li>
-							<li><a href="#"><i class="fa fa-youtube-play"></i></a></li>
-							<li><a href="#"><i class="fa fa-linkedin"></i></a></li>
-						</ul><!-- /.list-inline -->
-					</div><!-- /.social pull-right -->
-				</div><!-- /.single-footer-widget -->
-			</div><!-- /.col-md-3 -->
-		</div><!-- /.row -->
-	</div><!-- /.container -->
-</footer><!-- /.footer -->
+<%- include("./partials/bottom.ejs") %>
 
 <section class="footer-bottom">
 	<div class="container">

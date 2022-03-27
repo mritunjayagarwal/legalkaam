@@ -1,0 +1,29 @@
+<div class="col-md-7 pull-right col-sm-12">
+    <div class="sec-title">
+        <h2>Customer Testimonials</h2>
+        <span class="decor-line">
+            <span class="decor-line-inner"></span>
+        </span>
+    </div><!-- /.sec-title -->
+    <div class="testimonial-home">
+        <div class="testimonila-home-carousel owl-carousel owl-theme">
+            <% home.testimonials.forEach((testimonial) => { %>
+                <div class="item">
+                    <div class="single-testimonial-home">
+                        <i class="fn-icon-quotation-mark"></i>
+                        <p><%= testimonial.quote %></p>
+                        <div class="name-box">
+                            <div class="icon-box">
+                                <img src="img/resources/testi-1.png" alt="Awesome Image"/>
+                            </div><!-- /.icon-box -->
+                            <div class="text-box">
+                                <h4><%= testimonial.name %></h4>
+                                <span><%= testimonial.designation %></span>
+                            </div><!-- /.text-box -->
+                        </div><!-- /.name-box -->
+                    </div><!-- /.single-testimonial-home -->
+                </div><!-- /.item -->
+            <% }) %>
+        </div><!-- /.testimonila-home-carousel owl-carousel owl-theme -->
+    </div><!-- /.testimonial-home -->
+</div><!-- /.col-md-6 -->

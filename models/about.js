@@ -3,6 +3,7 @@ const Schema = mongoose.Schema
 
 const aboutSchema = new Schema({
     heading: { type: String},
+    headbg: { type: String},
     quote: { type: String},
     desc: { type: String},
     descimg: { type: String},
@@ -11,7 +12,10 @@ const aboutSchema = new Schema({
             name: { type: String},
             image: { type: String},
             designation: { type: String},
-            desc: { type: String}
+            desc: { type: String},
+            facebook: { type: String},
+            twitter: { type: String},
+            linkedin: { type: String}
         }
     ],
 });
