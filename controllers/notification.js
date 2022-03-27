@@ -17,7 +17,7 @@ module.exports = function(User, Category, Type, Contact, Sub, moment){
                 newQuery.message = req.body.message;
                 newQuery.qtype = 'query';
             }else{
-                newQuery.qtype = 'callback';
+                newQuery.qtype = 'call/admin';
             }
             newQuery.name = req.body.name;
             newQuery.contact = req.body.contact;
@@ -25,7 +25,7 @@ module.exports = function(User, Category, Type, Contact, Sub, moment){
             newQuery.save((err) => {
                 console.log("Query Added Successfully");
             })
-            res.redirect('back');
+            res.redirect('/admin');
             }else{
                 res.redirect('/');
             }
@@ -57,7 +57,7 @@ module.exports = function(User, Category, Type, Contact, Sub, moment){
                 }, (err) => {
                     console.log("Contact State Update Success");
                 });
-                res.redirect('back');
+                res.redirect('/admin');
             }else{
                 Contact.updateOne({
                     _id: req.body.id
@@ -68,7 +68,7 @@ module.exports = function(User, Category, Type, Contact, Sub, moment){
                 }, (err) => {
                     console.log("Contact State Update Success");
                 });
-                res.redirect('back');
+                res.redirect('/admin');
             }
         },
     }

@@ -162,7 +162,7 @@ module.exports = function(User, Category, Type, Contact, Sub, About, Home, Detai
                         console.log("Success")
                     })
                 }else{
-                    res.redirect("back");
+                    res.redirect("/admin");
                 }
             })
 
@@ -300,7 +300,7 @@ module.exports = function(User, Category, Type, Contact, Sub, About, Home, Detai
                 console.log('update success');
             });
 
-            res.redirect('back');
+            res.redirect('/admin');
             }else{
                 res.render('404');
             }
