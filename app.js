@@ -2,7 +2,6 @@ const express = require('express');
 const bodyParser = require('body-parser');
 const ejs = require('ejs');
 const cookieParser = require('cookie-parser');
-const expressValidator = require('express-validator');
 const flash = require('connect-flash');
 const session = require('express-session');
 const MongoStore = require('connect-mongo');
@@ -10,9 +9,7 @@ const passport = require('passport');
 const mongoose = require('mongoose');
 const http = require('http');
 const container = require('./container');
-const compression = require('compression');
 const fileUpload = require("express-fileupload");
-const helmet = require('helmet');
 require('dotenv').config();
 
 container.resolve(function(routes, admin, notification, _){
@@ -63,10 +60,6 @@ container.resolve(function(routes, admin, notification, _){
     }
 
     function configureExpress(app){
-
-        app.use(compression());
-        app.use(helmet());
-
         require('./passport/login');
 
         app.use(express.static('public'));
