@@ -37,7 +37,7 @@ container.resolve(function(routes, admin, notification, _){
     function ShowExpress(){
         const app = express();
         const server = http.createServer(app);
-        const port = 8000;
+        const port = 3000;
 
         configureExpress(app);
 
