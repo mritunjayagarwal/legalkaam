@@ -16,13 +16,13 @@ container.resolve(function(routes, admin, notification, _){
 
     mongoose.Promise = global.Promise;
 
-    mongoose.connect('mongodb+srv://root123:ckLpdnBG5ss10dhG@cluster0.fasuj.mongodb.net/myFirstDatabase?retryWrites=true&w=majority', { useNewUrlParser: true, useUnifiedTopology: true}).then(() => {
-        console.log("Connected")
-    })
-
-    // mongoose.connect(process.env.MONGODB_URI, { useNewUrlParser: true, useUnifiedTopology: true}).then(() => {
+    // mongoose.connect('mongodb+srv://root123:ckLpdnBG5ss10dhG@cluster0.fasuj.mongodb.net/myFirstDatabase?retryWrites=true&w=majority', { useNewUrlParser: true, useUnifiedTopology: true}).then(() => {
     //     console.log("Connected")
     // })
+
+    mongoose.connect(process.env.MONGODB_URI, { useNewUrlParser: true, useUnifiedTopology: true}).then(() => {
+        console.log("Connected")
+    })
 
     mongoose.connection.on("error", (err) => {
         console.log(err);
