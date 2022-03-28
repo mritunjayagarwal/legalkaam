@@ -80,7 +80,7 @@ container.resolve(function(routes, admin, notification, _){
             cookie : {
                 maxAge: 1000* 60 * 60 *24 * 365
             },
-            store: MongoStore.create({mongoUrl: process.env.MONGODB_URI })
+            store: MongoStore.create({mongoUrl: 'mongodb+srv://root123:ckLpdnBG5ss10dhG@cluster0.fasuj.mongodb.net/myFirstDatabase?retryWrites=true&w=majority' })
         }));
 
         app.use(flash());
