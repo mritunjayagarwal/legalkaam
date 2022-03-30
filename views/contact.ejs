@@ -21,7 +21,7 @@
 		<p>How all this mistaken idea of denouncing pleasure and praising <br />master-builder of human happiness. </p>
 		<span class="decor-line"></span>
 		<ul class="list-inline bread-cumb">
-			<li><a href="index.html">Home</a></li>
+			<li><a href="/">Home</a></li>
 			<li><span>Contact</span></li>
 		</ul><!-- /.list-inline -->
 	</div><!-- /.container -->
@@ -105,8 +105,12 @@
 						</div><!-- /.icon-box -->
 						<div class="text-box">
 							<h3>Call Us:</h3>
-							<p>+91 <%= details.mainPh %><% details.phone.forEach((ph) => { %>
-								<span>, +91 <%= ph.ph %></span>
+							<p>+91 <%= details.mainPh %><% details.phone.forEach((phone) => { %>
+								<% if(!phone.ph){ %>
+									<span> </span>
+								<% }else{ %>
+									<span>, +91 <%= phone.ph %></span>
+								<% } %>
 							<% }) %></p>
 						</div><!-- /.text-box -->
 					</li>
@@ -123,14 +127,6 @@
 
 
 <%- include("./partials/bottom.ejs") %>
-
-<section class="footer-bottom">
-	<div class="container">
-		<div class="copyright">
-			<p>© 2022 LegalKaam. All rights reserved.</p>
-		</div><!-- /.copyright pull-left -->
-	</div><!-- /.container -->
-</section><!-- /.footer-bottom -->
 
 <!--Scroll to top-->
 <div class="scroll-to-top scroll-to-target" data-target="html"><span class="fa fa-angle-up"></span></div>

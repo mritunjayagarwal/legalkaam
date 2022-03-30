@@ -10,6 +10,7 @@ module.exports = function(User, Category, Type, Contact, Sub, About, Home, Detai
             router.get('/logout', this.logout);
             router.get('/contact-us', this.contact);
             router.get('/about', this.about);
+            router.get('/search/service', this.searchService);
 
             router.post('/login', this.getInside);
             router.post('/single', this.singleUpload);
@@ -70,6 +71,15 @@ module.exports = function(User, Category, Type, Contact, Sub, About, Home, Detai
             const home = await Home.findOne({ _id: '623e05377dd536218e3d6aaf'}).exec();
             const details = await Details.findOne({ _id: '623f76d3b03d2fe0e5a41d94'}).exec();
             res.render('about', { categories: categories, about: about, home: home, details: details});
-        }
+        },
+        searchService: async function(req, res){
+            const categories = await Category.find({}).populate({ path: 'subcat', populate: [{ path: 'subcat', model: 'Type'}], model: 'Sub'}).exec();
+            const details = await Details.findOne({ _id: '623f76d3b03d2fe0e5a41d94'}).exec();
+            Type.find({ "name": { "$regex": req.query.search, "$options": "i" } },
+            function(err,docs) { 
+                console.log(docs);
+                res.render('search-result', { data: docs, categories: categories, details: details, query: req.query.search});
+            });
+        } 
     }
 }

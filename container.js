@@ -13,7 +13,8 @@ const myModules = [
     ['About', './models/about'],
     ['Details', './models/details'],
     ['moment', 'moment'],
-    ['passport', 'passport']
+    ['passport', 'passport'],
+    ['xlsx', 'xlsx'],
 ];
 
 myModules.forEach(function(val){

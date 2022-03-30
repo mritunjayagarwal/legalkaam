@@ -32,12 +32,19 @@
           </a>
         </li>
         <li class="nav-item menu-items">
-          <a class="nav-link" href="/view/notifications/">
+          <a class="nav-link" data-toggle="collapse" href="#auth4" aria-expanded="false" aria-controls="auth4">
             <span class="menu-icon">
-              <i class="mdi mdi-speedometer"></i>
+              <i class="mdi mdi-security"></i>
             </span>
-            <span class="menu-title">Notification</span>
+            <span class="menu-title">Notifications</span>
+            <i class="menu-arrow"></i>
           </a>
+          <div class="collapse" id="auth4">
+            <ul class="nav flex-column sub-menu">
+              <li class="nav-item"> <a class="nav-link" href="/show/notifications/">View All Notifications</a></li>
+              <li class="nav-item"> <a class="nav-link" href="/view/notifications/">View Unread Notifications</a></li>
+            </ul>
+          </div>
         </li>
         <li class="nav-item menu-items">
           <a class="nav-link" data-toggle="collapse" href="#auth1" aria-expanded="false" aria-controls="auth1">
@@ -127,7 +134,7 @@
                 <h6 class="p-3 mb-0">Notifications</h6>
                 <div class="dropdown-divider"></div>
                 <% notifications.forEach((notification) => { %>
-                  <a class="dropdown-item preview-item">
+                  <a href = "/view/notifications/" class="dropdown-item preview-item">
                     <div class="preview-thumbnail">
                       <div class="preview-icon bg-dark rounded-circle">
                         <i class="mdi mdi-calendar text-success"></i>

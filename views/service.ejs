@@ -21,7 +21,7 @@
 		<p>Our Mission Is To Associate With Professionals<br/> And Support All Services Under One Roof !! </p>
 		<span class="decor-line"></span>
 		<ul class="list-inline bread-cumb">
-			<li><a href="index.html">Home</a></li>
+			<li><a href="/">Home</a></li>
 			<li><span><%= type.name %></span></li>
 		</ul><!-- /.list-inline -->
 	</div><!-- /.container -->
@@ -30,7 +30,7 @@
 <section class="sec-pad service-row-section">
     <div class="container">
         <div class="sec-title text-center">
-            <h2>Service Name</h2>
+            <h2><%= type.name %></h2>
             <span class="decor-line">
                 <span class="decor-line-inner"></span>
             </span>
@@ -132,10 +132,12 @@
                                 <p class="description">All Inclusive (Fees & Taxes)</p>
                                 <div class="price-features">
                                     <% benefits.forEach((benefit) => { %>
+                                      <% if(benefit != ''){ %>  
                                         <div class="price-feature">
                                             <i class="fa fa-check"></i>
                                             <span><%= benefit %></span>
                                         </div>
+                                      <% } %>  
                                     <% }) %>
                                     <a href="https://api.whatsapp.com/send?phone=+919990905006" type="submit" class="price-btn">BOOK NOW</a>
                                 </div>
@@ -198,19 +200,29 @@
         </div>
 		<div class="row masonary-layout filter-layout">
 			<% features.forEach((feature) => { %>
+              <% if(feature != '' && feature.desc != ''){ %>  
                 <div class="col-md-4 col-sm-6 col-xs-12" style="border: 2px solid #3563a9;">
                     <div class="single-project-item">
                         <div class="single-service-page-box">
                             <div class="sec-title text-center">
-                                <h2><%= feature.head %></h2>
+                                <% if(feature.head == ''){ %>
+                                    <h2 class = "text-center">No Title</h2>
+                                <% }else{ %>
+                                    <h2><%= feature.head %></h2>
+                                <% } %>
                                 <span class="decor-line">
                                     <span class="decor-line-inner"></span>
                                 </span>
                             </div>
-                            <p><%= feature.desc %></p>
+                            <% if(feature.desc == ''){ %>
+                                <h5 class = "text-center">No Description</h5>
+                            <% }else{ %>
+                                <p><%= feature.desc %></p>
+                            <% } %>
                         </div><!-- /.single-service-page-box -->
                     </div><!-- /.single-project-item -->
                 </div><!-- /.col-md-4 -->
+              <% } %>  
             <% }) %>
 		</div><!-- /.row -->
     </div><!-- /.container -->

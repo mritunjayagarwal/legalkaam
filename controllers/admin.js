@@ -192,7 +192,7 @@ module.exports = function(User, Category, Type, Contact, Sub, About, Home, Detai
         editService: async function(req, res){
             if(req.user){
                 var subcats = await Category.find({}).exec();
-                const service = await Type.findOne({ slug: req.params.slug}).exec();
+                const service = await Type.findOne({ slug: req.params.slug}).populate({ path: 'sub', ref: 'Sub'}).exec();
                 const services = await Type.find({}).sort('name').exec();
                 var types = await Type.find({}).sort('-created').exec();
                 var notifications = await Contact.find({ status: 'unread'}).sort('-created').exec();
