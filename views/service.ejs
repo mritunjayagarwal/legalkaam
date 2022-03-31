@@ -8,11 +8,10 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 
 	<link rel="stylesheet" href="/css/style.css">
-	<link rel="stylesheet" href="/css/responsive.css">
-
+	<link rel="stylesheet" href="/css/responsive.css">  
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 </head>
 <body>
-
 <%- include("./partials/header.ejs") %>
 
 <section class="inner-banner has-dot-pattern">
@@ -201,7 +200,7 @@
 		<div class="row masonary-layout filter-layout">
 			<% features.forEach((feature) => { %>
               <% if(feature != '' && feature.desc != ''){ %>  
-                <div class="col-md-4 col-sm-6 col-xs-12" style="border: 2px solid #3563a9;">
+                <div class="col-md-4 col-sm-6 col-xs-12" style="border: 2px solid #3563a9; padding-bottom: 30px;">
                     <div class="single-project-item">
                         <div class="single-service-page-box">
                             <div class="sec-title text-center">
@@ -217,7 +216,7 @@
                             <% if(feature.desc == ''){ %>
                                 <h5 class = "text-center">No Description</h5>
                             <% }else{ %>
-                                <p style = "margin-top: -90px;"><%- feature.desc %></p>
+                                <p style = "margin-top: -65px;"><%- feature.desc %></p>
                             <% } %>
                         </div><!-- /.single-service-page-box -->
                     </div><!-- /.single-project-item -->
@@ -249,50 +248,65 @@
     </div><!-- /.container -->
 </section><!-- /.about-video sec-pad -->
 
+	
 <%- include("./partials/bottom.ejs") %>
+	
+	<!--Scroll to top-->
+	<div class="scroll-to-top scroll-to-target" data-target="html"><span class="fa fa-angle-up"></span></div>
+    <!--WhatsApp-->
+    <div class="whatsapp">
+        <a class="bounce" target="_blank" href="https://api.whatsapp.com/send?phone=+919990905006"><i class="fa fa-whatsapp "></i></a>
+    </div>
 
-<!--Scroll to top-->
-<div class="scroll-to-top scroll-to-target" data-target="html"><span class="fa fa-angle-up"></span></div>
-<!--WhatsApp-->
-<div class="whatsapp">
-    <a class="bounce" target="_blank" href="https://api.whatsapp.com/send?phone=+919990905006"><i class="fa fa-whatsapp "></i></a>
-</div>
 
-    <script src="assets/jquery/jquery.min.js"></script>
-	<script src="assets/bootstrap/js/bootstrap.min.js"></script>
-	<script src="assets/bootstrap-select/dist/js/bootstrap-select.min.js"></script>
+	<script src="/assets/jquery/jquery.min.js"></script>
+	<script src="/assets/bootstrap/js/bootstrap.min.js"></script>
+	<script src="/assets/bootstrap-select/dist/js/bootstrap-select.min.js"></script>
 	<!-- revolution slider js -->
-	<script src="assets/revolution/js/jquery.themepunch.tools.min.js"></script>
-	<script src="assets/revolution/js/jquery.themepunch.revolution.min.js"></script>
-	<script src="assets/revolution/js/extensions/revolution.extension.actions.min.js"></script>
-	<script src="assets/revolution/js/extensions/revolution.extension.carousel.min.js"></script>
-	<script src="assets/revolution/js/extensions/revolution.extension.kenburn.min.js"></script>
-	<script src="assets/revolution/js/extensions/revolution.extension.layeranimation.min.js"></script>
-	<script src="assets/revolution/js/extensions/revolution.extension.migration.min.js"></script>
-	<script src="assets/revolution/js/extensions/revolution.extension.navigation.min.js"></script>
-	<script src="assets/revolution/js/extensions/revolution.extension.parallax.min.js"></script>
-	<script src="assets/revolution/js/extensions/revolution.extension.slideanims.min.js"></script>
-	<script src="assets/revolution/js/extensions/revolution.extension.video.min.js"></script>
-	<script src="http://maps.google.com/maps/api/js?sensor=true"></script>
-	<script src="assets/gmaps.js"></script>
-	<!-- google map helper -->  
-	<script src="assets/map-helper.js"></script>
-	<script src="assets/jquery-validation/dist/jquery.validate.min.js"></script>
-	<script src="assets/owl.carousel-2/owl.carousel.min.js"></script>
-	<script src="assets/nouislider/nouislider.js"></script>
-	<script src="assets/bootstrap-touch-spin/jquery.bootstrap-touchspin.js"></script>
-	<script src="assets/isotope.js"></script>
-	<script src="assets/masterslider/masterslider.min.js"></script>
-	<script src="assets/bxslider/dist/jquery.bxslider.min.js"></script>
-	<script src="assets/chartjs/dist/Chart.min.js"></script>
-	<script src="assets/jquery-circle-progress-1.1.2/dist/circle-progress.js"></script>
-	<script src="assets/morris.js-master/morris.min.js"></script>
-	<script src="assets/raphael-master/raphael.min.js"></script>
-	<script src="assets/Magnific-Popup-master/dist/jquery.magnific-popup.min.js"></script>
-	<script src="assets/waypoints.min.js"></script>
-	<script src="assets/jquery.counterup.min.js"></script>
-	<script src="assets/wow.min.js"></script>
-	<script src="js/custom.js"></script>
+	<script src="/assets/revolution/js/jquery.themepunch.tools.min.js"></script>
+	<script src="/assets/revolution/js/jquery.themepunch.revolution.min.js"></script>
+	<script src="/assets/revolution/js/extensions/revolution.extension.actions.min.js"></script>
+	<script src="/assets/revolution/js/extensions/revolution.extension.carousel.min.js"></script>
+	<script src="/assets/revolution/js/extensions/revolution.extension.kenburn.min.js"></script>
+	<script src="/assets/revolution/js/extensions/revolution.extension.layeranimation.min.js"></script>
+	<script src="/assets/revolution/js/extensions/revolution.extension.migration.min.js"></script>
+	<script src="/assets/revolution/js/extensions/revolution.extension.navigation.min.js"></script>
+	<script src="/assets/revolution/js/extensions/revolution.extension.parallax.min.js"></script>
+	<script src="/assets/revolution/js/extensions/revolution.extension.slideanims.min.js"></script>
+	<script src="/assets/revolution/js/extensions/revolution.extension.video.min.js"></script>
 
+
+	<script src="http://maps.google.com/maps/api/js?sensor=true"></script>
+	<script src="/assets/gmaps.js"></script>
+	<!-- google map helper -->  
+	<script src="/assets/map-helper.js"></script>
+
+	<script src="/assets/jquery-validation/dist/jquery.validate.min.js"></script>
+
+	<script src="/assets/owl.carousel-2/owl.carousel.min.js"></script>
+
+	<script src="/assets/nouislider/nouislider.js"></script>
+	<script src="/assets/bootstrap-touch-spin/jquery.bootstrap-touchspin.js"></script>
+
+	<script src="/assets/isotope.js"></script>
+
+	<script src="/assets/masterslider/masterslider.min.js"></script>
+
+	<script src="/assets/bxslider/dist/jquery.bxslider.min.js"></script>
+
+	<script src="/assets/chartjs/dist/Chart.min.js"></script>
+
+	<script src="/assets/jquery-circle-progress-1.1.2/dist/circle-progress.js"></script>
+	<script src="/assets/morris.js-master/morris.min.js"></script>
+	<script src="/assets/raphael-master/raphael.min.js"></script>
+
+	<script src="/assets/Magnific-Popup-master/dist/jquery.magnific-popup.min.js"></script>
+
+	<script src="/assets/waypoints.min.js"></script>
+	<script src="/assets/jquery.counterup.min.js"></script>
+
+	<script src="/assets/wow.min.js"></script>
+
+	<script src="/js/custom.js"></script>
 </body>
 </html>
