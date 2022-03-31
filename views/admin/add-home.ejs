@@ -69,24 +69,7 @@
                                     <input type="text" name = "fdesc<%= i+1 %>" class="form-control mt-2" id="exampleInputUsername1" placeholder="Enter Feature Desc">
                                 </div>
                             <% } %>
-                          <% } %>  
-                          <% for(var i = 0; i < 5; i++){ %>
-                            <% if(home.testimonials[i]){ %>
-                                <div class="form-group">
-                                    <label for="exampleInputUsername1">Enter Testimonial <%= i+1 %> Details</label>
-                                    <input type="text" name = "tquote<%= i+1 %>" class="form-control mt-2" id="exampleInputUsername1" placeholder="Enter Testimonial Quote" value = "<%= home.testimonials[i].quote %>">
-                                    <input type="text" name = "tname<%= i+1 %>" class="form-control mt-2" id="exampleInputUsername1" placeholder="Enter Testimonial Writer's Name" value = "<%= home.testimonials[i].name %>">
-                                    <input type="text" name = "tdesig<%= i+1 %>" class="form-control mt-2" id="exampleInputUsername1" placeholder="Enter Writer's Designation" value = "<%= home.testimonials[i].designation %>">
-                                  </div>
-                            <% }else{ %>
-                                <div class="form-group">
-                                    <label for="exampleInputUsername1">Enter Testimonial <%= i+1 %> Details</label>
-                                    <input type="text" name = "tquote<%= i+1 %>" class="form-control mt-2" id="exampleInputUsername1" placeholder="Enter Testimonial Quote">
-                                    <input type="text" name = "tname<%= i+1 %>" class="form-control mt-2" id="exampleInputUsername1" placeholder="Enter Testimonial Writer's Name">
-                                    <input type="text" name = "tdesig<%= i+1 %>" class="form-control mt-2" id="exampleInputUsername1" placeholder="Enter Writer's Designation">
-                                  </div>
-                            <% } %>
-                          <% } %>  
+                          <% } %>
                           <button type="submit" class="btn btn-primary py-3 btn-block ">Submit</button>
                       </form>
                 </div>
