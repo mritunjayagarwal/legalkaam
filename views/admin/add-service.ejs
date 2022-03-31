@@ -19,6 +19,39 @@
     <link rel="stylesheet" href="../../admin/css/style.css">
     <!-- End layout styles -->
     <link rel="shortcut icon" href="../../admin/images/favicon.png" />
+    <script src="https://cdn.tiny.cloud/1/9e7y565a68c02tp5dds9x500uc55osff3f8wdesdx00krtam/tinymce/5/tinymce.min.js" referrerpolicy="origin"></script>
+    <script>
+      tinymce.init({
+        selector: '#requirements1'
+      });
+      tinymce.init({
+        selector: '#document1'
+      });
+      tinymce.init({
+        selector: '#document2'
+      });
+      tinymce.init({
+        selector: '#important1'
+      });
+      tinymce.init({
+        selector: '#bf1'
+      });
+      tinymce.init({
+        selector: '#bf2'
+      });
+      tinymce.init({
+        selector: '#bf3'
+      });
+      tinymce.init({
+        selector: '#bf4'
+      });
+      tinymce.init({
+        selector: '#bf5'
+      });
+      tinymce.init({
+        selector: '#bf6'
+      });
+    </script>
   </head>
   <body>
     <div class="container-scroller">
@@ -65,15 +98,15 @@
 
                         <div class="form-group">
                           <label for="exampleTextarea1">Requirements</label>
-                          <textarea class="form-control" name = "requirements" id="editor1" rows="4"></textarea>
+                          <textarea name = "requirements" id="requirements1" rows="4" style = "color: #000"></textarea>
                         </div>
 
                         <div class="form-group">
                           <label for="exampleTextarea1">Enter Documents Required</label>
-                          <input type="text" class = "form-control" name="head1" id="" placeholder = "enter document 1 heading">
-                          <textarea name="desc1" class = "form-control my-2" id="" cols="30" rows="10" placeholder = "enter document 1 desc"></textarea>
-                          <input type="text" class = "form-control" name="head2" id="" placeholder = "enter document 2 heading">
-                          <textarea name="desc2" class = "form-control my-2" id="" cols="30" rows="10" placeholder = "enter document 2 desc"></textarea>
+                          <input type="text" class = "form-control mb-3" name="head1" id="" placeholder = "enter document 1 heading">
+                          <textarea name="desc1" class = "form-control" id="document1" cols="30" rows="10" placeholder = "enter document 1 desc"></textarea>
+                          <input type="text" class = "form-control my-3" name="head2" id="" placeholder = "enter document 2 heading">
+                          <textarea name="desc2" class = "form-control" id="document2" cols="30" rows="10" placeholder = "enter document 2 desc"></textarea>
                         </div>
 
                         <div class="form-group">
@@ -92,23 +125,29 @@
 
                         <div class="form-group">
                           <label for="exampleTextarea1">Important</label>
-                          <textarea class="form-control" name = "important" id="editor1" rows="4"></textarea>
+                          <textarea class="form-control my-3" name = "important" id="important1" rows="4"></textarea>
                         </div>
 
                         <div class="form-group">
-                          <label for="exampleTextarea1">Enter Documents Required</label>
-                          <input type="text" class = "form-control" name="bhead1" id="" placeholder = "Enter Basic Feature 1 heading">
-                          <textarea name="bdesc1" class = "form-control my-2" id="" cols="30" rows="10" placeholder = "Enter Basic Feature 1 desc"></textarea>
-                          <input type="text" class = "form-control" name="bhead2" id="" placeholder = "Enter Basic Feature 2 heading">
-                          <textarea name="bdesc2" class = "form-control my-2" id="" cols="30" rows="10" placeholder = "Enter Basic Feature 2 desc"></textarea>
-                          <input type="text" class = "form-control" name="bhead3" id="" placeholder = "Enter Basic Feature 3 heading">
-                          <textarea name="bdesc3" class = "form-control my-2" id="" cols="30" rows="10" placeholder = "Enter Basic Feature 3 desc"></textarea>
-                          <input type="text" class = "form-control" name="bhead4" id="" placeholder = "Enter Basic Feature 4 heading">
-                          <textarea name="bdesc4" class = "form-control my-2" id="" cols="30" rows="10" placeholder = "Enter Basic Feature 4 desc"></textarea>
-                          <input type="text" class = "form-control" name="bhead5" id="" placeholder = "Enter Basic Feature 5 heading">
-                          <textarea name="bdesc5" class = "form-control my-2" id="" cols="30" rows="10" placeholder = "Enter Basic Feature 5 desc"></textarea>
-                          <input type="text" class = "form-control" name="bhead6" id="" placeholder = "Enter Basic Feature 6 heading">
-                          <textarea name="bdesc6" class = "form-control my-2" id="" cols="30" rows="10" placeholder = "Enter Basic Feature 6 desc"></textarea>
+                          <label for="exampleTextarea1">Enter Basic Features</label>
+                          <input type="text" class = "form-control mb-3" name="bhead1" id="" placeholder = "Enter Basic Feature 1 heading">
+                          <!-- <label for="exampleTextarea1">Enter Basic Feature 1 Description</label> -->
+                          <textarea name="bdesc1" class = "form-control my-2" id="bf1" cols="30" rows="10" placeholder = "Enter Basic Feature 1 desc"></textarea>
+                          <input type="text" class = "form-control my-3" name="bhead2" id="" placeholder = "Enter Basic Feature 2 heading">
+                          <!-- <label for="exampleTextarea1">Enter Basic Feature 2 Description</label> -->
+                          <textarea name="bdesc2" class = "form-control my-2" id="bf2" cols="30" rows="10" placeholder = "Enter Basic Feature 2 desc"></textarea>
+                          <input type="text" class = "form-control my-3" name="bhead3" id="" placeholder = "Enter Basic Feature 3 heading">
+                          <!-- <label for="exampleTextarea1">Enter Basic Feature 3 Description</label> -->
+                          <textarea name="bdesc3" class = "form-control my-2" id="bf3" cols="30" rows="10" placeholder = "Enter Basic Feature 3 desc"></textarea>
+                          <input type="text" class = "form-control my-3" name="bhead4" id="" placeholder = "Enter Basic Feature 4 heading">
+                          <!-- <label for="exampleTextarea1">Enter Basic Feature 4 Description</label> -->
+                          <textarea name="bdesc4" class = "form-control my-2" id="bf4" cols="30" rows="10" placeholder = "Enter Basic Feature 4 desc"></textarea>
+                          <input type="text" class = "form-control my-3" name="bhead5" id="" placeholder = "Enter Basic Feature 5 heading">
+                          <!-- <label for="exampleTextarea1">Enter Basic Feature 5 Description</label> -->
+                          <textarea name="bdesc5" class = "form-control my-2" id="bf5" cols="30" rows="10" placeholder = "Enter Basic Feature 5 desc"></textarea>
+                          <input type="text" class = "form-control my-3" name="bhead6" id="" placeholder = "Enter Basic Feature 6 heading">
+                          <!-- <label for="exampleTextarea1">Enter Basic Feature 6 Description</label> -->
+                          <textarea name="bdesc6" class = "form-control my-2" id="bf6" cols="30" rows="10" placeholder = "Enter Basic Feature 6 desc"></textarea>
                         </div>
 
                         <button type="submit" class="btn btn-primary py-3 btn-block ">Submit</button>
@@ -142,24 +181,21 @@
     <script src="../../admin/js/select2.js"></script>
     <!-- End custom js for this page -->
     <script>
-       function addFields() {
-        debugger;
-        var number = document.getElementsByClassName("nooftickets")[0].value;
-        var container = document.getElementById("subcontainer");
-        container.innerHTML = '';
-        for (i = 0; i < number; i++) {
-          container.appendChild(document.createTextNode("Step " + (i + 1) + " "));
-          var input = document.createElement("input");
-          input.type = "text";
-          input.style.margin = "5px 0";
-          input.style.width = "100%";
-          input.name = "name";
-          //input.required= true;
-          container.appendChild(input);
-          container.appendChild(document.createElement("br"));
-        }
-      }
-
+      ClassicEditor
+          .create( document.querySelector( '#editor' ) )
+          .catch( error => {
+              console.error( error );
+          } );
+      ClassicEditor
+      .create( document.querySelector( '#editor1' ) )
+      .catch( error => {
+          console.error( error );
+      } );
+      ClassicEditor
+      .create( document.querySelector( '#editor2' ) )
+      .catch( error => {
+          console.error( error );
+      } );
     </script>
   </body>
 </html>

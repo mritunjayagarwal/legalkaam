@@ -19,6 +19,41 @@
     <link rel="stylesheet" href="/../admin/css/style.css">
     <!-- End layout styles -->
     <link rel="shortcut icon" href="/../admin/images/favicon.png" />
+
+    <script src="https://cdn.tiny.cloud/1/9e7y565a68c02tp5dds9x500uc55osff3f8wdesdx00krtam/tinymce/5/tinymce.min.js" referrerpolicy="origin"></script>
+    <script>
+      tinymce.init({
+        selector: '#requirements1'
+      });
+      tinymce.init({
+        selector: '#document1'
+      });
+      tinymce.init({
+        selector: '#document2'
+      });
+      tinymce.init({
+        selector: '#important1'
+      });
+      tinymce.init({
+        selector: '#bf1'
+      });
+      tinymce.init({
+        selector: '#bf2'
+      });
+      tinymce.init({
+        selector: '#bf3'
+      });
+      tinymce.init({
+        selector: '#bf4'
+      });
+      tinymce.init({
+        selector: '#bf5'
+      });
+      tinymce.init({
+        selector: '#bf6'
+      });
+    </script>
+
   </head>
   <body>
     <div class="container-scroller">
@@ -52,11 +87,11 @@
 
                         <div class="form-group">
                           <label for="exampleTextarea1">Requirements</label>
-                          <textarea class="form-control" name = "requirements" id="editor1" rows="4"><%- service.desc %></textarea>
+                          <textarea class="form-control" name = "requirements" id="requirements1" rows="4"><%- service.desc %></textarea>
                         </div>
                         <div class="form-group">
                           <label for="exampleTextarea1">Important</label>
-                          <textarea class="form-control" name = "important" id="editor1" rows="4"><%- service.important %></textarea>
+                          <textarea class="form-control" name = "important" id="important1" rows="4"><%- service.important %></textarea>
                         </div>
 
                         <div class="form-group">
@@ -79,11 +114,11 @@
                           <label for="exampleTextarea1">Enter Documents Required</label>
                           <% for(var i = 0; i < 2; i++){ %>
                             <% if(documents[i]){ %>
-                              <input type="text" class = "form-control" name="head<%= i+1 %>" id="" placeholder = "enter document 1 heading" value = "<%= documents[i].title %>">
-                              <textarea name="desc<%= i+1 %>" class = "form-control my-2" id="" cols="30" rows="10" placeholder = "enter document 1 desc"><%= documents[i].desc %></textarea>
+                              <input type="text" class = "form-control my-3" name="head<%= i+1 %>" id="" placeholder = "enter document 1 heading" value = "<%= documents[i].title %>">
+                              <textarea name="desc<%= i+1 %>" class = "form-control my-2" id="document<%= i+1 %>" cols="30" rows="10" placeholder = "enter document 1 desc"><%= documents[i].desc %></textarea>
                             <% }else{ %>
-                              <input type="text" class = "form-control" name="head<%= i+1 %>" id="" placeholder = "enter document 2 heading">
-                              <textarea name="desc<%= i+1 %>" class = "form-control my-2" id="" cols="30" rows="10" placeholder = "enter document 2 desc"></textarea>
+                              <input type="text" class = "form-control my-3" name="head<%= i+1 %>" id="" placeholder = "enter document 2 heading">
+                              <textarea name="desc<%= i+1 %>" class = "form-control my-2" id="document<%= i+1 %>" cols="30" rows="10" placeholder = "enter document 2 desc"></textarea>
                             <% } %>
                           <% } %>
                         </div>
@@ -92,11 +127,11 @@
                           <label for="exampleTextarea1">Enter Basic Features Required</label>
                           <% for(var i = 0; i < 6; i++){ %>
                             <% if(features[i]){ %>
-                              <input type="text" class = "form-control" name="bhead<%= i+1 %>" id="" placeholder = "enter feature <%= i+1 %> heading" value = "<%= features[i].head %>">
-                              <textarea name="bdesc<%= i+1 %>" class = "form-control my-2" id="" cols="30" rows="10" placeholder = "enter feature <%= i+1 %> desc"><%= features[i].desc %></textarea>
+                              <input type="text" class = "form-control my-3" name="bhead<%= i+1 %>" id="" placeholder = "enter feature <%= i+1 %> heading" value = "<%= features[i].head %>">
+                              <textarea name="bdesc<%= i+1 %>" class = "form-control my-2" id="bf<%= i+1 %>" cols="30" rows="10" placeholder = "enter feature <%= i+1 %> desc"><%= features[i].desc %></textarea>
                             <% }else{ %>
-                              <input type="text" class = "form-control" name="bhead<%= i+1 %>" id="" placeholder = "enter feature <%= i+1 %> heading">
-                              <textarea name="bdesc<%= i+1 %>" class = "form-control my-2" id="" cols="30" rows="10" placeholder = "enter feature <%= i+1 %> desc"></textarea>
+                              <input type="text" class = "form-control my-3" name="bhead<%= i+1 %>" id="" placeholder = "enter feature <%= i+1 %> heading">
+                              <textarea name="bdesc<%= i+1 %>" class = "form-control my-2" id="bf<%= i+1 %>" cols="30" rows="10" placeholder = "enter feature <%= i+1 %> desc"></textarea>
                             <% } %>
                           <% } %>
                           
@@ -116,15 +151,6 @@
                         <button type="submit" class="btn btn-primary py-3 btn-block ">Submit</button>
                       </form>
                 </div>
-                <% services.forEach((service) => { %>
-                    <div class="col-md-4 grid-margin stretch-card">
-                        <div class="card">
-                          <div class="card-body">
-                            <p><%= service.name %></p>
-                          </div>
-                        </div>
-                      </div>
-                <% }) %>
             </div>
           </div>
       </div>
