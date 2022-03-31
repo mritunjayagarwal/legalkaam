@@ -17,6 +17,7 @@ module.exports = function(User, Category, Type, Contact, Sub, About, Home, Detai
             router.get('/admin/edit/service', this.editAService);
             router.get('/admin/delete/services', this.deleteServicePage);
             router.get('/admin/delete/service/:id/:sub', this.deleteService);
+            router.get('/admin/edit/testimonials', this.editTestimonialsPage);
 
             router.post('/new/category', this.newCategory);
             router.post('/new/subcat', this.newSubCat);
@@ -25,6 +26,7 @@ module.exports = function(User, Category, Type, Contact, Sub, About, Home, Detai
             router.post('/admin/add/about', this.postEditAbout);
             router.post('/admin/edit/home', this.editHome);
             router.post('/admin/edit/contact', this.editContact)
+            router.post('/admin/edit/testimonials', this.editTestimonials);
         },
         admin: async function(req, res){
             if(req.user){
@@ -380,19 +382,15 @@ module.exports = function(User, Category, Type, Contact, Sub, About, Home, Detai
                     youtube: req.body.youtube,
                     chooseus: [
                         {
-                            icon: req.body.cicon1,
                             title: req.body.ctitle1
                         },
                         {
-                            icon: req.body.cicon2,
                             title: req.body.ctitle2
                         },
                         {
-                            icon: req.body.cicon3,
                             title: req.body.ctitle3
                         },
                         {
-                            icon: req.body.cicon4,
                             title: req.body.ctitle4
                         },
                     ],
@@ -414,33 +412,6 @@ module.exports = function(User, Category, Type, Contact, Sub, About, Home, Detai
                             desc: req.body.fdesc4
                         },
                     ],
-                    testimonials: [
-                        {
-                            quote: req.body.tquote1,
-                            name: req.body.tname1,
-                            designation: req.body.tdesig1
-                        },
-                        {
-                            quote: req.body.tquote2,
-                            name: req.body.tname2,
-                            designation: req.body.tdesig2
-                        },
-                        {
-                            quote: req.body.tquote3,
-                            name: req.body.tname3,
-                            designation: req.body.tdesig3
-                        },
-                        {
-                            quote: req.body.tquote4,
-                            name: req.body.tname4,
-                            designation: req.body.tdesig4
-                        },
-                        {
-                            quote: req.body.tquote5,
-                            name: req.body.tname5,
-                            designation: req.body.tdesig5
-                        },
-                    ]
                 }
             }, (err) => {
                 console.log('update success');
@@ -541,5 +512,51 @@ module.exports = function(User, Category, Type, Contact, Sub, About, Home, Detai
 
             res.redirect("/admin/delete/services");
         },
+        editTestimonialsPage: async function(req, res){
+            var subcats = await Category.find({}).exec();
+            var types = await Type.find({}).sort('-created').exec();
+            var home = await Home.findOne({ _id: '623e05377dd536218e3d6aaf'}).exec();
+            var notifications = await Contact.find({ status: 'unread'}).sort('-created').exec();
+            res.render('admin/edit-testimonials', { subcats: subcats, types: types, notifications: notifications, home: home});
+        },
+        editTestimonials: function(req, res){
+            Home.updateOne({
+                _id: '623e05377dd536218e3d6aaf'
+            }, {
+                $set: { 
+                    testimonials: [
+                        {
+                            quote: req.body.tquote1,
+                            name: req.body.tname1,
+                            designation: req.body.tdesig1
+                        },
+                        {
+                            quote: req.body.tquote2,
+                            name: req.body.tname2,
+                            designation: req.body.tdesig2
+                        },
+                        {
+                            quote: req.body.tquote3,
+                            name: req.body.tname3,
+                            designation: req.body.tdesig3
+                        },
+                        {
+                            quote: req.body.tquote4,
+                            name: req.body.tname4,
+                            designation: req.body.tdesig4
+                        },
+                        {
+                            quote: req.body.tquote5,
+                            name: req.body.tname5,
+                            designation: req.body.tdesig5
+                        },
+                    ]
+                }
+            }, (err) => {
+                console.log('Testimonials Update success');
+            });
+
+            res.redirect('/admin/edit/testimonials');
+        }
     }
 }
