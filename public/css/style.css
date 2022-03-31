@@ -700,6 +700,71 @@ a:focus {
   left: auto;
   right: 0;
 }
+
+.list-inline > li > .src-menu form {
+  width: 280px;
+  background: #161616;
+  border: 1px solid #3563a9;
+  border-radius: 20px;
+}
+.list-inline > li > .src-menu form input {
+  height: 30px;
+  line-height: 30px;
+  background-color: transparent;
+  border: none;
+  outline: none;
+  padding-left: 15px;
+  width: calc( 100% - 42px );
+}
+.list-inline > li > .src-menu form button {
+  width: 30px;
+  height: 30px;
+  background: #3563a9;
+  color: #fff;
+  border: none;
+  outline: none;
+  float: right;
+  border-radius: 20px;
+}
+.list-inline > li > .src-menu form button i{
+  font-size: 12px;
+  padding-left: 5px;
+}
+.list-inline > li > .src-menu form button:hover{
+  width: 30px;
+  height: 30px;
+  background: #ffffff;
+  color: #3563a9;
+  border: none;
+  outline: none;
+  float: right;
+  border-radius: 20px;
+}
+.list-inline > li > .src-menu form button i{
+  font-size: 12px;
+  padding-left: 5px;
+}
+@media (max-width: 576px) {
+  .list-inline > li > .src-menu form {
+    margin-top: 10px;
+  }
+}
+
+.search-info {
+  text-align: center;
+  }
+  @media (min-width: 1200px) {
+    .search-info {
+      float:left;
+      transform: translate(110%, 0%);
+    }
+  }
+  @media (min-width: 480px) {
+    .search-info {
+      text-align: end;
+    }
+  }
+
 .header .header-navigation.navbar .right-box.nav > li > .sub-menu.search-box {
   border: none;
   padding: 10px;
