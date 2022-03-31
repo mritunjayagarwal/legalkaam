@@ -55,86 +55,31 @@
                     <% categories.forEach((category) => { %>
 					<li>
 						<a href="#"><%= category.name %></a>
-                           <ul class="sub-menu">	
-                            <div style="display: flex;">
-                                <% category.subcat.forEach((type) => { %>
-                                <ul class="make">				
-                                    <p class = "text-center my-5 text-capitalize" style = "color: #fff;font-size: 18px; font-weight: 600;"><%= type.name %></p>
-                                    <% type.subcat.forEach((tipe) => { %>
-                                        <li><a href="/find/type/<%= tipe.slug %>"><%= tipe.name %></a></li>
+                           <% if(category.subcat.length > 1){ %>
+                            <ul class="sub-menu">	
+                                <div style="display: flex;">
+                                    <% category.subcat.forEach((type) => { %>
+                                    <ul class="make">				
+                                        <p class = "text-center my-5 text-capitalize" style = "color: #fff;font-size: 18px; font-weight: 600;"><%= type.name %></p>
+                                        <% type.subcat.forEach((tipe) => { %>
+                                            <li><a href="/find/type/<%= tipe.slug %>"><%= tipe.name %></a></li>
+                                        <% }) %>
+                                    </ul>
                                     <% }) %>
-                                </ul>
+                                </div>
+                               </ul>
+                           <% }else{ %>
+                            <% category.subcat.forEach((type) => { %>	
+                            <ul class="sub-menu">					
+                                <p class = "text-center my-5 text-capitalize" style = "color: #fff;font-size: 18px; font-weight: 600;"><%= type.name %></p>	
+                                <% type.subcat.forEach((tipe) => { %>
+                                    <li><a href="/find/type/<%= tipe.slug %>"><%= tipe.name %></a></li>
                                 <% }) %>
-                                <!-- <ul class="make">
-                                    <li><a href="services.html">Producer Company</a></li>
-                                    <li><a href="services.html">MICROFINANACE</a></li>
-                                    <li><a href="services.html">NBFC</a></li>
-                                    <li><a href="services.html">Digital SIgnature CLASS 3</a></li>
-                                    <li><a href="services.html">Section 8 Company</a></li>
-                                    <li><a href="services.html">Professional Tax Registration</a></li>
-                                    <li><a href="services.html">PAN Registration</a></li>
-                                    <li><a href="services.html">TAN Registration</a></li>
-                                    <li><a href="services.html">ESI Registration</a></li>
-                                    <li><a href="services.html">EPF registration</a></li>
-                                    <li><a href="services.html">Individual Business Registration</a></li>
-						        </ul> -->
-                            </div>
-                           </ul>
+                            </ul><!-- /.sub-menu -->
+                            <% }) %>
+                            <% } %>
 					    </li>
                         <% }) %>
-                    <li>
-						<a href="services.html">Legal</a>
-                        <ul class="sub-menu">	
-                            <div style="display: flex;">
-                                <ul class="make">				
-                                    <li><a href="services.html">Corporates Lawyers</a></li>
-                                    <li><a href="services.html">Merger & Acquisition</a></li>
-                                    <li><a href="services.html">Contract Drafting</a></li>
-                                    <li><a href="services.html">Winding Up</a></li>
-                                    <li><a href="services.html">Recovery Matters</a></li>
-                                    <li><a href="services.html">contractual disputes</a></li>
-                                    <li><a href="services.html">Arbitrations matters</a></li>
-                                    <li><a href="services.html">All type Of Due Deligence</a></li>
-                                </ul>						
-							    <ul class="make">
-                                    <li><a href="services.html">Property Matters</a></li>
-                                    <li><a href="services.html">Specific Relief matters</a></li>
-                                    <li><a href="services.html">Injunctions Matters</a></li>
-                                    <li><a href="services.html">Consumers Matters</a></li>
-                                    <li><a href="services.html">Real Estate Matters</a></li>
-                                    <li><a href="services.html">Franchise Matters</a></li>
-                                    <li><a href="services.html">Sale Purchase Of Companies</a></li>
-                                    
-                                </ul>
-                            </div>
-						</ul><!-- /.sub-menu -->
-                    </li>
-					<li>
-						<a href="services.html">Returns</a>
-						<ul class="sub-menu">	
-                            <div style="display: flex;">
-                                <ul class="make">				
-                                    <li><a href="services.html">GST Returns</a></li>
-                                    <li><a href="services.html">Income Tax Return</a></li>
-                                    <li><a href="services.html">TDS Returns</a></li>
-                                    <li><a href="services.html">ROC Annual Return</a></li>
-                                    <li><a href="services.html">Annual Complaince</a></li>
-                                    <li><a href="services.html">Propreitorship</a></li>
-                                    <li><a href="services.html">Partnership</a></li>
-                                </ul>						
-							    <ul class="make">
-                                    <li><a href="services.html">NBFC</a></li>
-                                    <li><a href="services.html">One person Company</a></li>
-                                    <li><a href="services.html">Private Limited Company</a></li>
-                                    <li><a href="services.html">Public Limited Company</a></li>
-                                    <li><a href="services.html">Forign Subsidary</a></li>
-                                    <li><a href="services.html">Microfinance</a></li>
-                                    <li><a href="services.html">Limited Liablity Partnership</a></li>
-                                    
-                                </ul>
-                            </div>
-						</ul><!-- /.sub-menu -->
-					</li>
 					<li>
 						<a href="/contact-us">Contact</a>
 					</li>
