@@ -19,6 +19,12 @@
     <link rel="stylesheet" href="/../admin/css/style.css">
     <!-- End layout styles -->
     <link rel="shortcut icon" href="/../admin/images/favicon.png" />
+    <script src="https://cdn.tiny.cloud/1/9e7y565a68c02tp5dds9x500uc55osff3f8wdesdx00krtam/tinymce/5/tinymce.min.js" referrerpolicy="origin"></script>
+    <script>
+      tinymce.init({
+        selector: '#aboutdesc1'
+      });
+    </script>
   </head>
   <body>
     <div class="container-scroller">
@@ -48,12 +54,12 @@
                         </div>
                         <div class="form-group">
                           <label for="exampleInputUsername1">Description</label>
-                          <input type="text" name = "desc" class="form-control" id="exampleInputUsername1" placeholder="Category Name Here.." value = "<%= about.desc %>">
+                          <textarea class="form-control my-3" name = "desc" id="aboutdesc1" placeholder = "Enter Description here.." rows="4"><%= about.desc %></textarea>
                         </div>
-                        <div class="form-group">
+                        <!-- <div class="form-group">
                           <label for="exampleInputUsername1">Description Image</label>
                           <input type="text" name = "descimg" class="form-control" id="exampleInputUsername1" placeholder="Category Name Here.." value = "<%= about.descimg %>">
-                        </div>
+                        </div> -->
                         <% for(var i = 0; i < 2; i++){ %>
                           <% if(about.employees[i]){ %>
                             <div class="form-group">
