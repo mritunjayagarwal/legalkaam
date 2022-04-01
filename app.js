@@ -60,6 +60,8 @@ container.resolve(function(routes, admin, notification, _){
     }
 
     function configureExpress(app){
+
+        require('./passport/signup');
         require('./passport/login');
 
         app.use(express.static('public'));

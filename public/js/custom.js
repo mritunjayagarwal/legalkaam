@@ -689,38 +689,38 @@ function thmScrollAnim() {
     };
 }
 
-function contactFormValidation() {
-    if ($('.contact-form').length) {
-        $('.contact-form').validate({ // initialize the plugin
-            rules: {
-                name: {
-                    required: true
-                },
-                email: {
-                    required: true,
-                    email: true
-                },
-                message: {
-                    required: true
-                },
-                subject: {
-                    required: true
-                }
-            },
-            submitHandler: function(form) {
-                // sending value with ajax request
-                $.post($(form).attr('action'), $(form).serialize(), function(response) {
-                    $(form).find('.form-result').append(response);
-                    $(form).find('input[type="text"]').val('');
-                    $(form).find('input[type="email"]').val('');
-                    $(form).find('textarea').val('');
-                    console.log(response);
-                });
-                return false;
-            }
-        });
-    }
-}
+// function contactFormValidation() {
+//     if ($('.contact-form').length) {
+//         $('.contact-form').validate({ // initialize the plugin
+//             rules: {
+//                 name: {
+//                     required: true
+//                 },
+//                 email: {
+//                     required: true,
+//                     email: true
+//                 },
+//                 message: {
+//                     required: true
+//                 },
+//                 subject: {
+//                     required: true
+//                 }
+//             },
+//             submitHandler: function(form) {
+//                 // sending value with ajax request
+//                 $.post($(form).attr('action'), $(form).serialize(), function(response) {
+//                     $(form).find('.form-result').append(response);
+//                     $(form).find('input[type="text"]').val('');
+//                     $(form).find('input[type="email"]').val('');
+//                     $(form).find('textarea').val('');
+//                     console.log(response);
+//                 });
+//                 return false;
+//             }
+//         });
+//     }
+// }
 
 function thmVideoPopup() {
     if ($('.video-popup').length) {
@@ -776,7 +776,6 @@ jQuery(document).on('ready', function() {
         thmLightBox();
         thmCounter();
         thmScrollAnim();
-        contactFormValidation();
         scrollToTarget();
         thmVideoPopup();
         mobileNavToggle();

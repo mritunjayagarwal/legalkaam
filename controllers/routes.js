@@ -6,12 +6,14 @@ module.exports = function(User, Category, Type, Contact, Sub, About, Home, Detai
             router.get('/', this.indexPage);
             router.get('/file', this.fileupload);
             router.get('/find/type/:slug', this.typePage);
+            router.get('/signup', this.signupPage);
             router.get('/login', this.loginPage);
             router.get('/logout', this.logout);
             router.get('/contact-us', this.contact);
             router.get('/about', this.about);
             router.get('/search/service', this.searchService);
 
+            router.post('/signup', this.createAccount);
             router.post('/login', this.getInside);
             router.post('/single', this.singleUpload);
         },
@@ -42,6 +44,20 @@ module.exports = function(User, Category, Type, Contact, Sub, About, Home, Detai
             const plan = type.ammount;
             res.render('service', {type: type, steps: steps, documents: documents, features: features, benefits: benefits, categories: categories, details: details})
         },
+        signupPage: async function(req, res){
+            if(req.user){
+                res.redirect('/admin')
+            }else{
+                const categories = await Category.find({}).populate({ path: 'subcat', populate: [{ path: 'subcat', model: 'Type'}], model: 'Sub'}).exec();
+                const details = await Details.findOne({ _id: '623f76d3b03d2fe0e5a41d94'}).exec();
+                res.render('signup', { categories: categories, details: details});
+            }
+        },
+        createAccount: passport.authenticate('local.signup', {
+            successRedirect: '/admin',
+            failureRedirect: '/signup',
+            failureFlash: true
+        }),
         loginPage: async function(req, res){
             if(req.user){
                 res.redirect('/admin')
