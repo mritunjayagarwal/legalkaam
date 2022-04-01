@@ -11,8 +11,7 @@ module.exports = function(User, Category, Type, Contact, Sub, xlsx, moment){
             router.post('/add/query/', this.addQuery);
         },
         addQuery: function(req, res){
-            if(req.user){
-                const newQuery = new Contact();
+            const newQuery = new Contact();
             if(req.body.id && req.body.message){
                 newQuery.subcat = req.body.id;
                 newQuery.message = req.body.message;
@@ -27,9 +26,6 @@ module.exports = function(User, Category, Type, Contact, Sub, xlsx, moment){
                 console.log("Query Added Successfully");
                 res.redirect('/');
             })
-            }else{
-                res.redirect('/');
-            }
         },
         showNotifications: async function(req, res){
             if(req.user){
