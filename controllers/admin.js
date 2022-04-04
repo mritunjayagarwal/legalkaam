@@ -312,7 +312,8 @@ module.exports = function(User, Category, Type, Contact, Sub, About, Home, Detai
             var types = await Type.find({}).sort('-created').exec();
             var notifications = await Contact.find({ status: 'unread'}).sort('-created').exec();
             var about = await About.findOne({ _id: '623dc45791f18f6891215ea3'}).exec();
-            res.render('admin/add-about', { subcats: subcats, types: types, notifications: notifications, about: about, moment: moment});
+            var successMsg = req.flash('success');
+            res.render('admin/add-about', { subcats: subcats, types: types, notifications: notifications, about: about, moment: moment,  isSuccess: successMsg.length > 0, successMsg: successMsg});
         },
         editAbout: async function(req, res){
             var subcats = await Category.find({}).exec();
@@ -363,7 +364,9 @@ module.exports = function(User, Category, Type, Contact, Sub, About, Home, Detai
                 console.log('update success');
             });
 
-            res.redirect("/about");
+            req.flash('success', 'Details Saved Successfully');
+
+            res.redirect("/admin/add/about");
         },
         addHome: async function(req, res){
             var subcats = await Category.find({}).exec();

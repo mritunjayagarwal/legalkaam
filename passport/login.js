@@ -19,13 +19,11 @@ passport.use('local.login', new LocalStrategy({
 }, (req, username, password, done) => {
     User.findOne({'username': username}, (err, user) => {
         if(err){
-            return done(err);
+            return done(null, false, req.flash('error', 'Unexpected Error Occured! Please Try again later'));
         }
 
-        const messages = []
         if(!user || !user.compare(password)){
-            messages.push('User Does not exist or password does not match');
-            return done(null, false, req.flash('error', messages));
+            return done(null, false, req.flash('error', 'User Does not exist or password does not match'));
         }else{
             return done(null, user);
         }

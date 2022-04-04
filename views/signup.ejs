@@ -39,6 +39,15 @@
     
 <%- include("./partials/header.ejs") %>
 
+<% if(hasErrors){ %>
+	<% _.forEach(messages, (error) => { %> 
+	<div class = "alert alert-warning text-center mb-1">
+	  <a href = "#" class = "close" data-dismiss = "alert" aria-label="close">&times;</a>
+		  <%= error %>
+	</div>
+	<% }) %>
+<% } %>
+
 <div class="login-form">
     <form action="/signup" method= "post">
         <h2 class="text-center">Admin Signup</h2>       

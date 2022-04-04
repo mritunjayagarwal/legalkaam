@@ -1,6 +1,5 @@
 const { query } = require("express");
-
-module.exports = function(User, Category, Type, Contact, Sub, About, Home, Details, path, passport){
+module.exports = function(User, Category, Type, Contact, Sub, About, Home, Details, bcrypt, util, multiparty, path, fs, formidable, fs, passport){
     return {
         SetRouting: function(router){
             router.get('/', this.indexPage);
@@ -12,10 +11,12 @@ module.exports = function(User, Category, Type, Contact, Sub, About, Home, Detai
             router.get('/contact-us', this.contact);
             router.get('/about', this.about);
             router.get('/search/service', this.searchService);
+            router.get('/reset/password', this.resetPasswordPage);
 
             router.post('/signup', this.createAccount);
             router.post('/login', this.getInside);
             router.post('/single', this.singleUpload);
+            router.post('/reset/password', this.resetPassword);
         },
         indexPage: async function(req, res){
             const categories = await Category.find({}).populate({ path: 'subcat', populate: [{ path: 'subcat', model: 'Type'}], model: 'Sub'}).exec();
@@ -27,10 +28,28 @@ module.exports = function(User, Category, Type, Contact, Sub, About, Home, Detai
             res.render('file-upload');
         },
         singleUpload: async function(req, res){
-            const file = req.files.mfile;
-            const fileName = new Date().getTime().toString() + path.extname(file.name);
-            const savePath = path.join(__dirname, '../public', 'uploads', fileName);
-            await file.mv(savePath);
+            let sampleFile;
+            let uploadPath;
+
+            if (!req.files || Object.keys(req.files).length === 0) {
+                return res.status(400).send('No files were uploaded.');
+            }
+
+            // The name of the input field (i.e. "sampleFile") is used to retrieve the uploaded file
+            sampleFile = req.files.sampleFile;
+            let fs1 = req.files.fs1;
+
+            // Use the mv() method to place the file somewhere on your server
+            sampleFile.mv(__dirname + '/../public/uploads/' + sampleFile.name, function(err) {
+                if(err) console.log(err);
+                console.log("gg");
+            });
+
+            fs1.mv(__dirname + '/../public/uploads/' + fs1.name, function(err) {
+                if(err) console.log(err);
+                console.log("gg")
+            });
+
             res.redirect('/file');
         },
         typePage: async function(req, res){
@@ -50,7 +69,8 @@ module.exports = function(User, Category, Type, Contact, Sub, About, Home, Detai
             }else{
                 const categories = await Category.find({}).populate({ path: 'subcat', populate: [{ path: 'subcat', model: 'Type'}], model: 'Sub'}).exec();
                 const details = await Details.findOne({ _id: '623f76d3b03d2fe0e5a41d94'}).exec();
-                res.render('signup', { categories: categories, details: details});
+                const errors = req.flash('error');
+                res.render('signup', { categories: categories, details: details, messages: errors, hasErrors: errors.length > 0});
             }
         },
         createAccount: passport.authenticate('local.signup', {
@@ -64,7 +84,8 @@ module.exports = function(User, Category, Type, Contact, Sub, About, Home, Detai
             }else{
                 const categories = await Category.find({}).populate({ path: 'subcat', populate: [{ path: 'subcat', model: 'Type'}], model: 'Sub'}).exec();
                 const details = await Details.findOne({ _id: '623f76d3b03d2fe0e5a41d94'}).exec();
-                res.render('login', { categories: categories, details: details});
+                const errors = req.flash('error');
+                res.render('login', { categories: categories, details: details, messages: errors, hasErrors: errors.length > 0});
             }
         },
         getInside: passport.authenticate('local.login', {
@@ -96,6 +117,48 @@ module.exports = function(User, Category, Type, Contact, Sub, About, Home, Detai
                 console.log(docs);
                 res.render('search-result', { data: docs, categories: categories, details: details, query: req.query.search});
             });
-        } 
+        },
+        resetPasswordPage: function(req, res){
+            if(req.user){
+                res.render('reset-password');
+            }else{
+                res.redirect('/login')
+            }
+        },
+        resetPassword: function(req, res){
+            User.findOne({ _id: req.user._id}, (err, user) => {
+                if(err){
+                    res.redirect('/login')
+                }
+
+                if(user){
+                    const newPass = bcrypt.hashSync(req.body.new, bcrypt.genSaltSync(10), null);
+                    const upass = user.password
+                    console.log(newPass);
+                    const oldCompare = bcrypt.compareSync(req.body.old, user.password);
+                    if(oldCompare){
+                        console.log("Its a match");
+                        User.updateOne({ _id: req.user._id, password: upass}, {
+                            $set: {
+                                password: newPass
+                            }
+                        }, (err) => {
+                            console.log("Password Reset Success");
+                        })
+                    }else{
+                        console.log("Its not a match");
+                    }
+
+                    User.updateOne({ _id: req.user._id, password: req.body.old}, {
+                        $set: {
+                            password: newPass
+                        }
+                    }, (err) => {
+                        console.log("Password Reset Success");
+                    })
+                }
+            })
+            res.redirect('/reset/password');
+        }
     }
 }

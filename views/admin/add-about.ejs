@@ -32,6 +32,14 @@
       <div class="container-fluid page-body-wrapper">
         <div class="main-panel">
           <div class="content-wrapper">
+            <% if(isSuccess){ %> 
+              <div class = "alert alert-primary text-center mb-1">
+                <a href = "#" class = "close" data-dismiss = "alert" aria-label="close">&times;</a>
+                    <% _.forEach(successMsg, (error) => { %>
+                      <%= error %>
+                    <% }) %>
+              </div>
+            <% } %>
             <div class="page-header">
               <h3 class="page-title"> Add a Service</h3>
               <nav aria-label="breadcrumb">

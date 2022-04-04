@@ -8,11 +8,11 @@ const MongoStore = require('connect-mongo');
 const passport = require('passport');
 const mongoose = require('mongoose');
 const http = require('http');
+const fileUpload = require('express-fileupload');
 const container = require('./container');
-const fileUpload = require("express-fileupload");
 require('dotenv').config();
 
-container.resolve(function(routes, admin, notification, _){
+container.resolve(function(routes, admin, notification , _){
 
     mongoose.Promise = global.Promise;
 
@@ -75,7 +75,7 @@ container.resolve(function(routes, admin, notification, _){
             cookie : {
                 maxAge: 1000* 60 * 60 *24 * 365
             },
-            store: MongoStore.create({mongoUrl: 'mongodb+srv://root123:ckLpdnBG5ss10dhG@cluster0.fasuj.mongodb.net/myFirstDatabase?retryWrites=true&w=majority' })
+            store: MongoStore.create({mongoUrl: process.env.MONGODB_URI })
         }));
 
         app.use(flash());

@@ -1,6 +1,7 @@
 const dependable = require('dependable');
 const path = require('path');
 const container = dependable.container();
+
 const myModules = [
     ['_', 'lodash'],
     ['path', 'path'],
@@ -14,6 +15,11 @@ const myModules = [
     ['Details', './models/details'],
     ['moment', 'moment'],
     ['passport', 'passport'],
+    ['bcrypt', 'bcrypt-nodejs'],
+    ['formidable', 'formidable'],
+    ['fs', 'fs'],
+    ['multiparty', 'multiparty'],
+    ['util', 'util'],
     ['xlsx', 'xlsx'],
 ];
 
