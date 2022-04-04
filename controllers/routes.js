@@ -95,7 +95,7 @@ module.exports = function(User, Category, Type, Contact, Sub, About, Home, Detai
         }),
         logout: function(req, res){
             req.logout();
-            res.redirect('/');
+            res.redirect('/login');
         },
         contact: async function(req,res){
             const categories = await Category.find({}).populate({ path: 'subcat', populate: [{ path: 'subcat', model: 'Type'}], model: 'Sub'}).exec();

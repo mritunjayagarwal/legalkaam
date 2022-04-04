@@ -16,7 +16,7 @@ module.exports = function(User, Category, Type, Contact, Sub, About, Home, Detai
             router.get('/admin/edit/service/:slug' , this.editService);
             router.get('/admin/edit/service', this.editAService);
             router.get('/admin/delete/services', this.deleteServicePage);
-            router.get('/admin/delete/service/:id/:sub', this.deleteService);
+            router.get('/admin/delete/service/:id/:sub', this.confirmDelete);
             router.get('/admin/edit/testimonials', this.editTestimonialsPage);
 
             router.post('/new/category', this.newCategory);
@@ -27,6 +27,7 @@ module.exports = function(User, Category, Type, Contact, Sub, About, Home, Detai
             router.post('/admin/edit/home', this.editHome);
             router.post('/admin/edit/contact', this.editContact)
             router.post('/admin/edit/testimonials', this.editTestimonials);
+            router.post('/admin/delete/service', this.deleteService);
         },
         admin: async function(req, res){
             if(req.user){
@@ -518,8 +519,15 @@ module.exports = function(User, Category, Type, Contact, Sub, About, Home, Detai
             var notifications = await Contact.find({ status: 'unread'}).sort('-created').exec();
             res.render('admin/delete-services', { subcats: subcats, services: services, types: types, notifications: notifications, moment: moment});
         },
+        confirmDelete: async function(req, res){
+            var subcats = await Category.find({}).exec();
+            const services = await Type.find({}).sort('name').exec();
+            var types = await Type.find({}).sort('-created').exec();
+            var notifications = await Contact.find({ status: 'unread'}).sort('-created').exec();
+            res.render('admin/confirm-delete', { subcats: subcats, services: services, types: types, notifications: notifications, moment: moment, id: req.params.id, sub: req.params.sub});
+        },
         deleteService: function(req, res){
-            Type.remove({ _id: req.params.id }, function(err) {
+            Type.remove({ _id: req.body.id }, function(err) {
                 if (!err) {
                         console.log("Success");
                 }
@@ -529,11 +537,11 @@ module.exports = function(User, Category, Type, Contact, Sub, About, Home, Detai
             });
 
             Sub.updateOne({
-                _id: req.params.sub
+                _id: req.body.sub
             }, {
                 $pull: {
                     subcat: {
-                        _id: req.params.id
+                        _id: req.body.id
                     }
                 }
             }, (err) => {

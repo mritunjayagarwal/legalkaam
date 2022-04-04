@@ -26,6 +26,84 @@
 	</div><!-- /.container -->
 </section><!-- /.inner-banner -->
 
+<section class="sec-pad price-query-box" style="animation: scale 0.65s ease;">
+    <div class="container">
+        <div class="row" style="margin-top: -40px;">
+            <div class="col-md-12 col-sm-12">
+                
+                <div class="row">
+                    <div class="col-md-6 col-sm-6 col-xs-12 price_block">
+                        <div class="sec-title">
+                            <h2>Pricing</h2>
+                            <span class="decor-line">
+                                <span class="decor-line-inner"></span>
+                            </span>
+                        </div><!-- /.sec-title -->
+                        <div class="price-section">
+                            <div class="price-table">
+                                <div class="price"><small>₹</small><%= type.subs %>*</div>
+                                <p class="description">All Inclusive (Fees & Taxes)</p>
+                                <div class="price-features">
+                                    <% benefits.forEach((benefit) => { %>
+                                      <% if(benefit != ''){ %>  
+                                        <div class="price-feature">
+                                            <i class="fa fa-check"></i>
+                                            <span><%= benefit %></span>
+                                        </div>
+                                      <% } %>  
+                                    <% }) %>
+                                    <a href="/contact-us/#enquiry" type="submit" class="price-btn">BOOK NOW</a>
+                                </div>
+                            </div>
+                        </div>       
+                    </div>
+                    <div class="col-md-6 col-sm-6 col-xs-12">
+                        <div class="rqa-box">
+                            <div class="sec-title">
+                                <h2>Have Query...</h2>
+                                <span class="decor-line">
+                                    <span class="decor-line-inner"></span>
+                                </span>
+                            </div><!-- /.sec-title -->
+                            <form class="contact-form" action = "/add/query/" method = "post">
+                                <div class="row">
+                                    <div class="col-md-6 col-sm-6">
+                                        <input type="text" name="id" value = "<%= type._id %>" hidden/>
+                                        <div class="form-grp">
+                                            <label>Your Name*</label>
+                                            <input type="text" name="name" placeholder="Your Name *" />
+                                        </div><!-- /.form-grp -->
+                                    </div><!-- /.col-md-6 -->
+                                    <div class="col-md-6 col-sm-6">
+                                        <div class="form-grp">
+                                            <label>Contact Number*</label>
+                                            <input type="tel" name="contact" placeholder="Your Number *" />
+                                        </div><!-- /.form-grp -->
+                                    </div><!-- /.col-md-6 -->
+                                    <div class="col-md-12">
+                                        <div class="form-grp">
+                                            <label>Email Address*</label>
+                                            <input type="email" name="email" placeholder="Email Address *" />
+                                        </div><!-- /.form-grp -->
+                                    </div><!-- /.col-md-6 -->
+                                    <div class="col-md-12">
+                                        <div class="form-grp">
+                                            <textarea name="message" placeholder="Message*"></textarea>							
+                                        </div><!-- /.form-grp -->
+                                        <button type="submit" class="thm-btn">Submit</button>
+                                    </div><!-- /.col-md-6 -->
+                                </div><!-- /.row -->
+                            </form>
+                        </div><!-- /.rqa-box -->
+                    </div><!-- /.col-md-6 -->
+                 </div>
+                    
+            </div><!-- /.col-md-6 -->
+        </div><!-- /.row -->
+    </div><!-- /.container -->
+</section><!-- /.sec-pad two-color-overlay -->
+
+
 <section class="sec-pad service-row-section">
     <div class="container">
         <div class="sec-title text-center">
@@ -106,84 +184,6 @@
                 </div>
             </div><!-- /.col-md-6 -->
             
-        </div><!-- /.row -->
-    </div><!-- /.container -->
-</section><!-- /.sec-pad two-color-overlay -->
-
-
-<section class="sec-pad price-query-box" style="animation: scale 0.65s ease;">
-    <div class="container">
-        <div class="row" style="margin-top: -40px;">
-            <div class="col-md-12 col-sm-12">
-                
-                <div class="row">
-                    <div class="col-md-6 col-sm-6 col-xs-12 price_block">
-                        <div class="sec-title">
-                            <h2>Pricing</h2>
-                            <span class="decor-line">
-                                <span class="decor-line-inner"></span>
-                            </span>
-                        </div><!-- /.sec-title -->
-                        <div class="price-section">
-                            <div class="price-table">
-                                <div class="price"><small>₹</small><%= type.subs %>*</div>
-                                <p class="description">All Inclusive (Fees & Taxes)</p>
-                                <div class="price-features">
-                                    <% benefits.forEach((benefit) => { %>
-                                      <% if(benefit != ''){ %>  
-                                        <div class="price-feature">
-                                            <i class="fa fa-check"></i>
-                                            <span><%= benefit %></span>
-                                        </div>
-                                      <% } %>  
-                                    <% }) %>
-                                    <a href="https://api.whatsapp.com/send?phone=+919990905006" type="submit" class="price-btn">BOOK NOW</a>
-                                </div>
-                            </div>
-                        </div>       
-                    </div>
-                    <div class="col-md-6 col-sm-6 col-xs-12">
-                        <div class="rqa-box">
-                            <div class="sec-title">
-                                <h2>Have Query...</h2>
-                                <span class="decor-line">
-                                    <span class="decor-line-inner"></span>
-                                </span>
-                            </div><!-- /.sec-title -->
-                            <form class="contact-form" action = "/add/query/" method = "post">
-                                <div class="row">
-                                    <div class="col-md-6 col-sm-6">
-                                        <input type="text" name="id" value = "<%= type._id %>" hidden/>
-                                        <div class="form-grp">
-                                            <label>Your Name*</label>
-                                            <input type="text" name="name" placeholder="Your Name *" />
-                                        </div><!-- /.form-grp -->
-                                    </div><!-- /.col-md-6 -->
-                                    <div class="col-md-6 col-sm-6">
-                                        <div class="form-grp">
-                                            <label>Contact Number*</label>
-                                            <input type="tel" name="contact" placeholder="Your Number *" />
-                                        </div><!-- /.form-grp -->
-                                    </div><!-- /.col-md-6 -->
-                                    <div class="col-md-12">
-                                        <div class="form-grp">
-                                            <label>Email Address*</label>
-                                            <input type="email" name="email" placeholder="Email Address *" />
-                                        </div><!-- /.form-grp -->
-                                    </div><!-- /.col-md-6 -->
-                                    <div class="col-md-12">
-                                        <div class="form-grp">
-                                            <textarea name="message" placeholder="Message*"></textarea>							
-                                        </div><!-- /.form-grp -->
-                                        <button type="submit" class="thm-btn">Submit</button>
-                                    </div><!-- /.col-md-6 -->
-                                </div><!-- /.row -->
-                            </form>
-                        </div><!-- /.rqa-box -->
-                    </div><!-- /.col-md-6 -->
-                 </div>
-                    
-            </div><!-- /.col-md-6 -->
         </div><!-- /.row -->
     </div><!-- /.container -->
 </section><!-- /.sec-pad two-color-overlay -->
