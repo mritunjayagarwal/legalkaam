@@ -3,6 +3,7 @@ const Schema = mongoose.Schema
 
 const detailSchema = new Schema({
     email: { type: String, lowercase: true},
+    desc: { type: String},
     headbg: { type: String},
     pin: { type: Number},
     address: { type: String},
@@ -15,7 +16,13 @@ const detailSchema = new Schema({
     facebook: { type: String},
     twitter: { type: String},
     youtube: { type: String},
-    linkedin: { type: String}
+    linkedin: { type: String},
+    footer: [
+        {
+            name: { type: String},
+            link: { type: String}
+        }
+    ]
 });
 
 module.exports = mongoose.model('Details', detailSchema);

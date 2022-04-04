@@ -27,7 +27,7 @@
             <% home.services.forEach((service) => { %>
                 <div class="col-md-3 col-sm-3 col-xs-4">
                     <div class="our-services-main wow fadeIn" data-wow-duration="2s" data-wow-delay="0.5s" data-wow-offset="0">
-                        <a href="services.html">
+                        <a href="/find/types/<%= service.serv.slug %>">
                         <div class="icon-box">
                             <div class="inner-box">
                                 <div class="<%= service.color %>">
@@ -380,14 +380,6 @@
 </section><!-- /.sec-pad service-box-one -->
 	
 <%- include("./partials/bottom.ejs") %>
-	
-	<!--Scroll to top-->
-	<div class="scroll-to-top scroll-to-target" data-target="html"><span class="fa fa-angle-up"></span></div>
-    <!--WhatsApp-->
-    <div class="whatsapp">
-        <a class="bounce" target="_blank" href="https://api.whatsapp.com/send?phone=+919990905006"><i class="fa fa-whatsapp "></i></a>
-    </div>
-
 
 	<script src="assets/jquery/jquery.min.js"></script>
 	<script src="assets/bootstrap/js/bootstrap.min.js"></script>

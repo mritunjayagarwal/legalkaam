@@ -31,6 +31,7 @@ module.exports = function(User, Category, Type, Contact, Sub, About, Home, Detai
             router.post('/admin/edit/testimonials', this.editTestimonials);
             router.post('/admin/delete/service', this.deleteService);
             router.post('/admin/edit/icon', this.insertHomepageIcons);
+            router.post('/admin/edit/footer', this.editFooterExecute);
         },
         admin: async function(req, res){
             if(req.user){
@@ -599,8 +600,75 @@ module.exports = function(User, Category, Type, Contact, Sub, About, Home, Detai
 
             res.redirect('/admin/edit/testimonials');
         },
-        editFooter: function(req, res){
-            console.log("Hey Footer");
+        editFooter: async function(req, res){
+            var subcats = await Category.find({}).exec();
+            var types = await Type.find({}).sort('-created').exec();
+            const contact = await Details.findOne({ _id: '623f76d3b03d2fe0e5a41d94'}).exec();
+            var notifications = await Contact.find({ status: 'unread'}).sort('-created').exec();
+            res.render('admin/edit-footer', { subcats: subcats, types: types, notifications: notifications, contact: contact, moment: moment});
+        },
+        editFooterExecute: function(req, res){
+            Details.updateOne({
+                _id: '623f76d3b03d2fe0e5a41d94'
+            }, {
+                $set: { 
+                    desc: req.body.desc1,
+                    footer: [
+                        {
+                            name: req.body.name1,
+                            link: req.body.link1
+                        },
+                        {
+                            name: req.body.name2,
+                            link: req.body.link2
+                        },
+                        {
+                            name: req.body.name3,
+                            link: req.body.link3
+                        },
+                        {
+                            name: req.body.name4,
+                            link: req.body.link4
+                        },
+                        {
+                            name: req.body.name5,
+                            link: req.body.link5
+                        },
+                        {
+                            name: req.body.name6,
+                            link: req.body.link6
+                        },
+                        {
+                            name: req.body.name7,
+                            link: req.body.link7
+                        },
+                        {
+                            name: req.body.name8,
+                            link: req.body.link8
+                        },
+                        {
+                            name: req.body.name9,
+                            link: req.body.link9
+                        },
+                        {
+                            name: req.body.name10,
+                            link: req.body.link10
+                        },
+                        {
+                            name: req.body.name11,
+                            link: req.body.link11
+                        },
+                        {
+                            name: req.body.name12,
+                            link: req.body.link12
+                        },
+                    ]
+                }
+            }, (err) => {
+                console.log('update success');
+            });
+
+            res.redirect('/admin/edit/footer');
         },
         homepageIcon: async function(req, res){
             var subcats = await Category.find({}).exec();

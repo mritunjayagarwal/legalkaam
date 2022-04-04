@@ -4,7 +4,7 @@
             <div class="col-lg-3 col-md-6">
                 <div class="single-footer-widget about-widget">
                     <a href="index.html"><img src="/img/logo.png" alt="Awesome Image"/></a>						
-                    <p style="text-align: justify;">LegalKaam is one stop solution for all your financial, legal and consulting needs. We are cost effective and efficient platform to help you in establishing or running your business without stressing about the day to day activities, compliances and taxation.</p>
+                    <p style="text-align: justify;background: transparent"><%- details.desc %></p>
                     <br/>
                     <div class="clearfix">
                 </div><!-- /.row -->
@@ -21,22 +21,20 @@
                     <div class="clearfix">
                         <div class="col-md-6">
                             <ul class="links">
-                                <li><a href="index.html">Home</a></li>
-                                <li><a href="about.html">About Us</a></li>
-                                <li><a href="#">GST Regisration</a></li>
-                                <li><a href="#">LLP Regisstration</a></li>
-                                <li><a href="#">Property Matters</a></li>
-                                <li><a href="#">Meet Team</a></li>
+                                <% for(let i = 0; i < 6; i++){ %>
+                                    <% if(details.footer[i].name != ''){ %>
+                                        <li><a href="index.html"><%= details.footer[i].name %></a></li>
+                                    <% } %>
+                                <% } %>
                             </ul><!-- /.links -->		
                         </div><!-- /.col-md-6 -->
                         <div class="col-md-6">
                             <ul class="links">
-                                <li><a href="#">Loans</a></li>
-                                <li><a href="#">Import Export Code</a></li>
-                                <li><a href="#">GST Filing</a></li>
-                                <li><a href="#">Company Closing</a></li>
-                                <li><a href="#">Preparation Of Reports</a></li>
-                                <li><a href="#">ITR - 1 (Salaried)</a></li>
+                                <% for(let i = 6; i < 12; i++){ %>
+                                    <% if(details.footer[i].name != ''){ %>
+                                        <li><a href="index.html"><%= details.footer[i].name %></a></li>
+                                    <% } %>
+                                <% } %>
                             </ul><!-- /.links -->		
                         </div><!-- /.col-md-6 -->
                     </div><!-- /.row -->
@@ -127,3 +125,10 @@
         </div><!-- /.copyright pull-left -->
     </div><!-- /.container -->
 </section><!-- /.footer-bottom -->
+
+<!--Scroll to top-->
+<div class="scroll-to-top scroll-to-target" data-target="html"><span class="fa fa-angle-up"></span></div>
+<!--WhatsApp-->
+<div class="whatsapp">
+    <a class="bounce" target="_blank" href="https://api.whatsapp.com/send?phone=+91<%= details.mainPh %>"><i class="fa fa-whatsapp "></i></a>
+</div>
