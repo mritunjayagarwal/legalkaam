@@ -516,14 +516,11 @@ a:focus {
   list-style: none;
 }
 .header .header-top ul.social li a {
-  font-size: 14px;
-  color: #C5C5C5;
+  font-size: 17px;
   -webkit-transition: color .3s ease;
-          transition: color .3s ease;
+  transition: color .3s ease;
 }
-.header .header-top ul.social li a:hover {
-  color: #3563a9;
-}
+
 .header .header-navigation .navbar-collapse.collapse {
   padding: 0;
   text-align: right;
@@ -1299,13 +1296,12 @@ a:focus {
   height: 35px;
   text-align: center;
   border-radius: 50%;
-  font-size: 14px;
-  line-height: 35px;
-  background: #3563A9;
+  font-size: 18px;
+  line-height: 35px;  
   display: block;
   color: #C5C5C5;
   -webkit-transition: background .4s ease, color .4s ease;
-          transition: background .4s ease, color .4s ease;
+  transition: background .4s ease, color .4s ease;
 }
 .single-footer-widget .social a:hover {
   background: #00ACED;

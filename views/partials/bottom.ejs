@@ -1,12 +1,14 @@
-<footer class="footer has-dot-pattern sec-pad" style="margin-top: 20px;">
+<footer class="footer has-dot-pattern sec-pad">
     <div class="container">
         <div class="row">
-            <div class="col-lg-4 col-md-6">
+            <div class="col-lg-3 col-md-6">
                 <div class="single-footer-widget about-widget">
-                    <a href="/"><img src="/img/logo.png" alt="Awesome Image"/></a>						
+                    <a href="index.html"><img src="img/logo.png" alt="Awesome Image"/></a>						
                     <p style="text-align: justify;">LegalKaam is one stop solution for all your financial, legal and consulting needs. We are cost effective and efficient platform to help you in establishing or running your business without stressing about the day to day activities, compliances and taxation.</p>
-                    
-                </div><!-- /.single-footer-widget -->
+                    <br/>
+                    <div class="clearfix">
+                </div><!-- /.row -->
+            </div><!-- /.single-footer-widget -->
             </div><!-- /.col-md-3 -->
             <div class="col-lg-4 col-md-6">
                 <div class="single-footer-widget link-widget">
@@ -41,7 +43,7 @@
                     
                 </div><!-- /.single-footer-widget -->
             </div><!-- /.col-md-3 -->
-            <div class="col-lg-4 col-md-6">
+            <div class="col-lg-3 col-md-6">
                 <div class="single-footer-widget about-widget">
                     <div class="sec-title white medium">
                         <h2>Contact Us</h2>
@@ -59,11 +61,16 @@
                             </div><!-- /.text-box -->
                         </li>
                         <li>
+                            <div class="text-box">
+                                <p>Present At: Delhi | Mumbai | Punjab | Bangalore | Pune</p>
+                            </div><!-- /.text-box -->
+                        </li>
+                        <li>
                             <div class="icon-box">
                                 <i class="fa fa-phone"></i>
                             </div><!-- /.icon-box -->
                             <div class="text-box">
-                                <p>+91 <%= details.mainPh %></p>
+                                <p><a href="tel:+91<%= details.mainPh %>" style="color: inherit;"><%= details.mainPh %></a></p>
                             </div><!-- /.text-box -->
                         </li>
                         <li>
@@ -71,18 +78,42 @@
                                 <i class="fa fa-envelope-o"></i>
                             </div><!-- /.icon-box -->
                             <div class="text-box">
-                                <p><%= details.email %></p>
+                                <p><a href="mailto:<%= details.email %>" style="color: inherit;"><%= details.email %></a></p>
                             </div><!-- /.text-box -->
                         </li>							
                     </ul>
                     <div class="social pull-left">
                         <ul class="list-inline">
-                            <li><a href="<%= details.facebook %>"><i class="fa fa-facebook"></i></a></li>
-							<li><a href="<%= details.twitter %>"><i class="fa fa-instagram"></i></a></li>
-							<li><a href="<%= details.youtube %>"><i class="fa fa-youtube-play"></i></a></li>
-							<li><a href="<%= details.linkedin %>"><i class="fa fa-linkedin"></i></a></li>
+                            <li><a href="#" style="background-color: #3b5998;"><i class="fa fa-facebook"></i></a></li>
+                            <li><a href="#" style="background: radial-gradient(circle at 30% 107%, #fdf497 0%, #fdf497 5%, #fd5949 45%, #d6249f 60%, #285AEB 90%);;"><i class="fa fa-instagram"></i></a></li>
+                            <li><a href="#" style="background-color: #c4302b;"><i class="fa fa-youtube-play"></i></a></li>
+                            <li><a href="#" style="background-color: #0e76a8;"><i class="fa fa-linkedin"></i></a></li>
                         </ul><!-- /.list-inline -->
                     </div><!-- /.social pull-right -->
+                    
+                </div><!-- /.single-footer-widget -->
+            </div><!-- /.col-md-3 -->
+            <div class="col-lg-2 col-md-12">
+                <div class="single-footer-widget link-widget">
+                    <div class="sec-title white medium">
+                        <h2>Payments</h2>
+                        <span class="decor-line">
+                            <span class="decor-line-inner"></span>
+                        </span>
+                    </div><!-- /.sec-title -->
+                    <ul class="payment-info">
+                        <li>
+                            <img src="img/resources/razorpay.jpg" style="max-width:100%; max-height:100%; object-fit: cover;">
+                        </li>							
+                    </ul>
+                    <br/>
+                    <div class="col-md-12">
+                        <ul class="links">
+                            <li><a href="#">Terms & Conditions</a></li>
+                            <li><a href="#">Refund Policy</a></li>
+                            <li><a href="#">Privacy Policy</a></li>
+                        </ul><!-- /.links -->		
+                    </div><!-- /.col-md-12 -->
                 </div><!-- /.single-footer-widget -->
             </div><!-- /.col-md-3 -->
         </div><!-- /.row -->

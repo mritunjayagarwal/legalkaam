@@ -5,12 +5,12 @@
 				<ul class="list-inline">
 					<li>
 						<span>
-							<i class="fa fa-phone"></i> +91 <%= details.mainPh %>
+							<i class="fa fa-phone"></i><a href="tel:+91<%= details.mainPh %>" style="color: inherit;">+91 <%= details.mainPh %></a> 
 						</span>
 					</li>
 				</ul>
 			</div><!-- /.left-info -->
-			<div class="search-info">
+            <div class="search-info">
 				<ul class="list-inline">	
                     <li class="mobile-search">
                         <span class="src-menu search-box">
@@ -26,17 +26,17 @@
 				<ul class="list-inline">
 					<li>
 						<span>
-							<i class="fa fa-envelope"></i> <%= details.email %>						
+							<i class="fa fa-envelope"></i><a href="mailto:<%= details.email %>" style="color: inherit;"><%= details.email %></a> 						
 						</span>
 					</li>
 					<li>
 						<ul class="list-inline social">
-							<li><a href="<%= details.facebook %>"><i class="fa fa-facebook"></i></a></li>
-							<li><a href="<%= details.twitter %>"><i class="fa fa-instagram"></i></a></li>
-							<li><a href="<%= details.youtube %>"><i class="fa fa-youtube-play"></i></a></li>
-							<li><a href="<%= details.linkedin %>"><i class="fa fa-linkedin"></i></a></li>
+							<li><a href="<%= details.facebook %>" style="color: #3b5998;"><i class="fa fa-facebook"></i></a></li>
+							<li><a href="<%= details.twitter %>" style="color: #d6249f;"><i class="fa fa-instagram"></i></a></li>
+							<li><a href="<%= details.youtube %>" style="color: #c4302b;"><i class="fa fa-youtube-play"></i></a></li>
+							<li><a href="<%= details.linkedin %>" style="color: #0e76a8;"><i class="fa fa-linkedin"></i></a></li>
 						</ul><!-- /.social -->
-					</li>				
+					</li>			
 				</ul>
 			</div><!-- /.right-info -->
 		</div>		

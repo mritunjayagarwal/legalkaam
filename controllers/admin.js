@@ -358,6 +358,33 @@ module.exports = function(User, Category, Type, Contact, Sub, About, Home, Detai
                             twitter: req.body.twitter2,
                             linkedin: req.body.linkedin2
                         },
+                        {
+                            name: req.body.ename3,
+                            image: req.body.eimg3,
+                            designation: req.body.edesig3,
+                            desc: req.body.edesc3,
+                            facebook: req.body.facebook3,
+                            twitter: req.body.twitter3,
+                            linkedin: req.body.linkedin3
+                        },
+                        {
+                            name: req.body.ename4,
+                            image: req.body.eimg4,
+                            designation: req.body.edesig4,
+                            desc: req.body.edesc4,
+                            facebook: req.body.facebook4,
+                            twitter: req.body.twitter4,
+                            linkedin: req.body.linkedin4
+                        },
+                        {
+                            name: req.body.ename5,
+                            image: req.body.eimg5,
+                            designation: req.body.edesig5,
+                            desc: req.body.edesc5,
+                            facebook: req.body.facebook5,
+                            twitter: req.body.twitter5,
+                            linkedin: req.body.linkedin5
+                        },
                     ],
                 }
             }, (err) => {
