@@ -23,7 +23,8 @@ module.exports = function(User, Category, Type, Contact, Sub, About, Home, Detai
             const categories = await Category.find({}).populate({ path: 'subcat', populate: [{ path: 'subcat', model: 'Type'}], model: 'Sub'}).exec();
             const home = await Home.findOne({ _id: '623e05377dd536218e3d6aaf'}).exec();
             const details = await Details.findOne({ _id: '623f76d3b03d2fe0e5a41d94'}).exec();
-            return res.render('index', { categories: categories, home: home, details});
+            const successes = req.flash('success');
+            return res.render('index', { categories: categories, home: home, details, messages: successes, hasSuccess: successes.length > 0});
         },
         fileupload: function(req, res){
             res.render('file-upload');
@@ -62,7 +63,8 @@ module.exports = function(User, Category, Type, Contact, Sub, About, Home, Detai
             const features = type.features;
             const benefits = type.benefits;
             const plan = type.ammount;
-            res.render('service', {type: type, steps: steps, documents: documents, features: features, benefits: benefits, categories: categories, details: details})
+            const successes = req.flash('success');
+            res.render('service', {type: type, steps: steps, documents: documents, features: features, benefits: benefits, categories: categories, details: details, messages: successes, hasSuccess: successes.length > 0})
         },
         signupPage: async function(req, res){
             if(req.user){
@@ -101,7 +103,8 @@ module.exports = function(User, Category, Type, Contact, Sub, About, Home, Detai
         contact: async function(req,res){
             const categories = await Category.find({}).populate({ path: 'subcat', populate: [{ path: 'subcat', model: 'Type'}], model: 'Sub'}).exec();
             const details = await Details.findOne({ _id: '623f76d3b03d2fe0e5a41d94'}).exec();
-            res.render('contact', { categories: categories, details: details});
+            const successes = req.flash('success');
+            res.render('contact', { categories: categories, details: details, messages: successes, hasSuccess: successes.length > 0});
         },
         about: async function(req, res){
             const categories = await Category.find({}).populate({ path: 'subcat', populate: [{ path: 'subcat', model: 'Type'}], model: 'Sub'}).exec();

@@ -24,8 +24,10 @@ module.exports = function(User, Category, Type, Contact, Sub, xlsx, moment){
             newQuery.email = req.body.email;
             newQuery.save((err) => {
                 console.log("Query Added Successfully");
-                res.redirect('/');
-            })
+            });
+            req.flash('success', 'Query submitted succesfully');
+            res.redirect('back');
+
         },
         showNotifications: async function(req, res){
             if(req.user){

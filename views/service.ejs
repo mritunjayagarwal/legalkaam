@@ -13,7 +13,14 @@
 </head>
 <body>
 <%- include("./partials/header.ejs") %>
-
+<% if(hasSuccess){ %>
+    <% _.forEach(messages, (success) => { %> 
+    <div class = "alert alert-success text-center" style = "margin-bottom: -5px;">
+      <a href = "#" class = "close" data-dismiss = "alert" aria-label="close">&times;</a>
+          <%= success %>
+    </div>
+    <% }) %>
+<% } %>
 <section class="inner-banner has-dot-pattern">
 	<div class="container">
 		<h2><%= type.name %></h2>

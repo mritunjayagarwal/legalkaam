@@ -15,6 +15,14 @@
 <%- include("./partials/header.ejs") %>
 <section class="services-section" style="margin: 25px 0;">
     <div class="container">
+        <% if(hasSuccess){ %>
+            <% _.forEach(messages, (success) => { %> 
+            <div class = "alert alert-success text-center mb-1">
+              <a href = "#" class = "close" data-dismiss = "alert" aria-label="close">&times;</a>
+                  <%= success %>
+            </div>
+            <% }) %>
+        <% } %>
         <div class="row">
             <div class="col-md-3 col-sm-3 col-xs-4">
                 <div class="our-services-main wow fadeIn" data-wow-duration="2s" data-wow-delay="0.5s" data-wow-offset="0">

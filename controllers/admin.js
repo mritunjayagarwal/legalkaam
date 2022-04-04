@@ -555,7 +555,7 @@ module.exports = function(User, Category, Type, Contact, Sub, About, Home, Detai
             var types = await Type.find({}).sort('-created').exec();
             var home = await Home.findOne({ _id: '623e05377dd536218e3d6aaf'}).exec();
             var notifications = await Contact.find({ status: 'unread'}).sort('-created').exec();
-            res.render('admin/edit-testimonials', { subcats: subcats, types: types, notifications: notifications, home: home});
+            res.render('admin/edit-testimonials', { subcats: subcats, types: types, notifications: notifications, home: home, moment: moment});
         },
         editTestimonials: function(req, res){
             Home.updateOne({
