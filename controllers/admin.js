@@ -18,6 +18,8 @@ module.exports = function(User, Category, Type, Contact, Sub, About, Home, Detai
             router.get('/admin/delete/services', this.deleteServicePage);
             router.get('/admin/delete/service/:id/:sub', this.confirmDelete);
             router.get('/admin/edit/testimonials', this.editTestimonialsPage);
+            router.get('/admin/edit/footer', this.editFooter);
+            router.get('/admin/edit/icon', this.homepageIcon);
 
             router.post('/new/category', this.newCategory);
             router.post('/new/subcat', this.newSubCat);
@@ -28,6 +30,7 @@ module.exports = function(User, Category, Type, Contact, Sub, About, Home, Detai
             router.post('/admin/edit/contact', this.editContact)
             router.post('/admin/edit/testimonials', this.editTestimonials);
             router.post('/admin/delete/service', this.deleteService);
+            router.post('/admin/edit/icon', this.insertHomepageIcons);
         },
         admin: async function(req, res){
             if(req.user){
@@ -595,6 +598,90 @@ module.exports = function(User, Category, Type, Contact, Sub, About, Home, Detai
             });
 
             res.redirect('/admin/edit/testimonials');
+        },
+        editFooter: function(req, res){
+            console.log("Hey Footer");
+        },
+        homepageIcon: async function(req, res){
+            var subcats = await Category.find({}).exec();
+            var types = await Type.find({}).sort('-created').exec();
+            var home = await Home.findOne({ _id: '623e05377dd536218e3d6aaf'}).populate({ path: 'services.serv', model: 'Type'}).exec();
+            var notifications = await Contact.find({ status: 'unread'}).sort('-created').exec();
+            res.render('admin/homepage-icon', { subcats: subcats, types: types, notifications: notifications, home: home, moment: moment});
+        },
+        insertHomepageIcons: function(req, res){
+            Home.updateOne({
+                _id: '623e05377dd536218e3d6aaf'
+            }, {
+                $set: { 
+                    services: [
+                        {
+                            icon: req.body.icon1,
+                            color: req.body.color1,
+                            serv: req.body.type1
+                        },
+                        {
+                            icon: req.body.icon2,
+                            color: req.body.color2,
+                            serv: req.body.type2
+                        },
+                        {
+                            icon: req.body.icon3,
+                            color: req.body.color3,
+                            serv: req.body.type3
+                        },
+                        {
+                            icon: req.body.icon4,
+                            color: req.body.color4,
+                            serv: req.body.type4
+                        },
+                        {
+                            icon: req.body.icon5,
+                            color: req.body.color5,
+                            serv: req.body.type5
+                        },
+                        {
+                            icon: req.body.icon6,
+                            color: req.body.color6,
+                            serv: req.body.type6
+                        },
+                        {
+                            icon: req.body.icon7,
+                            color: req.body.color7,
+                            serv: req.body.type7
+                        },
+                        {
+                            icon: req.body.icon8,
+                            color: req.body.color8,
+                            serv: req.body.type8
+                        },
+                        {
+                            icon: req.body.icon9,
+                            color: req.body.color9,
+                            serv: req.body.type9
+                        },
+                        {
+                            icon: req.body.icon10,
+                            color: req.body.color10,
+                            serv: req.body.type10
+                        },
+                        {
+                            icon: req.body.icon11,
+                            color: req.body.color11,
+                            serv: req.body.type11
+                        },
+                        {
+                            icon: req.body.icon12,
+                            color: req.body.color12,
+                            serv: req.body.type12
+                        },
+                    ]
+                }
+            }, (err) => {
+                console.log('Homepage Icons Update success');
+            });
+
+            res.redirect('/admin/edit/icon');
         }
     }
 }

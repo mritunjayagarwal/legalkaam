@@ -21,7 +21,7 @@ module.exports = function(User, Category, Type, Contact, Sub, About, Home, Detai
         },
         indexPage: async function(req, res){
             const categories = await Category.find({}).populate({ path: 'subcat', populate: [{ path: 'subcat', model: 'Type'}], model: 'Sub'}).exec();
-            const home = await Home.findOne({ _id: '623e05377dd536218e3d6aaf'}).exec();
+            const home = await Home.findOne({ _id: '623e05377dd536218e3d6aaf'}).populate({ path: 'services.serv', model: 'Type'}).exec();
             const details = await Details.findOne({ _id: '623f76d3b03d2fe0e5a41d94'}).exec();
             const successes = req.flash('success');
             return res.render('index', { categories: categories, home: home, details, messages: successes, hasSuccess: successes.length > 0});
