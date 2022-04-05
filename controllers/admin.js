@@ -333,7 +333,7 @@ module.exports = function(User, Category, Type, Contact, Sub, About, Home, Detai
             let employee3;
             let employee4;
             let employee5;
-            
+
             // The name of the input field (i.e. "employee1") is used to retrieve the uploaded file
             employee1 = req.files.eimg1;
             employee2 = req.files.eimg2;
@@ -735,74 +735,74 @@ module.exports = function(User, Category, Type, Contact, Sub, About, Home, Detai
                 $set: { 
                     services: [
                         {
-                            icon: req.body.icon1,
-                            color: req.body.color1,
+                            icon: 'fa fa-building-o',
+                            color: 'red-box',
                             name: req.body.name1,
                             link: req.body.link1
                         },
                         {
-                            icon: req.body.icon2,
-                            color: req.body.color2,
+                            icon: 'fa fa-bank',
+                            color: 'green-box',
                             name: req.body.name2,
                             link: req.body.link2
                         },
                         {
-                            icon: req.body.icon3,
-                            color: req.body.color3,
+                            icon: 'fa fa-registered',
+                            color: 'orange-box',
                             name: req.body.name3,
                             link: req.body.link3
                         },
                         {
-                            icon: req.body.icon4,
-                            color: req.body.color4,
+                            icon: 'fa fa-trademark',
+                            color: 'pink-box',
                             name: req.body.name4,
                             link: req.body.link4
                         },
                         {
-                            icon: req.body.icon5,
-                            color: req.body.color5,
+                            icon: 'fa fa-trophy',
+                            color: 'green-2-box',
                             name: req.body.name5,
                             link: req.body.link5
                         },
                         {
-                            icon: req.body.icon6,
-                            color: req.body.color6,
+                            icon: 'fa fa-cutlery',
+                            color: 'maroon-box',
                             name: req.body.name6,
                             link: req.body.link6
                         },
                         {
-                            icon: req.body.icon7,
-                            color: req.body.color7,
+                            icon: 'fa fa-gavel',
+                            color: 'purple-box',
                             name: req.body.name7,
                             link: req.body.link7
                         },
                         {
-                            icon: req.body.icon8,
-                            color: req.body.color8,
+                            icon: 'fa fa-calculator',
+                            color: 'green-3-box',
                             name: req.body.name8,
                             link: req.body.link8
                         },
                         {
-                            icon: req.body.icon9,
-                            color: req.body.color9,
+                            icon: 'fa fa-shopping-cart',
+                            color: 'skin-box',
                             name: req.body.name9,
                             link: req.body.link9
                         },
                         {
-                            icon: req.body.icon10,
-                            color: req.body.color10,
+                            icon: 'fa fa-plus-square',
+                            color: 'pink-2-box',
                             name: req.body.name10,
                             link: req.body.link10
                         },
                         {
-                            icon: req.body.icon11,
-                            color: req.body.color11,
+                            icon: 'fa fa-handshake-o',
+                            color: 'grey-box',
                             name: req.body.name11,
                             link: req.body.link11
                         },
                         {
-                            icon: req.body.icon12,
-                            color: req.body.color12,
+                            icon: 'fn-icon-tool-1',
+                            color: 'mehndi-box',
                             name: req.body.name12,
                             link: req.body.link12
                         },
