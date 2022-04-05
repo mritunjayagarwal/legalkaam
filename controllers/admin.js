@@ -468,15 +468,19 @@ module.exports = function(User, Category, Type, Contact, Sub, About, Home, Detai
                     youtube: req.body.youtube,
                     chooseus: [
                         {
+                            icon: 'fn-icon-profile',
                             title: req.body.ctitle1
                         },
                         {
+                            icon: 'fn-icon-statistical-chart',
                             title: req.body.ctitle2
                         },
                         {
+                            icon: 'fn-icon-technology',
                             title: req.body.ctitle3
                         },
                         {
+                            icon: 'fn-icon-tool',
                             title: req.body.ctitle4
                         },
                     ],
