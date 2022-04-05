@@ -1374,7 +1374,7 @@ a:focus {
   height: 50px;
 }
 .contact-form textarea {
-  height: 135px;
+  height: 85px;
   padding-top: 10px;
 }
 .contact-form .form-grp {
@@ -5167,7 +5167,7 @@ a:focus {
   padding-top: 22px;
 }
 .rqa-box .contact-form label {
-  color: #333333;
+  color: #fff;
   line-height: 22px;
   font-weight: 400;
 }

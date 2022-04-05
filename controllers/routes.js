@@ -122,46 +122,56 @@ module.exports = function(User, Category, Type, Contact, Sub, About, Home, Detai
                 res.render('search-result', { data: docs, categories: categories, details: details, query: req.query.search});
             });
         },
-        resetPasswordPage: function(req, res){
+        resetPasswordPage: async function(req, res){
             if(req.user){
-                res.render('reset-password');
+                const categories = await Category.find({}).populate({ path: 'subcat', populate: [{ path: 'subcat', model: 'Type'}], model: 'Sub'}).exec();
+                const details = await Details.findOne({ _id: '623f76d3b03d2fe0e5a41d94'}).exec();
+                const errors = req.flash('error');
+                res.render('reset-password', { categories: categories, details: details, messages: errors, hasErrors: errors.length > 0});
             }else{
                 res.redirect('/login')
             }
         },
         resetPassword: function(req, res){
-            User.findOne({ _id: req.user._id}, (err, user) => {
-                if(err){
-                    res.redirect('/login')
-                }
-
-                if(user){
-                    const newPass = bcrypt.hashSync(req.body.new, bcrypt.genSaltSync(10), null);
-                    const upass = user.password
-                    console.log(newPass);
-                    const oldCompare = bcrypt.compareSync(req.body.old, user.password);
-                    if(oldCompare){
-                        console.log("Its a match");
-                        User.updateOne({ _id: req.user._id, password: upass}, {
-                            $set: {
-                                password: newPass
-                            }
-                        }, (err) => {
-                            console.log("Password Reset Success");
-                        })
-                    }else{
-                        console.log("Its not a match");
-                    }
-
-                    User.updateOne({ _id: req.user._id, password: req.body.old}, {
-                        $set: {
-                            password: newPass
+            if(req.user){
+                if(req.body.new == req.body.cnew){
+                    User.findOne({ _id: req.user._id}, (err, user) => {
+                        if(err){
+                            res.redirect('/login')
                         }
-                    }, (err) => {
-                        console.log("Password Reset Success");
+        
+                        if(user){
+                            const newPass = bcrypt.hashSync(req.body.new, bcrypt.genSaltSync(10), null);
+                            const upass = user.password
+                            const oldCompare = bcrypt.compareSync(req.body.old, user.password);
+                            if(oldCompare){
+                                console.log("Its a match");
+                                User.updateOne({ _id: req.user._id, password: upass}, {
+                                    $set: {
+                                        password: newPass
+                                    }
+                                }, (err) => {
+                                    console.log("Password Reset Success");
+                                })
+                            }else{
+                                console.log("Its not a match");
+                                req.flash('error', 'Current Password is Incorrect');
+                            }
+        
+                            // User.updateOne({ _id: req.user._id, password: req.body.old}, {
+                            //     $set: {
+                            //         password: newPass
+                            //     }
+                            // }, (err) => {
+                            //     console.log("Password Reset Success");
+                            //     req.flash('success', 'Password Reset Success! You can Now Login');
+                            // })
+                        }
                     })
+                }else{
+                    console.log('New and Cnew dont match');
                 }
-            })
+            }
             res.redirect('/reset/password');
         },
         refund: async function(req, res){
