@@ -51,7 +51,7 @@
             </div>
             <div class="row">
                 <div class="col-12 my-4">
-                    <form class="forms-sample" action = "/admin/add/about/" method = "post">
+                    <form class="forms-sample" action = "/admin/add/about/" method = "post" encType="multipart/form-data">
                         <div class="form-group">
                           <label for="exampleInputUsername1">Heading</label>
                           <input type="text" name = "heading" class="form-control" id="exampleInputUsername1" placeholder="Category Name Here.." value = "<%= about.heading %>">
@@ -73,7 +73,8 @@
                             <div class="form-group">
                               <label for="exampleInputUsername1">Enter Employee <%= i+1 %> Details</label>
                               <input type="text" name = "ename<%= i+1 %>" class="form-control mt-2" id="exampleInputUsername1" placeholder="Employee Name" value = "<%= about.employees[i].name %>">
-                              <input type="text" name = "eimg<%= i+1 %>" class="form-control mt-2" id="exampleInputUsername1" placeholder="Employee Image" value = "<%= about.employees[i].image %>">
+                              <!-- <input type="text" name = "eimg<%= i+1 %>" class="form-control mt-2" id="exampleInputUsername1" placeholder="Employee Image" value = "<%= about.employees[i].image %>"> -->
+                              <input type="file" name="eimg<%= i+1 %>" />
                               <input type="text" name = "edesig<%= i+1 %>" class="form-control mt-2" id="exampleInputUsername1" placeholder="Employee Designation" value = "<%= about.employees[i].designation %>">
                               <input type="text" name = "edesc<%= i+1 %>" class="form-control mt-2" id="exampleInputUsername1" placeholder="Employee Description" value = "<%= about.employees[i].desc %>">
                               <input type="text" name = "facebook<%= i+1 %>" class="form-control mt-2" id="exampleInputUsername1" placeholder="Employee Facebook Profile" value = "<%= about.employees[i].facebook %>">

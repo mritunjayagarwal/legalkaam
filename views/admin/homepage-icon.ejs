@@ -38,29 +38,22 @@
             <div class="row">
                 <div class="col-12 my-4">
                     <form class="forms-sample" action = "/admin/edit/icon" method = "post">
-                        <% for(var i = 0; i < 11; i++){ %>
+                        <% for(var i = 0; i < 12; i++){ %>
                             <% if(home.services[i]){ %>
                                 <div class="form-group">
                                     <label for="exampleInputUsername1">Enter Service <%= i+1 %> Details</label>
-                                    <input type="text" name = "icon<%= i+1 %>" class="form-control mb-2" id="exampleInputUsername1" placeholder="Enter Service Icon" value = "<%= home.services[i].icon %>" hidden>
-                                    <input type="text" name = "color<%= i+1 %>" class="form-control mb-2" id="exampleInputUsername1" placeholder="Enter Service Color" value = "<%= home.services[i].color %>" hidden>
-                                    <select class="js-example-basic-single" name="type<%= i+1 %>" style="width:100%">
-                                        <option value = "<%= home.services[i].serv._id %>"><%= home.services[i].serv.name %></option>
-                                        <% types.forEach((type) => { %>
-                                            <option value = "<%= type._id %>"><%= type.name %></option>
-                                        <% }) %>
-                                    </select>
+                                    <input type="text" name = "icon<%= i+1 %>" class="form-control mb-2" id="exampleInputUsername1" placeholder="Enter Service Icon" value = "<%= home.services[i].icon %>">
+                                    <input type="text" name = "color<%= i+1 %>" class="form-control mb-2" id="exampleInputUsername1" placeholder="Enter Service Color" value = "<%= home.services[i].color %>">
+                                    <input type="text" name = "name<%= i+1 %>" class="form-control mb-2" id="exampleInputUsername1" placeholder="Enter Service Name" value = "<%= home.services[i].name %>">
+                                    <input type="text" name = "link<%= i+1 %>" class="form-control mb-2" id="exampleInputUsername1" placeholder="Enter Service Link" value = "<%= home.services[i].link %>">
                                   </div>
                             <% }else{ %>
                                 <div class="form-group">
                                     <label for="exampleInputUsername1">Enter Service <%= i+1 %> Details</label>
-                                    <input type="text" name = "icon<%= i+1 %>" class="form-control mb-2" id="exampleInputUsername1" placeholder="Enter Service Icon" hidden>
-                                    <input type="text" name = "color<%= i+1 %>" class="form-control mb-2" id="exampleInputUsername1" placeholder="Enter Service Color" value = "<%= home.services[i].color %>" hidden>
-                                    <select class="js-example-basic-single" name="type<%= i+1 %>" style="width:100%">
-                                        <% types.forEach((type) => { %>
-                                            <option value = "<%= type._id %>"><%= type.name %></option>
-                                        <% }) %>
-                                    </select>
+                                    <input type="text" name = "icon<%= i+1 %>" class="form-control mb-2" id="exampleInputUsername1" placeholder="Enter Service Icon">
+                                    <input type="text" name = "color<%= i+1 %>" class="form-control mb-2" id="exampleInputUsername1" placeholder="Enter Service Color">
+                                    <input type="text" name = "name<%= i+1 %>" class="form-control mb-2" id="exampleInputUsername1" placeholder="Enter Service Name">
+                                    <input type="text" name = "link<%= i+1 %>" class="form-control mb-2" id="exampleInputUsername1" placeholder="Enter Service Link">
                                   </div>
                             <% } %>
                           <% } %>  

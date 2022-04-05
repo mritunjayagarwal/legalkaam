@@ -327,6 +327,57 @@ module.exports = function(User, Category, Type, Contact, Sub, About, Home, Detai
             res.render('admin/edit-about', { subcats: subcats, types: types, notifications: notifications, moment: moment});
         },
         postEditAbout: function(req, res){
+
+            let employee1;
+            let employee2;
+            let employee3;
+            let employee4;
+            let employee5;
+            
+            // The name of the input field (i.e. "employee1") is used to retrieve the uploaded file
+            employee1 = req.files.eimg1;
+            employee2 = req.files.eimg2;
+            employee3 = req.files.eimg3;
+            employee4 = req.files.eimg4;
+            employee5 = req.files.eimg5;
+
+            // Use the mv() method to place the file somewhere on your server
+            if(employee1){
+                employee1.mv(__dirname + '/../public/uploads/employees/' + 'employee1.png', function(err) {
+                    if(err) console.log(err);
+                    console.log("Employee 1 image Uploaded Successfully");
+                });
+            }
+
+            if(employee2){
+                employee2.mv(__dirname + '/../public/uploads/employees/' + 'employee2.png', function(err) {
+                    if(err) console.log(err);
+                    console.log("Employee 2 image Uploaded Successfully");
+                });
+            }
+
+            if(employee3){
+                employee3.mv(__dirname + '/../public/uploads/employees/' + 'employee3.png', function(err) {
+                    if(err) console.log(err);
+                    console.log("Employee 3 image Uploaded Successfully");
+                });
+            }
+
+            if(employee4){
+                employee4.mv(__dirname + '/../public/uploads/employees/' + 'employee4.png', function(err) {
+                    if(err) console.log(err);
+                    console.log("Employee 4 image Uploaded Successfully");
+                });
+            }
+
+            if(employee5){
+                employee5.mv(__dirname + '/../public/uploads/employees/' + 'employee5.png', function(err) {
+                    if(err) console.log(err);
+                    console.log("Employee 5 image Uploaded Successfully");
+                });
+            }
+
+
             About.updateOne({
                 _id: '623dc45791f18f6891215ea3'
             }, {
@@ -347,7 +398,7 @@ module.exports = function(User, Category, Type, Contact, Sub, About, Home, Detai
                     employees: [
                         {
                             name: req.body.ename1,
-                            image: req.body.eimg1,
+                            image: 'employee1.png',
                             designation: req.body.edesig1,
                             desc: req.body.edesc1,
                             facebook: req.body.facebook1,
@@ -356,7 +407,7 @@ module.exports = function(User, Category, Type, Contact, Sub, About, Home, Detai
                         },
                         {
                             name: req.body.ename2,
-                            image: req.body.eimg2,
+                            image: 'employee2.png',
                             designation: req.body.edesig2,
                             desc: req.body.edesc2,
                             facebook: req.body.facebook2,
@@ -365,7 +416,7 @@ module.exports = function(User, Category, Type, Contact, Sub, About, Home, Detai
                         },
                         {
                             name: req.body.ename3,
-                            image: req.body.eimg3,
+                            image: 'employee3.png',
                             designation: req.body.edesig3,
                             desc: req.body.edesc3,
                             facebook: req.body.facebook3,
@@ -374,7 +425,7 @@ module.exports = function(User, Category, Type, Contact, Sub, About, Home, Detai
                         },
                         {
                             name: req.body.ename4,
-                            image: req.body.eimg4,
+                            image: 'employee4.png',
                             designation: req.body.edesig4,
                             desc: req.body.edesc4,
                             facebook: req.body.facebook4,
@@ -383,7 +434,7 @@ module.exports = function(User, Category, Type, Contact, Sub, About, Home, Detai
                         },
                         {
                             name: req.body.ename5,
-                            image: req.body.eimg5,
+                            image: 'employee5.png',
                             designation: req.body.edesig5,
                             desc: req.body.edesc5,
                             facebook: req.body.facebook5,
@@ -673,7 +724,7 @@ module.exports = function(User, Category, Type, Contact, Sub, About, Home, Detai
         homepageIcon: async function(req, res){
             var subcats = await Category.find({}).exec();
             var types = await Type.find({}).sort('-created').exec();
-            var home = await Home.findOne({ _id: '623e05377dd536218e3d6aaf'}).populate({ path: 'services.serv', model: 'Type'}).exec();
+            var home = await Home.findOne({ _id: '623e05377dd536218e3d6aaf'}).exec();
             var notifications = await Contact.find({ status: 'unread'}).sort('-created').exec();
             res.render('admin/homepage-icon', { subcats: subcats, types: types, notifications: notifications, home: home, moment: moment});
         },
@@ -686,62 +737,74 @@ module.exports = function(User, Category, Type, Contact, Sub, About, Home, Detai
                         {
                             icon: req.body.icon1,
                             color: req.body.color1,
-                            serv: req.body.type1
+                            name: req.body.name1,
+                            link: req.body.link1
                         },
                         {
                             icon: req.body.icon2,
                             color: req.body.color2,
-                            serv: req.body.type2
+                            name: req.body.name2,
+                            link: req.body.link2
                         },
                         {
                             icon: req.body.icon3,
                             color: req.body.color3,
-                            serv: req.body.type3
+                            name: req.body.name3,
+                            link: req.body.link3
                         },
                         {
                             icon: req.body.icon4,
                             color: req.body.color4,
-                            serv: req.body.type4
+                            name: req.body.name4,
+                            link: req.body.link4
                         },
                         {
                             icon: req.body.icon5,
                             color: req.body.color5,
-                            serv: req.body.type5
+                            name: req.body.name5,
+                            link: req.body.link5
                         },
                         {
                             icon: req.body.icon6,
                             color: req.body.color6,
-                            serv: req.body.type6
+                            name: req.body.name6,
+                            link: req.body.link6
                         },
                         {
                             icon: req.body.icon7,
                             color: req.body.color7,
-                            serv: req.body.type7
+                            name: req.body.name7,
+                            link: req.body.link7
                         },
                         {
                             icon: req.body.icon8,
                             color: req.body.color8,
-                            serv: req.body.type8
+                            name: req.body.name8,
+                            link: req.body.link8
                         },
                         {
                             icon: req.body.icon9,
                             color: req.body.color9,
-                            serv: req.body.type9
+                            name: req.body.name9,
+                            link: req.body.link9
                         },
                         {
                             icon: req.body.icon10,
                             color: req.body.color10,
-                            serv: req.body.type10
+                            name: req.body.name10,
+                            link: req.body.link10
                         },
                         {
                             icon: req.body.icon11,
                             color: req.body.color11,
-                            serv: req.body.type11
+                            name: req.body.name11,
+                            link: req.body.link11
                         },
                         {
                             icon: req.body.icon12,
                             color: req.body.color12,
-                            serv: req.body.type12
+                            name: req.body.name12,
+                            link: req.body.link12
                         },
                     ]
                 }
