@@ -6570,6 +6570,13 @@ color: #3563a9;
   color: #333;
 }
 
+/* PRESENT AT */
+
+.place:hover {
+  margin-top: -10px;
+  transition: 0.5s
+}
+
 
 
 
