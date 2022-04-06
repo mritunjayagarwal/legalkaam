@@ -335,11 +335,11 @@ module.exports = function(User, Category, Type, Contact, Sub, About, Home, Detai
             let employee5;
 
             // The name of the input field (i.e. "employee1") is used to retrieve the uploaded file
-            employee1 = req.files.eimg1 || false;
-            employee2 = req.files.eimg2 || false;
-            employee3 = req.files.eimg3 || false;
-            employee4 = req.files.eimg4 || false;
-            employee5 = req.files.eimg5 || false;
+            employee1 = req.files.eimg1;
+            employee2 = req.files.eimg2;
+            employee3 = req.files.eimg3;
+            employee4 = req.files.eimg4;
+            employee5 = req.files.eimg5;
 
             // Use the mv() method to place the file somewhere on your server
             if(employee1){
