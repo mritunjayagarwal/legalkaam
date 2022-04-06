@@ -74,7 +74,15 @@
                               <label for="exampleInputUsername1">Enter Employee <%= i+1 %> Details</label>
                               <input type="text" name = "ename<%= i+1 %>" class="form-control mt-2" id="exampleInputUsername1" placeholder="Employee Name" value = "<%= about.employees[i].name %>">
                               <!-- <input type="text" name = "eimg<%= i+1 %>" class="form-control mt-2" id="exampleInputUsername1" placeholder="Employee Image" value = "<%= about.employees[i].image %>"> -->
-                              <input type="file" name="eimg<%= i+1 %>" />
+                              <div class="form-group my-2">
+                              <input type="file" name="eimg<%= i+1 %>" class="file-upload-default" required>
+                              <div class="input-group col-xs-12">
+                                <input type="text" class="form-control file-upload-info" disabled placeholder="Upload Image">
+                                <span class="input-group-append">
+                                  <button class="file-upload-browse btn btn-primary" type="button">Upload</button>
+                                </span>
+                              </div>
+                            </div>
                               <input type="text" name = "edesig<%= i+1 %>" class="form-control mt-2" id="exampleInputUsername1" placeholder="Employee Designation" value = "<%= about.employees[i].designation %>">
                               <input type="text" name = "edesc<%= i+1 %>" class="form-control mt-2" id="exampleInputUsername1" placeholder="Employee Description" value = "<%= about.employees[i].desc %>">
                               <input type="text" name = "facebook<%= i+1 %>" class="form-control mt-2" id="exampleInputUsername1" placeholder="Employee Facebook Profile" value = "<%= about.employees[i].facebook %>">
@@ -84,7 +92,15 @@
                           <% }else{ %>
                             <label for="exampleInputUsername1">Enter Employee <%= i +1 %> Details</label>
                             <input type="text" name = "ename<%= i+1 %>" class="form-control mt-2" id="exampleInputUsername1" placeholder="Employee Name">
-                            <input type="file" name="eimg<%= i+1 %>" />
+                            <div class="form-group my-2">
+                              <input type="file" name="eimg<%= i+1 %>" class="file-upload-default" required>
+                              <div class="input-group col-xs-12">
+                                <input type="text" class="form-control file-upload-info" disabled placeholder="Upload Image">
+                                <span class="input-group-append">
+                                  <button class="file-upload-browse btn btn-primary" type="button">Upload</button>
+                                </span>
+                              </div>
+                            </div>
                             <input type="text" name = "edesig<%= i+1 %>" class="form-control mt-2" id="exampleInputUsername1" placeholder="Employee Designation">
                             <input type="text" name = "edesc<%= i+1 %>" class="form-control mt-2" id="exampleInputUsername1" placeholder="Employee Description">
                             <input type="text" name = "facebook<%= i+1 %>" class="form-control mt-2" id="exampleInputUsername1" placeholder="Employee Facebook Profile">
