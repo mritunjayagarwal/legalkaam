@@ -23,7 +23,7 @@
                             <ul class="links">
                                 <% for(let i = 0; i < 6; i++){ %>
                                     <% if(details.footer[i].name != ''){ %>
-                                        <li><a href="index.html"><%= details.footer[i].name %></a></li>
+                                        <li><a href="<%= details.footer[i].link %>"><%= details.footer[i].name %></a></li>
                                     <% } %>
                                 <% } %>
                             </ul><!-- /.links -->		
@@ -32,7 +32,7 @@
                             <ul class="links">
                                 <% for(let i = 6; i < 12; i++){ %>
                                     <% if(details.footer[i].name != ''){ %>
-                                        <li><a href="index.html"><%= details.footer[i].name %></a></li>
+                                        <li><a href="<%= details.footer[i].link %>"><%= details.footer[i].name %></a></li>
                                     <% } %>
                                 <% } %>
                             </ul><!-- /.links -->		
