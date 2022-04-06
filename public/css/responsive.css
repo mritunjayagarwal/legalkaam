@@ -9,6 +9,10 @@
 }
 
 @media(max-width: 1024px) {
+    .center-row{
+        display: block;
+        justify-content: unset;
+    }
     .header-fixed {
         position: relative;
         top: 0;

@@ -1374,7 +1374,7 @@ a:focus {
   height: 50px;
 }
 .contact-form textarea {
-  height: 85px;
+  height: 135px;
   padding-top: 10px;
 }
 .contact-form .form-grp {
@@ -6577,6 +6577,13 @@ color: #3563a9;
   transition: 0.5s
 }
 
+
+/* employees */
+
+.center-row{
+  display: flex; 
+  justify-content: center
+}
 
 
 

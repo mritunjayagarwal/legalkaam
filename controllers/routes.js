@@ -1,5 +1,5 @@
 const { query } = require("express");
-module.exports = function(User, Category, Type, Contact, Sub, About, Home, Details, bcrypt, util, multiparty, path, fs, formidable, fs, passport){
+module.exports = function(User, Category, Type, Contact, Sub, About, Home, Details, Terms, bcrypt, util, multiparty, path, fs, formidable, fs, passport){
     return {
         SetRouting: function(router){
             router.get('/', this.indexPage);
@@ -12,7 +12,7 @@ module.exports = function(User, Category, Type, Contact, Sub, About, Home, Detai
             router.get('/about', this.about);
             router.get('/search/service', this.searchService);
             router.get('/reset/password', this.resetPasswordPage);
-            router.get('/refundpolicy', this.refund);
+            router.get('/terms/:term', this.Showterms);
 
             router.post('/signup', this.createAccount);
             router.post('/login', this.getInside);
@@ -174,11 +174,12 @@ module.exports = function(User, Category, Type, Contact, Sub, About, Home, Detai
             }
             res.redirect('/reset/password');
         },
-        refund: async function(req, res){
+        Showterms: async function(req, res){
             const categories = await Category.find({}).populate({ path: 'subcat', populate: [{ path: 'subcat', model: 'Type'}], model: 'Sub'}).exec();
             const home = await Home.findOne({ _id: '623e05377dd536218e3d6aaf'}).exec();
             const details = await Details.findOne({ _id: '623f76d3b03d2fe0e5a41d94'}).exec();
-            res.render('refundpolicy', { categories: categories, home: home, details: details});
-        }
+            const term = await Terms.findOne({ type: req.params.term}).exec();
+            res.render('terms', { term: term, categories: categories, home: home, details: details});
+        },
     }
 }

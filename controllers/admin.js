@@ -1,7 +1,7 @@
 const { query } = require("express");
 const home = require("../models/home");
 
-module.exports = function(User, Category, Type, Contact, Sub, About, Home, Details, moment){
+module.exports = function(User, Category, Type, Contact, Sub, About, Home, Details, Terms, moment){
     return {
         SetRouting: function(router){
             router.get('/admin', this.admin);
@@ -20,6 +20,8 @@ module.exports = function(User, Category, Type, Contact, Sub, About, Home, Detai
             router.get('/admin/edit/testimonials', this.editTestimonialsPage);
             router.get('/admin/edit/footer', this.editFooter);
             router.get('/admin/edit/icon', this.homepageIcon);
+            router.get('/admin/edit/terms/:term', this.termsPage);
+            router.get('/admin/edit/logo', this.logoPage);
 
             router.post('/new/category', this.newCategory);
             router.post('/new/subcat', this.newSubCat);
@@ -32,6 +34,8 @@ module.exports = function(User, Category, Type, Contact, Sub, About, Home, Detai
             router.post('/admin/delete/service', this.deleteService);
             router.post('/admin/edit/icon', this.insertHomepageIcons);
             router.post('/admin/edit/footer', this.editFooterExecute);
+            router.post('/admin/edit/terms/:term', this.terms);
+            router.post('/admin/edit/logo', this.logoUpload);
         },
         admin: async function(req, res){
             if(req.user){
@@ -563,7 +567,9 @@ module.exports = function(User, Category, Type, Contact, Sub, About, Home, Detai
                     facebook: req.body.facebook,
                     twitter: req.body.twitter,
                     youtube: req.body.youtube,
-                    linkedin: req.body.linkedin
+                    linkedin: req.body.linkedin,
+                    justdial: req.body.justdial,
+                    whatsappno: req.body.whatsapp
                 }
             }, (err) => {
                 console.log('update success');
@@ -817,6 +823,99 @@ module.exports = function(User, Category, Type, Contact, Sub, About, Home, Detai
             });
 
             res.redirect('/admin/edit/icon');
+        },
+        termsPage: async function(req, res){
+            var subcats = await Category.find({}).exec();
+            var types = await Type.find({}).sort('-created').exec();
+            var notifications = await Contact.find({ status: 'unread'}).sort('-created').exec();
+            const term = await Terms.findOne({ type: req.params.term}).exec();
+            if(term){
+                res.render('admin/edit-terms', { term: term, subcats: subcats, types: types, notifications: notifications, moment: moment});
+            }else{
+                res.render('404');
+            }
+        },
+        terms: function(req, res){
+            // const newTerms = new Terms({
+            //     type: req.body.nterm,
+            //     desc: req.body.desc1,
+            //     points: [
+            //         {
+            //             point: req.body.point1
+            //         },
+            //         {
+            //             point: req.body.point2
+            //         },
+            //         {
+            //             point: req.body.point3
+            //         },
+            //         {
+            //             point: req.body.point4
+            //         },
+            //         {
+            //             point: req.body.point5
+            //         }
+            //     ]
+            // });
+
+            // newTerms.save(() => {
+            //     console.log("Hello");
+            // });
+
+            Terms.updateOne({
+                type: req.params.term
+            }, {
+                $set: {
+                    type: req.body.nterm,
+                    desc: req.body.desc1,
+                    points: [
+                        {
+                            point: req.body.point1
+                        },
+                        {
+                            point: req.body.point2
+                        },
+                        {
+                            point: req.body.point3
+                        },
+                        {
+                            point: req.body.point4
+                        },
+                        {
+                            point: req.body.point5
+                        }
+                    ]
+                }
+            }, () => {
+                console.log("Updated Successfully!")
+            })
+
+            res.redirect('back');
+        },
+        logoPage: async function(req, res){
+            var subcats = await Category.find({}).exec();
+            var types = await Type.find({}).sort('-created').exec();
+            var notifications = await Contact.find({ status: 'unread'}).sort('-created').exec();
+            res.render('admin/change-logo', { subcats: subcats, types: types, notifications: notifications, moment: moment});
+        },
+        logoUpload: function(req, res){
+            let logo;
+            let uploadPath;
+
+            if (!req.files || Object.keys(req.files).length === 0) {
+                return res.status(400).send('No files were uploaded.');
+            }
+
+            // The name of the input field (i.e. "logo") is used to retrieve the uploaded file
+            logo = req.files.logo;
+
+            // Use the mv() method to place the file somewhere on your server
+            logo.mv(__dirname + '/../public/img/logo.png', function(err) {
+                if(err) console.log(err);
+                console.log("Logo uploaded successfully!");
+            });
+
+            res.redirect('/admin/edit/logo');
         }
     }
 }

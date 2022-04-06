@@ -82,10 +82,11 @@
                     </ul>
                     <div class="social pull-left">
                         <ul class="list-inline">
-                            <li><a href="#" style="background-color: #3b5998;"><i class="fa fa-facebook"></i></a></li>
-                            <li><a href="#" style="background: radial-gradient(circle at 30% 107%, #fdf497 0%, #fdf497 5%, #fd5949 45%, #d6249f 60%, #285AEB 90%);;"><i class="fa fa-instagram"></i></a></li>
-                            <li><a href="#" style="background-color: #c4302b;"><i class="fa fa-youtube-play"></i></a></li>
-                            <li><a href="#" style="background-color: #0e76a8;"><i class="fa fa-linkedin"></i></a></li>
+                            <li><a href="<%= details.facebook %>" target = "_blank" style="background-color: #3b5998;"><i class="fa fa-facebook"></i></a></li>
+                            <li><a href="<%= details.twitter %>" target = "_blank" style="background: radial-gradient(circle at 30% 107%, #fdf497 0%, #fdf497 5%, #fd5949 45%, #d6249f 60%, #285AEB 90%);;"><i class="fa fa-instagram"></i></a></li>
+                            <li><a href="<%= details.youtube %>" target = "_blank" style="background-color: #c4302b;"><i class="fa fa-youtube-play"></i></a></li>
+                            <li><a href="<%= details.linkedin %>" target = "_blank" style="background-color: #0e76a8;"><i class="fa fa-linkedin"></i></a></li>
+                            <li><a href="<%= details.justdial %>" target = "_blank" style="background-color: #0e76a8;"><i class="fa fa-phone"></i></a></li>
                         </ul><!-- /.list-inline -->
                     </div><!-- /.social pull-right -->
                     
@@ -107,9 +108,9 @@
                     <br/>
                     <div class="col-md-12">
                         <ul class="links">
-                            <li><a href="/refundpolicy">Terms & Conditions</a></li>
-                            <li><a href="/refundpolicy">Refund Policy</a></li>
-                            <li><a href="/refundpolicy">Privacy Policy</a></li>
+                            <li><a href="/terms/terms-and-conditions">Terms & Conditions</a></li>
+                            <li><a href="/terms/refund">Refund Policy</a></li>
+                            <li><a href="/terms/privacy">Privacy Policy</a></li>
                         </ul><!-- /.links -->		
                     </div><!-- /.col-md-12 -->
                 </div><!-- /.single-footer-widget -->
@@ -130,5 +131,5 @@
 <div class="scroll-to-top scroll-to-target" data-target="html"><span class="fa fa-angle-up"></span></div>
 <!--WhatsApp-->
 <div class="whatsapp">
-    <a class="bounce" target="_blank" href="https://api.whatsapp.com/send?phone=+91<%= details.mainPh %>"><i class="fa fa-whatsapp "></i></a>
+    <a class="bounce" target="_blank" href="https://api.whatsapp.com/send?phone=+91<%= details.whatsappno %>"><i class="fa fa-whatsapp "></i></a>
 </div>

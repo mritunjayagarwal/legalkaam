@@ -69,12 +69,15 @@
                             <!-- <span class="decor-line">
                                 <span class="decor-line-inner"></span>
                             </span> -->
-                            <p style = "margin: 10px 0; color: #eee">Starting at</p>
-                            <p class = "my-3" style = "font-size: 25px;margin: 20px 0"><small>Rs.</small><%= type.subs %> Onwards</p>
-                            <p class="description" style = "margin: 10px 0">Save 30% Cost!!</p>
-                            <p class="description" style = "margin: 20px 0">All Inclusive (Fees & Taxes)</p>
-                            <div>
-                                <a href="/contact-us/#enquiry" type="submit" class="btn btn-primary btn-lg">BOOK NOW</a>
+                            <p class = "my-3" style = "font-size: 25px;margin: 20px 0"><small>Rs.</small><%= type.subs %> Onwards <span style = "font-size: 15px;">*All Inclusive (Fees & Taxes)*</span></p>
+                            <div class="price-features" style = "margin: 0">
+                                <% benefits.forEach((benefit) => { %>
+                                    <div class="price-feature">
+                                        <i class="fa fa-check"></i>
+                                        <span><%= benefit %></span>
+                                    </div>
+                                <% }) %>
+                                <a href="/contact-us/#enquiry" type="submit" class="btn btn-primary btn-lg" style = "margin: 20px 0">BOOK NOW</a>
                             </div>
                         </div><!-- /.sec-title -->      
                     </div>
