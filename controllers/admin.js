@@ -338,119 +338,193 @@ module.exports = function(User, Category, Type, Contact, Sub, About, Home, Detai
             let employee4;
             let employee5;
 
-            // The name of the input field (i.e. "employee1") is used to retrieve the uploaded file
-            employee1 = req.files.eimg1;
-            employee2 = req.files.eimg2;
-            employee3 = req.files.eimg3;
-            employee4 = req.files.eimg4;
-            employee5 = req.files.eimg5;
 
-            // Use the mv() method to place the file somewhere on your server
-            if(employee1){
-                employee1.mv(__dirname + '/../public/uploads/employees/' + 'employee1.png', function(err) {
-                    if(err) console.log(err);
-                    console.log("Employee 1 image Uploaded Successfully");
+            if (!req.files || Object.keys(req.files).length === 0) {
+                About.updateOne({
+                    _id: '623dc45791f18f6891215ea3'
+                }, {
+                    $set: { 
+                        heading: req.body.heading,
+                        quote: req.body.quote,
+                        desc: req.body.desc,
+                        descimg: req.body.descimg,
+                    }
+                }, (err) => {
+                    console.log('update success');
                 });
-            }
 
-            if(employee2){
-                employee2.mv(__dirname + '/../public/uploads/employees/' + 'employee2.png', function(err) {
-                    if(err) console.log(err);
-                    console.log("Employee 2 image Uploaded Successfully");
+                About.updateOne({
+                    _id: '623dc45791f18f6891215ea3'
+                }, {
+                    $set: { 
+                        employees: [
+                            {
+                                name: req.body.ename1,
+                                image: 'employee1.png',
+                                designation: req.body.edesig1,
+                                desc: req.body.edesc1,
+                                facebook: req.body.facebook1,
+                                twitter: req.body.twitter1,
+                                linkedin: req.body.linkedin1
+                            },
+                            {
+                                name: req.body.ename2,
+                                image: 'employee2.png',
+                                designation: req.body.edesig2,
+                                desc: req.body.edesc2,
+                                facebook: req.body.facebook2,
+                                twitter: req.body.twitter2,
+                                linkedin: req.body.linkedin2
+                            },
+                            {
+                                name: req.body.ename3,
+                                image: 'employee3.png',
+                                designation: req.body.edesig3,
+                                desc: req.body.edesc3,
+                                facebook: req.body.facebook3,
+                                twitter: req.body.twitter3,
+                                linkedin: req.body.linkedin3
+                            },
+                            {
+                                name: req.body.ename4,
+                                image: 'employee4.png',
+                                designation: req.body.edesig4,
+                                desc: req.body.edesc4,
+                                facebook: req.body.facebook4,
+                                twitter: req.body.twitter4,
+                                linkedin: req.body.linkedin4
+                            },
+                            {
+                                name: req.body.ename5,
+                                image: 'employee5.png',
+                                designation: req.body.edesig5,
+                                desc: req.body.edesc5,
+                                facebook: req.body.facebook5,
+                                twitter: req.body.twitter5,
+                                linkedin: req.body.linkedin5
+                            },
+                        ],
+                    }
+                }, (err) => {
+                    console.log('update success');
                 });
-            }
+            }else{
+                // The name of the input field (i.e. "employee1") is used to retrieve the uploaded file
+                employee1 = req.files.eimg1;
+                employee2 = req.files.eimg2;
+                employee3 = req.files.eimg3;
+                employee4 = req.files.eimg4;
+                employee5 = req.files.eimg5;
+                
 
-            if(employee3){
-                employee3.mv(__dirname + '/../public/uploads/employees/' + 'employee3.png', function(err) {
-                    if(err) console.log(err);
-                    console.log("Employee 3 image Uploaded Successfully");
-                });
-            }
-
-            if(employee4){
-                employee4.mv(__dirname + '/../public/uploads/employees/' + 'employee4.png', function(err) {
-                    if(err) console.log(err);
-                    console.log("Employee 4 image Uploaded Successfully");
-                });
-            }
-
-            if(employee5){
-                employee5.mv(__dirname + '/../public/uploads/employees/' + 'employee5.png', function(err) {
-                    if(err) console.log(err);
-                    console.log("Employee 5 image Uploaded Successfully");
-                });
-            }
-
-
-            About.updateOne({
-                _id: '623dc45791f18f6891215ea3'
-            }, {
-                $set: { 
-                    heading: req.body.heading,
-                    quote: req.body.quote,
-                    desc: req.body.desc,
-                    descimg: req.body.descimg,
+                // Use the mv() method to place the file somewhere on your server
+                if(employee1){
+                    employee1.mv(__dirname + '/../public/uploads/employees/' + 'employee1.png', function(err) {
+                        if(err) console.log(err);
+                        console.log("Employee 1 image Uploaded Successfully");
+                    });
                 }
-            }, (err) => {
-                console.log('update success');
-            });
 
-            About.updateOne({
-                _id: '623dc45791f18f6891215ea3'
-            }, {
-                $set: { 
-                    employees: [
-                        {
-                            name: req.body.ename1,
-                            image: 'employee1.png',
-                            designation: req.body.edesig1,
-                            desc: req.body.edesc1,
-                            facebook: req.body.facebook1,
-                            twitter: req.body.twitter1,
-                            linkedin: req.body.linkedin1
-                        },
-                        {
-                            name: req.body.ename2,
-                            image: 'employee2.png',
-                            designation: req.body.edesig2,
-                            desc: req.body.edesc2,
-                            facebook: req.body.facebook2,
-                            twitter: req.body.twitter2,
-                            linkedin: req.body.linkedin2
-                        },
-                        {
-                            name: req.body.ename3,
-                            image: 'employee3.png',
-                            designation: req.body.edesig3,
-                            desc: req.body.edesc3,
-                            facebook: req.body.facebook3,
-                            twitter: req.body.twitter3,
-                            linkedin: req.body.linkedin3
-                        },
-                        {
-                            name: req.body.ename4,
-                            image: 'employee4.png',
-                            designation: req.body.edesig4,
-                            desc: req.body.edesc4,
-                            facebook: req.body.facebook4,
-                            twitter: req.body.twitter4,
-                            linkedin: req.body.linkedin4
-                        },
-                        {
-                            name: req.body.ename5,
-                            image: 'employee5.png',
-                            designation: req.body.edesig5,
-                            desc: req.body.edesc5,
-                            facebook: req.body.facebook5,
-                            twitter: req.body.twitter5,
-                            linkedin: req.body.linkedin5
-                        },
-                    ],
+                if(employee2){
+                    employee2.mv(__dirname + '/../public/uploads/employees/' + 'employee2.png', function(err) {
+                        if(err) console.log(err);
+                        console.log("Employee 2 image Uploaded Successfully");
+                    });
                 }
-            }, (err) => {
-                console.log('update success');
-            });
 
+                if(employee3){
+                    employee3.mv(__dirname + '/../public/uploads/employees/' + 'employee3.png', function(err) {
+                        if(err) console.log(err);
+                        console.log("Employee 3 image Uploaded Successfully");
+                    });
+                }
+
+                if(employee4){
+                    employee4.mv(__dirname + '/../public/uploads/employees/' + 'employee4.png', function(err) {
+                        if(err) console.log(err);
+                        console.log("Employee 4 image Uploaded Successfully");
+                    });
+                }
+
+                if(employee5){
+                    employee5.mv(__dirname + '/../public/uploads/employees/' + 'employee5.png', function(err) {
+                        if(err) console.log(err);
+                        console.log("Employee 5 image Uploaded Successfully");
+                    });
+                }
+
+
+                About.updateOne({
+                    _id: '623dc45791f18f6891215ea3'
+                }, {
+                    $set: { 
+                        heading: req.body.heading,
+                        quote: req.body.quote,
+                        desc: req.body.desc,
+                        descimg: req.body.descimg,
+                    }
+                }, (err) => {
+                    console.log('update success');
+                });
+
+                About.updateOne({
+                    _id: '623dc45791f18f6891215ea3'
+                }, {
+                    $set: { 
+                        employees: [
+                            {
+                                name: req.body.ename1,
+                                image: 'employee1.png',
+                                designation: req.body.edesig1,
+                                desc: req.body.edesc1,
+                                facebook: req.body.facebook1,
+                                twitter: req.body.twitter1,
+                                linkedin: req.body.linkedin1
+                            },
+                            {
+                                name: req.body.ename2,
+                                image: 'employee2.png',
+                                designation: req.body.edesig2,
+                                desc: req.body.edesc2,
+                                facebook: req.body.facebook2,
+                                twitter: req.body.twitter2,
+                                linkedin: req.body.linkedin2
+                            },
+                            {
+                                name: req.body.ename3,
+                                image: 'employee3.png',
+                                designation: req.body.edesig3,
+                                desc: req.body.edesc3,
+                                facebook: req.body.facebook3,
+                                twitter: req.body.twitter3,
+                                linkedin: req.body.linkedin3
+                            },
+                            {
+                                name: req.body.ename4,
+                                image: 'employee4.png',
+                                designation: req.body.edesig4,
+                                desc: req.body.edesc4,
+                                facebook: req.body.facebook4,
+                                twitter: req.body.twitter4,
+                                linkedin: req.body.linkedin4
+                            },
+                            {
+                                name: req.body.ename5,
+                                image: 'employee5.png',
+                                designation: req.body.edesig5,
+                                desc: req.body.edesc5,
+                                facebook: req.body.facebook5,
+                                twitter: req.body.twitter5,
+                                linkedin: req.body.linkedin5
+                            },
+                        ],
+                    }
+                }, (err) => {
+                    console.log('update success');
+                });
+            }
+
+            
             req.flash('success', 'Details Saved Successfully');
 
             res.redirect("/admin/add/about");
