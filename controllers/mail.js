@@ -7,18 +7,18 @@ module.exports = function(User, Category, Type, Contact, Sub, About, Home, Detai
         },
         mail: function(req, res){
             let transporter = nodemailer.createTransport({
-                host: 'smtp.gmail.com',
-                port: 587,
-                secure: false,
+                host: 'smtp.hostinger.com',
+                port: 465,
+                secure: true,
                 requireTLS: true,
                 auth: {
-                    user: 'mongodbid@gmail.com',
-                    pass: 'Zoni@ckk3'
+                    user: 'info@legal-kaam.com',
+                    pass: 'Tarun@2308'
                 }
             });
               
               var mailOptions = {
-                from: 'mongodbid@gmail.com',
+                from: 'info@legal-kaam.com',
                 to: 'mritunjayagarwal96@gmail.com',
                 subject: 'Sending Email using Node.js',
                 text: 'That was easy!'
