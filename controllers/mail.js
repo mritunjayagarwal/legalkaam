@@ -10,18 +10,21 @@ module.exports = function(User, Category, Type, Contact, Sub, About, Home, Detai
                 host: 'smtp.hostinger.com',
                 port: 465,
                 secure: true,
-                requireTLS: true,
                 auth: {
                     user: 'info@legal-kaam.com',
                     pass: 'Tarun@2308'
-                }
+                },
+                tls: {
+                  rejectUnauthorized: false
+                },
+                sendMail: true,
             });
               
               var mailOptions = {
-                from: 'info@legal-kaam.com',
-                to: 'mritunjayagarwal96@gmail.com',
-                subject: 'Sending Email using Node.js',
-                text: 'That was easy!'
+                from: 'Legalkaam <info@legal-kaam.com>',
+                to: 'jaiswalharsh201@gmail.com',
+                subject: 'This is from LegalKaam Admin',
+                text: 'Hello Harshit'
               };
               
               transporter.sendMail(mailOptions, function(error, info){
@@ -29,6 +32,7 @@ module.exports = function(User, Category, Type, Contact, Sub, About, Home, Detai
                   console.log(error);
                 } else {
                   console.log('Email sent: ' + info.response);
+                  console.log(info)
                 }
               });
 
