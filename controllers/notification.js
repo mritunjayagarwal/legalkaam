@@ -1,6 +1,6 @@
 const { query } = require("express");
 
-module.exports = function(User, Category, Type, Contact, Sub, xlsx, moment){
+module.exports = function(User, Category, Type, Contact, Sub, xlsx, nodemailer, moment){
     return {
         SetRouting: function(router){
             router.get('/show/notifications', this.showNotifications);
@@ -11,6 +11,37 @@ module.exports = function(User, Category, Type, Contact, Sub, xlsx, moment){
             router.post('/add/query/', this.addQuery);
         },
         addQuery: function(req, res){
+
+            let transporter = nodemailer.createTransport({
+                host: 'smtp.hostinger.com',
+                port: 465,
+                secure: true,
+                auth: {
+                    user: 'info@legal-kaam.com',
+                    pass: 'Tarun@2308'
+                },
+                tls: {
+                  rejectUnauthorized: false
+                },
+                sendMail: true,
+            });
+              
+              var mailOptions = {
+                from: 'Legalkaam <info@legal-kaam.com>',
+                to: req.body.email,
+                subject: 'Welcome to LegalKaam',
+                text: 'Hello' + req.body.name
+              };
+              
+              transporter.sendMail(mailOptions, function(error, info){
+                if (error) {
+                  console.log(error);
+                } else {
+                  console.log('Email sent: ' + info.response);
+                  console.log(info)
+                }
+              });
+
             const newQuery = new Contact();
             if(req.body.id && req.body.message){
                 newQuery.subcat = req.body.id;

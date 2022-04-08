@@ -713,30 +713,31 @@ module.exports = function(User, Category, Type, Contact, Sub, About, Home, Detai
                             {
                                 quote: req.body.tquote1,
                                 name: req.body.tname1,
-                                image: 'testimonials1.png',
+                                img: 'testimonials1.png',
                                 designation: req.body.tdesig1
                             },
                             {
                                 quote: req.body.tquote2,
                                 name: req.body.tname2,
-                                image: 'testimonials2.png',
+                                img: 'testimonials2.png',
                                 designation: req.body.tdesig2
                             },
                             {
                                 quote: req.body.tquote3,
                                 name: req.body.tname3,
-                                image: 'testimonials3.png',
+                                img: 'testimonials3.png',
                                 designation: req.body.tdesig3
                             },
                             {
                                 quote: req.body.tquote4,
                                 name: req.body.tname4,
-                                image: 'testimonials4.png',
+                                img: 'testimonials4.png',
                                 designation: req.body.tdesig4
                             },
                             {
                                 quote: req.body.tquote5,
                                 name: req.body.tname5,
+                                img: 'testimonials5.png',
                                 designation: req.body.tdesig5
                             },
                         ]
@@ -797,30 +798,31 @@ module.exports = function(User, Category, Type, Contact, Sub, About, Home, Detai
                             {
                                 quote: req.body.tquote1,
                                 name: req.body.tname1,
-                                image: 'testimonials1.png',
+                                img: 'testimonials1.png',
                                 designation: req.body.tdesig1
                             },
                             {
                                 quote: req.body.tquote2,
                                 name: req.body.tname2,
-                                image: 'testimonials2.png',
+                                img: 'testimonials2.png',
                                 designation: req.body.tdesig2
                             },
                             {
                                 quote: req.body.tquote3,
                                 name: req.body.tname3,
-                                image: 'testimonials3.png',
+                                img: 'testimonials3.png',
                                 designation: req.body.tdesig3
                             },
                             {
                                 quote: req.body.tquote4,
                                 name: req.body.tname4,
-                                image: 'testimonials4.png',
+                                img: 'testimonials4.png',
                                 designation: req.body.tdesig4
                             },
                             {
                                 quote: req.body.tquote5,
                                 name: req.body.tname5,
+                                img: 'testimonials5.png',
                                 designation: req.body.tdesig5
                             },
                         ]
