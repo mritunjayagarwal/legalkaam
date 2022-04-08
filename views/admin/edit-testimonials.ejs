@@ -37,13 +37,22 @@
             </div>
             <div class="row">
                 <div class="col-12 my-4">
-                    <form class="forms-sample" action = "/admin/edit/testimonials" method = "post">
+                    <form class="forms-sample" action = "/admin/edit/testimonials" method = "post" encType="multipart/form-data">
                         <% for(var i = 0; i < 5; i++){ %>
                             <% if(home.testimonials[i]){ %>
                                 <div class="form-group">
                                     <label for="exampleInputUsername1">Enter Testimonial <%= i+1 %> Details</label>
                                     <input type="text" name = "tquote<%= i+1 %>" class="form-control mt-2" id="exampleInputUsername1" placeholder="Enter Testimonial Quote" value = "<%= home.testimonials[i].quote %>">
                                     <input type="text" name = "tname<%= i+1 %>" class="form-control mt-2" id="exampleInputUsername1" placeholder="Enter Testimonial Writer's Name" value = "<%= home.testimonials[i].name %>">
+                                    <div class="form-group my-2">
+                                      <input type="file" name="timg<%= i+1 %>" class="file-upload-default">
+                                      <div class="input-group col-xs-12">
+                                        <input type="text" class="form-control file-upload-info" disabled placeholder="Upload Image" required>
+                                        <span class="input-group-append">
+                                          <button class="file-upload-browse btn btn-primary" type="button">Upload</button>
+                                        </span>
+                                      </div>
+                                    </div>
                                     <input type="text" name = "tdesig<%= i+1 %>" class="form-control mt-2" id="exampleInputUsername1" placeholder="Enter Writer's Designation" value = "<%= home.testimonials[i].designation %>">
                                   </div>
                             <% }else{ %>
@@ -51,6 +60,15 @@
                                     <label for="exampleInputUsername1">Enter Testimonial <%= i+1 %> Details</label>
                                     <input type="text" name = "tquote<%= i+1 %>" class="form-control mt-2" id="exampleInputUsername1" placeholder="Enter Testimonial Quote">
                                     <input type="text" name = "tname<%= i+1 %>" class="form-control mt-2" id="exampleInputUsername1" placeholder="Enter Testimonial Writer's Name">
+                                    <div class="form-group my-2">
+                                      <input type="file" name="timg<%= i+1 %>" class="file-upload-default" required>
+                                      <div class="input-group col-xs-12">
+                                        <input type="text" class="form-control file-upload-info" disabled placeholder="Upload Image">
+                                        <span class="input-group-append">
+                                          <button class="file-upload-browse btn btn-primary" type="button">Upload</button>
+                                        </span>
+                                      </div>
+                                    </div>
                                     <input type="text" name = "tdesig<%= i+1 %>" class="form-control mt-2" id="exampleInputUsername1" placeholder="Enter Writer's Designation">
                                   </div>
                             <% } %>

@@ -697,41 +697,141 @@ module.exports = function(User, Category, Type, Contact, Sub, About, Home, Detai
             res.render('admin/edit-testimonials', { subcats: subcats, types: types, notifications: notifications, home: home, moment: moment});
         },
         editTestimonials: function(req, res){
-            Home.updateOne({
-                _id: '623e05377dd536218e3d6aaf'
-            }, {
-                $set: { 
-                    testimonials: [
-                        {
-                            quote: req.body.tquote1,
-                            name: req.body.tname1,
-                            designation: req.body.tdesig1
-                        },
-                        {
-                            quote: req.body.tquote2,
-                            name: req.body.tname2,
-                            designation: req.body.tdesig2
-                        },
-                        {
-                            quote: req.body.tquote3,
-                            name: req.body.tname3,
-                            designation: req.body.tdesig3
-                        },
-                        {
-                            quote: req.body.tquote4,
-                            name: req.body.tname4,
-                            designation: req.body.tdesig4
-                        },
-                        {
-                            quote: req.body.tquote5,
-                            name: req.body.tname5,
-                            designation: req.body.tdesig5
-                        },
-                    ]
+            let testimonials1;
+            let testimonials2;
+            let testimonials3;
+            let testimonials4;
+            let testimonials5;
+
+
+            if (!req.files || Object.keys(req.files).length === 0) {
+                Home.updateOne({
+                    _id: '623e05377dd536218e3d6aaf'
+                }, {
+                    $set: { 
+                        testimonials: [
+                            {
+                                quote: req.body.tquote1,
+                                name: req.body.tname1,
+                                image: 'testimonials1.png',
+                                designation: req.body.tdesig1
+                            },
+                            {
+                                quote: req.body.tquote2,
+                                name: req.body.tname2,
+                                image: 'testimonials2.png',
+                                designation: req.body.tdesig2
+                            },
+                            {
+                                quote: req.body.tquote3,
+                                name: req.body.tname3,
+                                image: 'testimonials3.png',
+                                designation: req.body.tdesig3
+                            },
+                            {
+                                quote: req.body.tquote4,
+                                name: req.body.tname4,
+                                image: 'testimonials4.png',
+                                designation: req.body.tdesig4
+                            },
+                            {
+                                quote: req.body.tquote5,
+                                name: req.body.tname5,
+                                designation: req.body.tdesig5
+                            },
+                        ]
+                    }
+                }, (err) => {
+                    console.log('Testimonials Update success');
+                });
+            }else{
+                // The name of the input field (i.e. "employee1") is used to retrieve the uploaded file
+                testimonials1 = req.files.timg1;
+                testimonials2 = req.files.timg2;
+                testimonials3 = req.files.timg3;
+                testimonials4 = req.files.timg4;
+                testimonials5 = req.files.timg5;
+                
+
+                // Use the mv() method to place the file somewhere on your server
+                if(testimonials1){
+                    testimonials1.mv(__dirname + '/../public/uploads/testimonials/' + 'testimonials1.png', function(err) {
+                        if(err) console.log(err);
+                        console.log("Testimonial 1 image Uploaded Successfully");
+                    });
                 }
-            }, (err) => {
-                console.log('Testimonials Update success');
-            });
+
+                if(testimonials2){
+                    testimonials2.mv(__dirname + '/../public/uploads/testimonials/' + 'testimonials2.png', function(err) {
+                        if(err) console.log(err);
+                        console.log("Testimonial 2 image Uploaded Successfully");
+                    });
+                }
+
+                if(testimonials3){
+                    testimonials3.mv(__dirname + '/../public/uploads/testimonials/' + 'testimonials3.png', function(err) {
+                        if(err) console.log(err);
+                        console.log("Testimonial 3 image Uploaded Successfully");
+                    });
+                }
+
+                if(testimonials4){
+                    testimonials4.mv(__dirname + '/../public/uploads/testimonials/' + 'testimonials4.png', function(err) {
+                        if(err) console.log(err);
+                        console.log("Testimonial 4 image Uploaded Successfully");
+                    });
+                }
+
+                if(testimonials5){
+                    testimonials5.mv(__dirname + '/../public/uploads/testimonials/' + 'testimonials5.png', function(err) {
+                        if(err) console.log(err);
+                        console.log("Testimonial 5 image Uploaded Successfully");
+                    });
+                }
+
+                Home.updateOne({
+                    _id: '623e05377dd536218e3d6aaf'
+                }, {
+                    $set: { 
+                        testimonials: [
+                            {
+                                quote: req.body.tquote1,
+                                name: req.body.tname1,
+                                image: 'testimonials1.png',
+                                designation: req.body.tdesig1
+                            },
+                            {
+                                quote: req.body.tquote2,
+                                name: req.body.tname2,
+                                image: 'testimonials2.png',
+                                designation: req.body.tdesig2
+                            },
+                            {
+                                quote: req.body.tquote3,
+                                name: req.body.tname3,
+                                image: 'testimonials3.png',
+                                designation: req.body.tdesig3
+                            },
+                            {
+                                quote: req.body.tquote4,
+                                name: req.body.tname4,
+                                image: 'testimonials4.png',
+                                designation: req.body.tdesig4
+                            },
+                            {
+                                quote: req.body.tquote5,
+                                name: req.body.tname5,
+                                designation: req.body.tdesig5
+                            },
+                        ]
+                    }
+                }, (err) => {
+                    console.log('Testimonials Update success');
+                });
+            }
+
+            
+            req.flash('success', 'Details Saved Successfully');
 
             res.redirect('/admin/edit/testimonials');
         },
