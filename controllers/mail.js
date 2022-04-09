@@ -11,7 +11,7 @@ module.exports = function(User, Category, Type, Contact, Sub, About, Home, Detai
                 port: 465,
                 secure: true,
                 auth: {
-                    user: 'info@legal-kaam.com',
+                    user: 'information@legal-kaam.com',
                     pass: 'Tarun@2308'
                 },
                 tls: {
@@ -21,8 +21,8 @@ module.exports = function(User, Category, Type, Contact, Sub, About, Home, Detai
             });
               
               var mailOptions = {
-                from: 'Legalkaam <info@legal-kaam.com>',
-                to: 'jaiswalharsh201@gmail.com',
+                from: 'Legalkaam <information@legal-kaam.com>',
+                to: 'mritunjayagarwal96@gmail.com',
                 subject: 'This is from LegalKaam Admin',
                 text: 'Hello Harshit'
               };

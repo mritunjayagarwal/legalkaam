@@ -17,7 +17,7 @@ module.exports = function(User, Category, Type, Contact, Sub, xlsx, nodemailer, 
                 port: 465,
                 secure: true,
                 auth: {
-                    user: 'info@legal-kaam.com',
+                    user: 'information@legal-kaam.com',
                     pass: 'Tarun@2308'
                 },
                 tls: {
@@ -27,7 +27,7 @@ module.exports = function(User, Category, Type, Contact, Sub, xlsx, nodemailer, 
             });
               
               var mailOptions = {
-                from: 'Legalkaam <info@legal-kaam.com>',
+                from: 'Legalkaam <information@legal-kaam.com>',
                 to: req.body.email,
                 subject: 'Welcome to LegalKaam',
                 text: 'Hello' + req.body.name
