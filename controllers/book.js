@@ -67,6 +67,7 @@ module.exports = function(User, Category, Type, Contact, Sub, About, Home, Detai
 
             // res.send({"status": "success"});
             console.log("Route Reached");
+            req.flash('success', 'Payment Successfull!')
             res.send({"status": "success"});
         }
     }

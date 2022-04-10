@@ -326,84 +326,94 @@
     
     <script>
         $( "#rzp-button" ).click(function() {
-            $.ajax({
-                type: 'POST',
-                url: '/pay/<%= type._id %>',
-                dataType: 'json',
-                encode: true
-            }).done(function(data){
-                if(data.status === "success"){
-                $('#LModal').modal('hide');
-                var order_id = data.sub.id;
-        
-                var options = {
-                    "key": "rzp_test_O1PrDYl7c0Fbi2",
-                    "currency": "<%= type.currency %>",
-                    "name": "Gameplae",
-                    "description": "Lets plae",
-                    "image": "https://previews.123rf.com/images/subhanbaghirov/subhanbaghirov1605/subhanbaghirov160500087/56875269-vector-light-bulb-icon-with-concept-of-idea-brainstorming-idea-illustration-.jpg",
-                    "order_id": order_id,
-                    "handler": function (response){
-        
-                    var params = {
-                        razorpay_order_id:  response.razorpay_order_id,  
-                        razorpay_payment_id: response.razorpay_payment_id,
-                        razorpay_signature:  response.razorpay_signature
-                        }
-        
-                        $.ajax({
-                        type: 'POST',
-                        url: '/api/payment/verify',
-                        data: params, 
-                        dataType: 'json',
-                        encode: true
-                        }).done(function(data){
-                            if(data.status === "success"){
-        
-                            $('#LModal').modal('show');
-        
-                            var params = {
-                            tid: '<%= type._id %>',
-                            bname: document.getElementById('bname').value,
-                            bemail: document.getElementById('bemail').value,
-                            bphone: document.getElementById('bphone').value
-                            }
-        
-                            $.ajax({
-                                type: 'POST',
-                                url: '/add/payment',
-                                data: params,
-                                dataType: 'json',
-                                encode: true
-                            }).done(function(data){
-                                $('#LModal').modal('hide');
-                                if(data.status === "success"){
-                                location.reload(true);
-                                }
-                            }).error(function(err){
-                                $('#LModal').modal('hide');
-                                alert("Failed");
-                            })
-                            }
-                        }).error(function(errorData){
-                            $('#LModal').modal('hide');
-                            alert("Some Error Occured!");
-                        });;
-                    },
-                    "theme": {
-                        "color": "#227254"
-                    }
-                };
-                    var rzp1 = new Razorpay(options);
-                    rzp1.open();
+            if(document.getElementById('bname').value == '' || document.getElementById('bemail').value == '' || document.getElementById('bphone').value == ''){
+                alert("Please Fill all the required details");
+                location.reload(true);
             }else{
+                $.ajax({
+                    type: 'POST',
+                    url: '/pay/<%= type._id %>',
+                    dataType: 'json',
+                    encode: true
+                }).done(function(data){
+                    if(data.status === "success"){
+                    $('#LModal').modal('hide');
+                    var order_id = data.sub.id;
+            
+                    var options = {
+                        "key": "rzp_test_O1PrDYl7c0Fbi2",
+                        "currency": "<%= type.currency %>",
+                        "name": "LegalKaam",
+                        "description": "Legal Support",
+                        "image": "/img/logo.png",
+                        "order_id": order_id,
+                        "handler": function (response){
+            
+                        var params = {
+                            razorpay_order_id:  response.razorpay_order_id,  
+                            razorpay_payment_id: response.razorpay_payment_id,
+                            razorpay_signature:  response.razorpay_signature
+                            }
+            
+                            $.ajax({
+                            type: 'POST',
+                            url: '/api/payment/verify',
+                            data: params, 
+                            dataType: 'json',
+                            encode: true
+                            }).done(function(data){
+                                if(data.status === "success"){
+            
+                                $('#LModal').modal('show');
+            
+                                var params = {
+                                tid: '<%= type._id %>',
+                                bname: document.getElementById('bname').value,
+                                bemail: document.getElementById('bemail').value,
+                                bphone: document.getElementById('bphone').value
+                                }
+            
+                                $.ajax({
+                                    type: 'POST',
+                                    url: '/add/payment',
+                                    data: params,
+                                    dataType: 'json',
+                                    encode: true
+                                }).done(function(data){
+                                    $('#LModal').modal('hide');
+                                    if(data.status === "success"){
+                                    location.reload(true);
+                                    }
+                                }).error(function(err){
+                                    $('#LModal').modal('hide');
+                                    alert("Failed");
+                                })
+                                }
+                            }).error(function(errorData){
+                                $('#LModal').modal('hide');
+                                alert("Some Error Occured!");
+                            });;
+                        },
+                        "prefill": {
+                        "name": document.getElementById('bname').value,
+                        "email": document.getElementById('bemail').value,
+                        "contact": document.getElementById('bphone').value
+                        },
+                        "theme": {
+                            "color": "#227254"
+                        }
+                    };
+                        var rzp1 = new Razorpay(options);
+                        rzp1.open();
+                }else{
+                    $('#LModal').modal('hide');
+                    alert("This username is already registered");
+                }
+                }).error(function(errorData){
                 $('#LModal').modal('hide');
-                alert("This username is already registered");
+                alert("Some Unexpected error ocurred! Please try again later");
+                });
             }
-            }).error(function(errorData){
-            $('#LModal').modal('hide');
-            alert("Some Unexpected error ocurred! Please try again later");
-            });;
         });
         </script>
 
