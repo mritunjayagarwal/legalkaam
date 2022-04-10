@@ -1,9 +1,11 @@
 const { query } = require("express");
 const book = require("../models/book");
 
-module.exports = function(User, Category, Type, Contact, Sub, About, Home, Details, Terms, Book, Razorpay, nodemailer, moment){
+module.exports = function(User, Category, Type, Contact, Sub, About, Home, Details, Terms, Book, xlsx, Razorpay, nodemailer, moment){
     return {
         SetRouting: function(router){
+            router.get('/export/payouts', this.exportPayouts);
+
             router.post('/pay/:id', this.razorPay);
             router.post('/add/payment', this.addPay);
             router.post('/api/payment/verify', this.razorVerify);
@@ -55,20 +57,35 @@ module.exports = function(User, Category, Type, Contact, Sub, About, Home, Detai
             res.send(response);
         },
         addPay: function(req, res){
-            // const newBook = new Book();
-            // newBook.type = req.body.tid;
-            // newBook.name = req.body.bname;
-            // newBook.email = req.body.bemail;
-            // newBook.phone = req.body.bphone;
+            const newBook = new Book();
+            newBook.type = req.body.tid;
+            newBook.name = req.body.bname;
+            newBook.email = req.body.bemail;
+            newBook.phone = req.body.bphone;
 
-            // newBook.save(() => {
-            //     console.log("Booked successfully");
-            // });
+            newBook.save(() => {
+                console.log("Booked successfully");
+            });
 
-            // res.send({"status": "success"});
             console.log("Route Reached");
             req.flash('success', 'Payment Successfull!')
             res.send({"status": "success"});
+        },
+        exportPayouts: function(req, res){
+            var wb = xlsx.utils.book_new(); //new workbook
+            Book.find((err,data)=>{
+                if(err){
+                    console.log(err)
+                }else{
+                    var temp = JSON.stringify(data);
+                    temp = JSON.parse(temp);
+                    var ws = xlsx.utils.json_to_sheet(temp);
+                    var down = __dirname + '/payouts.xlsx'
+                xlsx.utils.book_append_sheet(wb,ws,"sheet1");
+                xlsx.writeFile(wb,down);
+                res.download(down);
+                }
+            });
         }
     }
 }

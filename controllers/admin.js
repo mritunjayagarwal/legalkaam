@@ -1,7 +1,7 @@
 const { query } = require("express");
 const home = require("../models/home");
 
-module.exports = function(User, Category, Type, Contact, Sub, About, Home, Details, Terms, moment){
+module.exports = function(User, Category, Type, Contact, Sub, About, Home, Details, Terms, Book, moment){
     return {
         SetRouting: function(router){
             router.get('/admin', this.admin);
@@ -22,6 +22,7 @@ module.exports = function(User, Category, Type, Contact, Sub, About, Home, Detai
             router.get('/admin/edit/icon', this.homepageIcon);
             router.get('/admin/edit/terms/:term', this.termsPage);
             router.get('/admin/edit/logo', this.logoPage);
+            router.get('/admin/show/payouts', this.showPayouts);
 
             router.post('/new/category', this.newCategory);
             router.post('/new/subcat', this.newSubCat);
@@ -1093,6 +1094,13 @@ module.exports = function(User, Category, Type, Contact, Sub, About, Home, Detai
             });
 
             res.redirect('/admin/edit/logo');
+        },
+        showPayouts: async function(req, res){
+            const payouts = await Book.find({}).populate({ path: 'type', model: 'Type'}).exec();
+            var subcats = await Category.find({}).exec();
+            var types = await Type.find({}).sort('-created').exec();
+            var notifications = await Contact.find({ status: 'unread'}).sort('-created').exec();
+            res.render('admin/show-payouts', { payouts: payouts, subcats: subcats, types: types, notifications: notifications, moment: moment});
         }
     }
 }

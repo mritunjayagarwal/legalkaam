@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>LegalKaam Admin</title>
+    <!-- plugins:css -->
+    <link rel="stylesheet" href="/../admin/vendors/mdi/css/materialdesignicons.min.css">
+    <link rel="stylesheet" href="/../admin/vendors/css/vendor.bundle.base.css">
+    <!-- endinject -->
+    <!-- Plugin css for this page -->
+    <link rel="stylesheet" href="/../admin/vendors/select2/select2.min.css">
+    <link rel="stylesheet" href="/../admin/vendors/select2-bootstrap-theme/select2-bootstrap.min.css">
+    <!-- End plugin css for this page -->
+    <!-- inject:css -->
+    <!-- endinject -->
+    <!-- Layout styles -->
+    <link rel="stylesheet" href="/../admin/css/style.css">
+    <!-- End layout styles -->
+    <link rel="shortcut icon" href="/../admin/images/favicon.png" />
+  </head>
+  <body>
+    <div class="container-scroller">
+      <%- include("../partials/admin/main.ejs") %>
+      <!-- partial -->
+      <div class="container-fluid page-body-wrapper">
+        <div class="main-panel">
+          <div class="content-wrapper">
+            <div class="page-header">
+              <h3 class="page-title">Payouts</h3>
+              <nav aria-label="breadcrumb">
+                <ol class="breadcrumb">
+                  <li class="breadcrumb-item"><a class = "btn btn-primary" href="/export/payouts/">Export Excel File</a></li>
+                </ol>
+              </nav>
+            </div>
+            <div class="row">
+              <% payouts.forEach((payout) => { %>
+                <div class = "col-lg-4 col-md-6 my-3">
+                    <div class = "card w-100 h-100">
+                        <div class = "card-body">
+                          
+                          <p>Name: <%= payout.name %></p>
+                          <p>email: <%= payout.email %></p>
+                          <p>contact: <%= payout.phone %></p>
+                          <p>Service: <%= payout.type.name %></p>
+                          <p>Amount Paid: <%= payout.type.currency %> <%= payout.type.subs %></p>
+                          <p>On: <%= moment().fromNow(payout.initiated) %></p>
+                        </div>
+                    </div>
+                </div>
+            <% }) %>
+            </div>
+          </div>
+      </div>
+        <!-- main-panel ends -->
+      </div>
+      <!-- page-body-wrapper ends -->
+    </div>
+    <!-- container-scroller -->
+    <!-- plugins:js -->
+    <script src="/../admin/vendors/js/vendor.bundle.base.js"></script>
+    <!-- endinject -->
+    <!-- Plugin js for this page -->
+    <script src="/../admin/vendors/select2/select2.min.js"></script>
+    <script src="/../admin/vendors/typeahead.js/typeahead.bundle.min.js"></script>
+    <!-- End plugin js for this page -->
+    <!-- inject:js -->
+    <script src="/../admin/js/off-canvas.js"></script>
+    <script src="/../admin/js/hoverable-collapse.js"></script>
+    <script src="/../admin/js/misc.js"></script>
+    <script src="/../admin/js/settings.js"></script>
+    <script src="/../admin/js/todolist.js"></script>
+    <!-- endinject -->
+    <!-- Custom js for this page -->
+    <script src="/../admin/js/file-upload.js"></script>
+    <script src="/../admin/js/typeahead.js"></script>
+    <script src="/../admin/js/select2.js"></script>
+    <!-- End custom js for this page -->
+  </body>
+</html>

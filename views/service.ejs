@@ -386,7 +386,7 @@
                                     }
                                 }).error(function(err){
                                     $('#LModal').modal('hide');
-                                    alert("Failed");
+                                    alert("An unexpected error has occured.");
                                 })
                                 }
                             }).error(function(errorData){
@@ -407,7 +407,7 @@
                         rzp1.open();
                 }else{
                     $('#LModal').modal('hide');
-                    alert("This username is already registered");
+                    alert("Unexpected error Occured. Please try again later.");
                 }
                 }).error(function(errorData){
                 $('#LModal').modal('hide');
