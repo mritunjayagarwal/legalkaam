@@ -75,7 +75,7 @@
                     <form class="forms-sample" action = "/admin/edit/service/" method = "post" enctype = "multipart/form-data">
                       <div class="form-group">
                         <label>Select Category</label>
-                        <select name="subcat" style="width:100%">
+                        <select class="js-example-basic-single" name="subcat" style="width:100%">
                             <option value = "<%= service.sub._id %>"><%= service.sub.name %></option>
                         </select>
                       </div>
@@ -96,7 +96,7 @@
 
                         <div class="form-group">
                           <label for="exampleTextarea1">Enter Subscription Amount Currency</label>
-                          <select name="currency" style="width:100%">
+                          <select class="js-example-basic-single" name="currency" style="width:100%">
                             <option value="<%= service.currency %>"><%= service.currency %></option>
                             <option value = "INR">INR</option>
                             <option value="USD">USD</option>
