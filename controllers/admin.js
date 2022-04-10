@@ -233,6 +233,7 @@ module.exports = function(User, Category, Type, Contact, Sub, About, Home, Detai
                     desc: req.body.requirements,
                     important: req.body.important,
                     subs: req.body.subs,
+                    currency: req.body.currency,
                     steps: req.body.name,
                     documents: [
                         {

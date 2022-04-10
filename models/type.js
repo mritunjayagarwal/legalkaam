@@ -39,6 +39,7 @@ const typeSchema = new Schema({
     ],
     important: String,
     subs: { type: Number, default: 3999},
+    currency: { type: String, uppercase: true, default: 'INR'},
     created: { type: Date, default: Date.now},
     slug: { type: String, slug: 'name', unique: true, slug_padding_size: 2}
 });

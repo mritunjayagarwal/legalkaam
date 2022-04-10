@@ -12,7 +12,7 @@ const fileUpload = require('express-fileupload');
 const container = require('./container');
 require('dotenv').config();
 
-container.resolve(function(routes, admin, notification, mail, _){
+container.resolve(function(routes, admin, notification, mail, book, _){
 
     mongoose.Promise = global.Promise;
 
@@ -51,6 +51,7 @@ container.resolve(function(routes, admin, notification, mail, _){
         admin.SetRouting(router);
         notification.SetRouting(router);
         mail.SetRouting(router);
+        book.SetRouting(router);
 
         app.use(router);
 
