@@ -5989,8 +5989,8 @@ visibility: visible;
 .whatsapp a, .whatsapp a:hover, .whatsapp a:focus {
   color: #fff;
   position: fixed;
-  bottom: 80px;
-  right: 15px;
+  bottom: 25px;
+  left: 15px;
   background: #25D366;
   font-size: 35px;
   border-radius: 80px;
