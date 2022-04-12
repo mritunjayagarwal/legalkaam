@@ -11,10 +11,10 @@ module.exports = function(User, Category, Type, Contact, Sub, About, Home, Detai
                 port: 465,
                 secure: true,
                 auth: {
-                    user: 'test@legal-kaam.com',
+                    user: '1more@legal-kaam.com',
                     pass: 'Tarun@2308'
                 },
-                from: 'test@legalkaam.com',
+                from: '1more@legalkaam.com',
                 tls: {
                   rejectUnauthorized: false
                 },
@@ -22,7 +22,7 @@ module.exports = function(User, Category, Type, Contact, Sub, About, Home, Detai
             });
               
               var mailOptions = {
-                from: 'Legalkaam <test@legal-kaam.com>',
+                from: 'Legalkaam <1more@legal-kaam.com>',
                 to: 'mongodbid@gmail.com',
                 subject: 'This is from LegalKaam Admin',
                 html: 'Hello Team! <br><br>Please find attached...<br><br>Thanks,<br>XXXXX',
