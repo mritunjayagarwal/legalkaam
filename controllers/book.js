@@ -15,8 +15,8 @@ module.exports = function(User, Category, Type, Contact, Sub, About, Home, Detai
                        if(type){
                         let params;
                         let instance = new Razorpay({
-                            key_id: 'rzp_test_O1PrDYl7c0Fbi2', // your `KEY_ID`
-                            key_secret: '7K2asMBdUb5RktmDCJ8WRxX3' // your `KEY_SECRET`
+                            key_id: 'rzp_test_gPwCWeezDUDmXz', // your `KEY_ID`
+                            key_secret: 'kbY19fKqEIV296eMTbVckxxs' // your `KEY_SECRET`
                         })                     
 
                         if(type.currency == 'USD'){
@@ -48,7 +48,7 @@ module.exports = function(User, Category, Type, Contact, Sub, About, Home, Detai
         razorVerify: function(req, res){
             body=req.body.razorpay_order_id + "|" + req.body.razorpay_payment_id;
             var crypto = require("crypto");
-            var expectedSignature = crypto.createHmac('sha256', '7K2asMBdUb5RktmDCJ8WRxX3')
+            var expectedSignature = crypto.createHmac('sha256', 'kbY19fKqEIV296eMTbVckxxs')
                                         .update(body.toString())
                                         .digest('hex');
             var response = {"status":"failure"}

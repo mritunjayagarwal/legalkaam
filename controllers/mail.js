@@ -1,6 +1,6 @@
 const { query } = require("express");
 
-module.exports = function(User, Category, Type, Contact, Sub, About, Home, Details, Terms, nodemailer, moment){
+module.exports = function(User, Category, Type, Contact, Sub, About, Home, Details, Terms, nodemailer, path, moment){
     return {
         SetRouting: function(router){
             router.get('/mail', this.mail);
@@ -11,10 +11,10 @@ module.exports = function(User, Category, Type, Contact, Sub, About, Home, Detai
                 port: 465,
                 secure: true,
                 auth: {
-                    user: '1more@legal-kaam.com',
+                    user: 'inn@legal-kaam.com',
                     pass: 'Tarun@2308'
                 },
-                from: '1more@legalkaam.com',
+                from: 'inn@legal-kaam.com',
                 tls: {
                   rejectUnauthorized: false
                 },
@@ -22,11 +22,10 @@ module.exports = function(User, Category, Type, Contact, Sub, About, Home, Detai
             });
               
               var mailOptions = {
-                from: 'Legalkaam <1more@legal-kaam.com>',
+                from: 'Legalkaam <inn@legal-kaam.com>',
                 to: 'mongodbid@gmail.com',
                 subject: 'This is from LegalKaam Admin',
-                html: 'Hello Team! <br><br>Please find attached...<br><br>Thanks,<br>XXXXX',
-                text: 'Hello Team! <br><br>Please find attached...<br><br>Thanks,<br>XXXXX',
+                html: { path: __dirname + '/../views/custom-mail.html' },
               };
               
               transporter.sendMail(mailOptions, function(error, info){

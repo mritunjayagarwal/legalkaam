@@ -17,7 +17,7 @@ module.exports = function(User, Category, Type, Contact, Sub, xlsx, nodemailer, 
                 port: 465,
                 secure: true,
                 auth: {
-                    user: '1more@legal-kaam.com',
+                    user: 'inn@legal-kaam.com',
                     pass: 'Tarun@2308'
                 },
                 tls: {
@@ -27,10 +27,10 @@ module.exports = function(User, Category, Type, Contact, Sub, xlsx, nodemailer, 
             });
               
               var mailOptions = {
-                from: 'Legalkaam <1more@legal-kaam.com>',
+                from: 'Legalkaam <inn@legal-kaam.com>',
                 to: req.body.email,
                 subject: 'Welcome to LegalKaam',
-                text: 'Hello' + req.body.name
+                html: { path: __dirname + '/../views/custom-mail.html' },
               };
               
               transporter.sendMail(mailOptions, function(error, info){
