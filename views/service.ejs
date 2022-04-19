@@ -372,7 +372,9 @@
                                 tid: '<%= type._id %>',
                                 bname: document.getElementById('bname').value,
                                 bemail: document.getElementById('bemail').value,
-                                bphone: document.getElementById('bphone').value
+                                bphone: document.getElementById('bphone').value,
+                                bservice: '<%= type.name %>',
+                                bsub: '<%= type.sub %>'
                                 }
             
                                 $.ajax({

@@ -67,7 +67,37 @@ module.exports = function(User, Category, Type, Contact, Sub, About, Home, Detai
                 console.log("Booked successfully");
             });
 
-            console.log("Route Reached");
+            let transporter = nodemailer.createTransport({
+                host: 'smtp.hostinger.com',
+                port: 465,
+                secure: true,
+                auth: {
+                    user: 'inn@legal-kaam.com',
+                    pass: 'Tarun@2308'
+                },
+                from: 'inn@legal-kaam.com',
+                tls: {
+                  rejectUnauthorized: false
+                },
+                sendMail: true,
+            });
+              
+              var mailOptions = {
+                from: 'Legalkaam <inn@legal-kaam.com>',
+                to: req.body.bemail,
+                subject: 'This is from LegalKaam Admin',
+                html: { path: __dirname + '/../views/payment-successfull.html' },
+              };
+              
+              transporter.sendMail(mailOptions, function(error, info){
+                if (error) {
+                  console.log(error);
+                } else {
+                  console.log('Email sent: ' + info.response);
+                  console.log(info)
+                }
+              });
+
             req.flash('success', 'Payment Successfull!')
             res.send({"status": "success"});
         },
