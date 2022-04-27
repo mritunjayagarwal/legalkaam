@@ -49,7 +49,7 @@
                           <p>email: <%= notification.email %></p>
                           <p>contact: <%= notification.contact %></p>
                           <% if(notification.message){ %>
-                            <p>message: <%= notification.message %></p>
+                            <p>message: <%= notification.message %></p> 
                           <% } %>
                           <p>Query type: <span class = "badge badge-primary"><%= notification.qtype %></p></p>
                           <p class = "text-muted mb-5"><%= moment(notification.created).startOf('second').fromNow() %></p>
