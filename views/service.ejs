@@ -72,7 +72,11 @@
                             <!-- <span class="decor-line">
                                 <span class="decor-line-inner"></span>
                             </span> -->
-                            <p class = "my-3" style = "font-size: 25px;margin: 20px 0"><small>Rs.</small><%= type.subs %> Onwards <span style = "font-size: 15px;">*All Inclusive (Fees & Taxes)*</span></p>
+                            <p class = "my-3" style = "font-size: 25px;margin: 20px 0"><% if(type.currency == 'INR'){ %>
+                                <small>Rs.</small>
+                            <% }else{ %>
+                                <SPAN>$</SPAN>
+                            <% } %> <%= type.subs %> Onwards <span style = "font-size: 15px;">*All Inclusive (Fees & Taxes)*</span></p>
                             <div class="price-features" style = "margin: 0">
                                 <% benefits.forEach((benefit) => { %>
                                     <div class="price-feature">

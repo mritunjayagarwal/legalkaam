@@ -41,7 +41,11 @@
                 <div class = "col-lg-4 col-md-6 my-3">
                     <div class = "card w-100 h-100">
                         <div class = "card-body">
-                          
+                          <% if(notification.subcat){ %>
+                            <p>Service: <%= notification.subcat.name %></p>
+                          <% }else{ %>
+                            <p>Service: No</p>
+                          <% } %>
                           <p>From: <%= notification.name %></p>
                           <p>email: <%= notification.email %></p>
                           <p>contact: <%= notification.contact %></p>

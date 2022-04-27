@@ -13,7 +13,7 @@ mongoose.plugin(slug);
 const typeSchema = new Schema({
     sub: { type: Schema.Types.ObjectId, ref: 'Sub'},
     headbg: { type: String},
-    name: { type: String},
+    name: { type: String, unique: true},
     desc: { type: String},
     benefits: [
         {

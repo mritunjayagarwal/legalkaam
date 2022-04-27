@@ -120,6 +120,7 @@ module.exports = function(User, Category, Type, Contact, Sub, About, Home, Detai
                         desc: req.body.requirements,
                         steps: req.body.step,
                         important: req.body.important,
+                        currency: req.body.currency,
                         subs: req.body.subs,
                         benefits: req.body.benefit,
                         features: [

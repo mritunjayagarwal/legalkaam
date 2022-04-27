@@ -44,11 +44,13 @@ module.exports = function(User, Category, Type, Contact, Sub, xlsx, nodemailer, 
 
             const newQuery = new Contact();
             if(req.body.id && req.body.message){
-                newQuery.subcat = req.body.id;
+                if(req.body.id){
+                    newQuery.subcat = req.body.id;
+                }
                 newQuery.message = req.body.message;
                 newQuery.qtype = 'query';
             }else{
-                newQuery.qtype = 'call/admin';
+                newQuery.qtype = 'callback';
             }
             newQuery.name = req.body.name;
             newQuery.contact = req.body.contact;
