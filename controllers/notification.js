@@ -10,7 +10,7 @@ module.exports = function(User, Category, Type, Contact, Sub, xlsx, nodemailer, 
             router.post('/mark/read/', this.markRead);
             router.post('/add/query/', this.addQuery);
         },
-        addQuery: function(req, res){
+        addQuery: async function(req, res){
 
             let transporter = nodemailer.createTransport({
                 host: 'smtp.hostinger.com',
@@ -43,9 +43,13 @@ module.exports = function(User, Category, Type, Contact, Sub, xlsx, nodemailer, 
               });
 
             const newQuery = new Contact();
+
+            const serv = await Type.findOne({ _id: req.body.id}).exec();
+            const servName = serv.name;
             if(req.body.id && req.body.message){
                 if(req.body.id){
                     newQuery.subcat = req.body.id;
+                    newQuery.service = servName;
                 }
                 newQuery.message = req.body.message;
                 newQuery.qtype = 'query';
@@ -114,9 +118,9 @@ module.exports = function(User, Category, Type, Contact, Sub, xlsx, nodemailer, 
                     temp = JSON.parse(temp);
                     var ws = xlsx.utils.json_to_sheet(temp);
                     var down = __dirname + '/exportdata.xlsx'
-                xlsx.utils.book_append_sheet(wb,ws,"sheet1");
-                xlsx.writeFile(wb,down);
-                res.download(down);
+                    xlsx.utils.book_append_sheet(wb,ws,"sheet1");
+                    xlsx.writeFile(wb,down);
+                    res.download(down);
                 }
             });
         }

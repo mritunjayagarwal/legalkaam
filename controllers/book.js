@@ -21,7 +21,7 @@ module.exports = function(User, Category, Type, Contact, Sub, About, Home, Detai
 
                         if(type.currency == 'USD'){
                             params = {
-                                amount: type.subs,  
+                                amount: type.subs * 100,  
                                 currency: "USD",
                                 receipt: "su001",
                                 payment_capture: '1'

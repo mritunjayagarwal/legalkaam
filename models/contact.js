@@ -3,6 +3,7 @@ const Schema = mongoose.Schema
 
 const contactSchema = new Schema({
     subcat: { type: Schema.Types.ObjectId, ref: 'Type'},
+    service: { type: String},
     name: { type: String, lowercase: true},
     email: { type: String, lowercase: true},
     contact: { type: Number},
