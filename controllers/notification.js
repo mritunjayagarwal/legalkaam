@@ -71,7 +71,10 @@ module.exports = function(User, Category, Type, Contact, Sub, xlsx, nodemailer, 
             const newQuery = new Contact();
 
             const serv = await Type.findOne({ _id: req.body.id}).exec();
-            const servName = serv.name;
+            const servName = "";
+            if(serv){
+                const servName = serv.name;
+            }
             if(req.body.id && req.body.message){
                 if(req.body.id){
                     newQuery.subcat = req.body.id;
