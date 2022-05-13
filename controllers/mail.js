@@ -7,22 +7,26 @@ module.exports = function(User, Category, Type, Contact, Sub, About, Home, Detai
         },
         mail: function(req, res){
             let transporter = nodemailer.createTransport({
-                host: 'smtp.hostinger.com',
+                service: 'Godaddy',
+                host: 'smtpout.secureserver.net',
+                secureConnection: false, // TLS requires secureConnection to be false
+                tls: {
+                    rejectUnauthorized: false,
+                    ciphers:'SSLv3'
+                },
+                requireTLS:true,
                 port: 465,
-                secure: true,
+                debug: true,
                 auth: {
-                    user: 'inn@legal-kaam.com',
+                    user: 'info@legalkaam.com',
                     pass: 'Tarun@2308'
                 },
-                from: 'inn@legal-kaam.com',
-                tls: {
-                  rejectUnauthorized: false
-                },
+                from: 'info@legalkaam.com',
                 sendMail: true,
             });
               
               var mailOptions = {
-                from: 'Legalkaam <inn@legal-kaam.com>',
+                from: 'Legalkaam <info@legalkaam.com>',
                 to: 'mongodbid@gmail.com',
                 subject: 'This is from LegalKaam Admin',
                 html: { path: __dirname + '/../views/custom-mail.html' },
